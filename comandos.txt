@@ -1,0 +1,60 @@
+**********************************************************************
+        _                  _     _                    _     ___      _ _               _           __                          
+	  /\/\ (_) __ _ _   _  ___| |   /_\  _ __   __ _  ___| |   / _ \__ _| | | __ _ _ __ __| | ___     / /  ___ _ __ ___  _   _ ___ 
+	   /    \| |/ _` | | | |/ _ \ |  //_\\| '_ \ / _` |/ _ \ |  / /_\/ _` | | |/ _` | '__/ _` |/ _ \   / /  / _ \ '_ ` _ \| | | / __|
+	   / /\/\ \ | (_| | |_| |  __/ | /  _  \ | | | (_| |  __/ | / /_\\ (_| | | | (_| | | | (_| | (_) | / /___  __/ | | | | | |_| \__ \
+							   \/    \/_|\__, |\__,_|\___|_| \_/ \_/_| |_|\__, |\___|_| \____/\__,_|_|_|\__,_|_|  \__,_|\___/  \____/\___|_| |_| |_|\__,_|___/
+							             |___/                            |___/      
+
+								     *******************************************************************************
+
+								     ****************************************************************************
+								     links: 
+								     imagen que muestra la  comunicacion entre repositorios:http://homes.cs.washington.edu/~mernst/advice/version-control-fig3.png
+								     ****************************************************************************
+								     NOTAS
+								     ****************************************************************************
+								     nota1: los [] corchetes indican opcional
+								     git: sistema de manejo de versiones y control de  codigo
+								     github: servicio web para  almacenar  repositorios de  codigo usando github
+								     repositorio: directorio que contines  archivo y derectorios  con el codigo de un software
+								     repositorio local: repositorio que funciona en la PC propia
+								     repositorio remoto: repositorio que  funciona en uns srvidor remoto( pero no en nuestra  cuenta en github)
+								     repositorio propio: repositorio que existe en nuestra cuenta en github
+								     fork:hacer una  copia de un repositorio de github a nuestra cuenta propio de  github (pero no estan interconectados entre ellos)
+								     rama: es una nueva  copia del repositorio, donde se  codificara una version distinta  a la original
+	   master: es el nombre que se le da  ala  rama  original-principal, del repositorio
+	   origin: es el nombre que se le  da al repositorio original, del cual hicimos fork y clonamos
+	   ***********************************************************************************
+	   comandos
+	   *********************************************************
+
+	   clonar repositorio: crear un repositorio local, copiando un repositorio propio de nuestra cuenta de github, a nuestra propia pc
+	   		a) hacer fork: al repositorio remoto para que se cree un repositorio nuestro en nuestra cuenta en github
+					b)clonar el repositorio
+
+					1.-para actualizar  todos los cambios del repositorio local
+						git pull [repositorio propio][rama]
+						2.-para  agregar  archivos  con cambios:  
+							git add archivo.js (por cada cambio en cada archivo)
+		git add -A .  (para  que  agregue  todos  los cambios de todos los  archivos, el punto inidca  todo lo de este directorio)
+	3.- para indicar  que se  deben preparar para subir los  cambios al repositorio propio 
+		git commit -m "cualquier comentario para describirlo" (para agregarlo a cola)
+		4.- para  subir  los  cambios al repositorio propio
+			git push (sube  todos los  cambios indicados con "add" y "commit" en el repositorio propio)
+			     
+			****************************************************************************
+			para  conectar el repositorio local , con el repositorio remoto y rastrear para mezclar cambios
+			****************************************************************************
+			git remote add nombre-repositorio https://github.com/user/repositorio-remoto.git
+			git fetch nombre-repositorio
+			git pull nombre-repositorio rama
+			git push nombre-repositorio rama
+			****************************************************************************
+			para manejar los archivos y directorios desde la consola de  git(gitbash)
+	****************************************************************************
+	mkdir cota (carpeta echa)
+	mv archivo.js cota/ (movido a la carpeta)
+	git add -A (agregar todo)
+	git commit -m "comentario" (para el archivo)
+	git pushg
