@@ -9,9 +9,6 @@ function ask(question, format, callback) {
  
    if (format.test(data)) {
      callback(data);
-   } else {
-     stdout.write("It should match: "+ format +"\n");
-     ask(question, format, callback);
    }
  });
 }
