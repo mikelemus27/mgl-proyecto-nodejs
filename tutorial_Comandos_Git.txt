@@ -14,7 +14,7 @@ imagen que muestra la  comunicacion entre repositorios:
 ***************************************************************************
 NOTAS
 ***************************************************************************
-nota1: los [] corchetes indican opcional
+corchetes: los [] corchetes indican opcional
 git: sistema de manejo de versiones y control de  codigo
 github: servicio web para  almacenar  repositorios de  codigo usando github
 repositorio: directorio que contines  archivo y derectorios  con el codigo de un software
@@ -64,4 +64,15 @@ mv directorioOrigen/archivo    directoriodestino/
 3.-Renombrear unarchivo
 	mv nombre de archivo  nuevo nombre de  archivo
 
+****************************************************************************
+utilizar la herramienta para comparar diferencuias entre archivos del proyecto 
+****************************************************************************
+1.- mostrar las  diferencias  entre el ultimo commit y los  ultimos  cambio
+
+	git diff
+2.- mostrar las diferencias  entre el ultimo commit y los cambios  con  difftool
+	git difftool
+3.- indicar que la  herramienta difftool sera   'vimdiff'	
+	git config --global diff.tool vimdiff
+	git config --global merge.tool vimdiff
 
