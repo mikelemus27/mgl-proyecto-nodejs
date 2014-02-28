@@ -34,10 +34,12 @@ comandos
 2.-para actualizar  todos los cambios del repositorio local
 	git pull [repositorio propio][rama]
 3.-para  agregar  archivos  con cambios:  
-	git add archivo.js (por cada cambio en cada archivo)
-	git add -A .  (para  que  agregue  todos  los cambios de todos los  archivos, el punto inidca  todo lo de este directorio)
+	git add archivo.js (por cada cambio en cada nuevo archivo)
+	git add -A .  (para  que  agregue  todos  los cambios de todos los  archivos, el punto indica  todo lo de este directorio)
 3.- para indicar  que se  deben preparar para subir los  cambios al repositorio propio 
-	git commit -m "cualquier comentario para describirlo" (para agregarlo a cola)
+	git commit -a -m "cualquier comentario para describirlo" (para agregarlo a cola)
+	a) -a : agregar  todos los cambio del  proyecto , al commit
+	b) -m : agregar el mensaje del commit(recomendado y obligatorio)
 4.- para  subir  los  cambios al repositorio propio
 	git push (sube  todos los  cambios indicados con "add" y "commit" en el repositorio propio)
 			     
