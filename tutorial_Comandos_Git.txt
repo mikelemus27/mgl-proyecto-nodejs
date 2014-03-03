@@ -1,0 +1,78 @@
+**********************************************************************
+   __                          
+  / /  ___ _ __ ___  _   _ ___ 
+ / /  / _ \ '_ ` _ \| | | / __|
+/ /___  __/ | | | | | |_| \__ \
+\____/\___|_| |_| |_|\__,_|___/
+*******************************************************************************
+
+****************************************************************************
+links:
+****************************************************************************
+imagen que muestra la  comunicacion entre repositorios:
+	http://homes.cs.washington.edu/~mernst/advice/version-control-fig3.png
+***************************************************************************
+NOTAS
+***************************************************************************
+corchetes: los [] corchetes indican opcional
+git: sistema de manejo de versiones y control de  codigo
+github: servicio web para  almacenar  repositorios de  codigo usando github
+repositorio: directorio que contines  archivo y derectorios  con el codigo de un software
+repositorio local: repositorio que funciona en la PC propia
+repositorio remoto: repositorio que  funciona en uns srvidor remoto( pero no en nuestra  cuenta en github)
+repositorio propio: repositorio que existe en nuestra cuenta en github
+fork:hacer una  copia de un repositorio de github a nuestra cuenta propio de  github (pero no estan interconectados entre ellos)
+rama: es una nueva  copia del repositorio, donde se  codificara una version distinta  a la original
+master: es el nombre que se le da  ala  rama  original-principal, del repositorio
+origin: es el nombre que se le  da al repositorio original, del cual hicimos fork y clonamos
+**********************************************************************************
+comandos
+********************************************************
+1.-clonar repositorio: crear un repositorio local, copiando un repositorio propio de nuestra cuenta de github, a nuestra propia pc
+	a) hacer fork: al repositorio remoto para que se cree un repositorio nuestro en nuestra cuenta en github
+	b)clonar el repositorio
+2.-para actualizar  todos los cambios del repositorio local
+	git pull [repositorio propio][rama]
+3.-para  agregar  archivos  con cambios:  
+	git add archivo.js (por cada cambio en cada nuevo archivo)
+	git add -A .  (para  que  agregue  todos  los cambios de todos los  archivos, el punto indica  todo lo de este directorio)
+3.- para indicar  que se  deben preparar para subir los  cambios al repositorio propio 
+	git commit -a -m "cualquier comentario para describirlo" (para agregarlo a cola)
+	a) -a : agregar  todos los cambio del  proyecto , al commit
+	b) -m : agregar el mensaje del commit(recomendado y obligatorio)
+4.- para  subir  los  cambios al repositorio propio
+	git push (sube  todos los  cambios indicados con "add" y "commit" en el repositorio propio)
+			     
+****************************************************************************
+para  conectar el repositorio local , con el repositorio remoto y rastrear para mezclar cambios
+****************************************************************************
+1.- agrega el repositorio remoto a nuestro git loocal , para  poder interconmectarlo, rastrearlo y mezclarlo con el nuestro	
+	git remote add nombre-repositorio https://github.com/user/repositorio-remoto.git
+2.- obtener los cambios del repositorio remoto que no estan en el repositorio local por primera vez
+	git fetch nombre-repositorio
+3.- descragar los cambios del repositorio remoto a nuestro repositorio local
+	git pull nombre-repositorio rama
+4.- subir  los  cambios del respositorio local  al repositorio remoto
+	git push nombre-repositorio rama
+****************************************************************************
+para manejar los archivos y directorios desde la consola de  git(gitbash)
+****************************************************************************
+1.- Crear Directorio
+mkdir "nombre de directorio"
+2.- mover un archivo de un ditectorio a otro
+mv directorioOrigen/archivo    directoriodestino/
+3.-Renombrear unarchivo
+	mv nombre de archivo  nuevo nombre de  archivo
+
+****************************************************************************
+utilizar la herramienta para comparar diferencuias entre archivos del proyecto 
+****************************************************************************
+1.- mostrar las  diferencias  entre el ultimo commit y los  ultimos  cambio
+
+	git diff
+2.- mostrar las diferencias  entre el ultimo commit y los cambios  con  difftool
+	git difftool
+3.- indicar que la  herramienta difftool sera   'vimdiff'	
+	git config --global diff.tool vimdiff
+	git config --global merge.tool vimdiff
+
