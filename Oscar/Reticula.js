@@ -89,8 +89,22 @@ var Entidad = Entidad || {};
   Entidad.Reticula = Reticula;
 })(); 
 
+var Vista = Vista || {}; 
 
+;(function(){
+  
+  function Reticula(Clave,Nombre,Modulos,Creditos,Periodo){
+    this._Clave = Clave; 
+	this._Nombre= Nombre;
+	this._Modulos= Modulos;
+	this._Creditos= Creditos;
+	this._Periodo= Periodo;
+  }
+  
 
+ 
+  Vista.Reticula = Reticula;
+})(); 
 
 
 var Reticula1 = new Entidad.Reticula();
