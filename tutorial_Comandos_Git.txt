@@ -19,7 +19,7 @@ git: sistema de manejo de versiones y control de  codigo
 github: servicio web para  almacenar  repositorios de  codigo usando github
 repositorio: directorio que contines  archivo y derectorios  con el codigo de un software
 repositorio local: repositorio que funciona en la PC propia
-repositorio remoto: repositorio que  funciona en uns srvidor remoto( pero no en nuestra  cuenta en github)
+repositorio remoto: repositorio que  funciona en un servidor remoto( pero no en nuestra  cuenta en github)
 repositorio propio: repositorio que existe en nuestra cuenta en github
 fork:hacer una  copia de un repositorio de github a nuestra cuenta propio de  github (pero no estan interconectados entre ellos)
 rama: es una nueva  copia del repositorio, donde se  codificara una version distinta  a la original
@@ -46,7 +46,7 @@ comandos
 ****************************************************************************
 para  conectar el repositorio local , con el repositorio remoto y rastrear para mezclar cambios
 ****************************************************************************
-1.- agrega el repositorio remoto a nuestro git loocal , para  poder interconmectarlo, rastrearlo y mezclarlo con el nuestro	
+1.- agrega el repositorio remoto a nuestro git local , para  poder interconmectarlo, rastrearlo y mezclarlo con el nuestro	
 	git remote add nombre-repositorio https://github.com/user/repositorio-remoto.git
 2.- obtener los cambios del repositorio remoto que no estan en el repositorio local por primera vez
 	git fetch nombre-repositorio
