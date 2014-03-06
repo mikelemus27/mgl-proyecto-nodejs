@@ -1,7 +1,6 @@
 // try to always scope your API, Object Types, properties in a namespace   
 
-var mymodule = mymodule || {};
-var pedir = pedir ||{}; 
+var mymodule = mymodule || {};//nombre del namespace
 
 
 
@@ -49,36 +48,31 @@ else {
   
   
   // Constructor
-  function Actividadnombre( nombre){
+  function ActividadesDidacticas( nombre, tipo, recurso, tiempo, materia){
     this._nombre = nombre; // as convention, ._*** is for privates properties
-    // Note: there is a more robust way to do do private, but this will be for later
-   this._nombre = nombre;
+    this._tipo = tipo;
+	this._recurso = recurso;
+	this._tiempo = tiempo;
   }
   
   
   // A ObjectType Method
-  Actividadnombre.prototype.nombre = function(nombre){
+  ActividadesDidacticas.prototype.setNombreAct = function(nombre){
     // Note: here, we use the js/jQuery style, setter/getter in one method
     if (typeof nombre === "undefined"){
       return this._nombre ;
     }else{
       this._nombre = nombre;
      }
+}
 
-
- }
- 
- // Constructor
-  function Acttipo(tipo){
-    this._tipo = tipo; // as convention, ._*** is for privates properties
-    // Note: there is a more robust way to do do private, but this will be for later
-   //this._edad = edad;
-   this._tipo = tipo;
-  }//fin de funcion contructor tipo
-  
+      ActividadesDidacticas.prototype.getNombreAct = function (){
+      return this._nombre;
+      }  
+   
   
   // A ObjectType Method
-  Acttipo.prototype.tipo = function(tipo){
+  ActividadesDidacticas.prototype.setTipo = function(tipo){
     // Note: here, we use the js/jQuery style, setter/getter in one method
     if (typeof tipo === "undefined"){
       return this._tipo ;
@@ -86,132 +80,146 @@ else {
       this._tipo = tipo;
      }
  }//fin de prototype tipo
-  
- // Constructor duracion
-  function ActividadDuracion(tiempo){
-    this._tiempo = tiempo; // as convention, ._*** is for privates properties
-    // Note: there is a more robust way to do do private, but this will be for later
-   //this._edad = edad;
-   this._tiempo = tiempo;
-  }//fin de funcion contructor tipo
-  
-  //3221115857
-  // A ObjectType Method
-  ActividadDuracion.prototype.tiempo = function(tiempo){
-    // Note: here, we use the js/jQuery style, setter/getter in one method
-    if (typeof tiempo === "undefined"){
-      return this._tiempo ;
-    }else{
-      this._tiempo = tiempo;
-     }
- }//fin de prototype tiempo
  
- 
- // Constructor recursos
-  function ActividadRecursos(recurso){
-    this._recurso = recurso; // as convention, ._*** is for privates properties
-    // Note: there is a more robust way to do do private, but this will be for later
-   this._recurso = recurso;
-  }//fin de funcion contructor recurso
-  
+  ActividadesDidacticas.prototype.getTipo = function(){
+  return this._tipo;
+  }
+
   
   // A ObjectType Method
-  ActividadRecursos.prototype.recurso = function(recurso){
+  ActividadesDidacticas.prototype.setRecurso = function(recurso){
     // Note: here, we use the js/jQuery style, setter/getter in one method
     if (typeof recurso === "undefined"){
-      return this._recurso;
+      return this._recurso ;
     }else{
       this._recurso = recurso;
      }
- }//fin de prototype recurso
+ }//fin de prototype tipo
  
+  ActividadesDidacticas.prototype.getRecurso = function(){
+  return this._recurso;
+  }
+  
+   // A ObjectType Method
+  ActividadesDidacticas.prototype.setTiempo = function(tiempo){
+    // Note: here, we use the js/jQuery style, setter/getter in one method
+    if (typeof tiempo === "undefined"){
+      return this._tiempo;
+    }else{
+      this._tiempo = tiempo;
+     }
+ }//fin de prototype tipo
+ 
+  ActividadesDidacticas.prototype.getTiempo = function(){
+  return this._tiempo;
+  }
+  
+  
+    // A ObjectType Method
+  ActividadesDidacticas.prototype.setMateria = function(materia){
+    // Note: here, we use the js/jQuery style, setter/getter in one method
+     if (typeof materia === "undefined"){
+      return this._tiempo;
+      
+	  }else{
+      this._materia = materia;
+     }
+   }//fin de prototype tipo
+ 
+     ActividadesDidacticas.prototype.getMateria = function(){
+    return this._materia;
+    }
+  
   
   // mymodule namespace
-  mymodule.Actividadnombre = Actividadnombre;
-  mymodule.Acttipo = Acttipo;
-  mymodule.ActividadDuracion = ActividadDuracion;
-  mymodule.ActividadRecursos = ActividadRecursos;
+  mymodule.ActividadesDidacticas = ActividadesDidacticas;
+  
+ 
 })(); 
 
 function Procesohacer(){
-proceso("Que proceso quieres", /.+/, function(proces) {
+proceso("Que proceso quieres (Mostrar o Guardar)", /.+/, function(proces) {
  
- if(proces =="Guardar"){
+ if(proces =="Guardar" || proces =="guardar" || proces =="G" || proces =="g"){
  //console.log("Es la opcion correcta", proces);
  pedirdatos();
+  
+  }else{
  
+     if(proces=="Mostrar" || proces =="mostrar" || proces =="m" || proces =="M"){
  
- }
- else{
+        MostrarDatos();
+       }else{
+         console.log("Error no se tiene la opcion: ", proces);
+       process.exit();
+        }
+    }
+
+   });
  
- if(proces=="Mostrar"){
- 
- MostrarDatos();
- 
- }else{
- 
- console.log("Error no se tiene la opcion: ", proces);
- 
- process.exit();
- }
-}
-//process.exit();
-});
 }
 
-function pedirdatos(datos){
-     ask("Nombre de la Actividad", /.+/, function(nombre) {
-       var nomActividad = new mymodule.Actividadnombre(nombre);
-         ask("Tipo de Actividad (Grupo o Individual)", /.+/, function(tipo) {
-          var tipoActividad = new mymodule.Acttipo(tipo);
-		    ask("Duracion de la Actividad", /.+/, function(tiempo) {
-             var Actduracion = new mymodule.ActividadDuracion(tiempo);
-		      ask("Recursos para la Actividad", /.+/, function(recurso) {
-               var ActRecurso = new mymodule.ActividadRecursos(recurso);
-		
-		
-    //console.log("La actividad es:" , nomActividad.nombre());
-     //   console.log("Tipo de Actividad:" , tipoActividad.tipo() );
-       //   console.log("Duracion de la Actividad:" , Actduracion.tiempo());
-		 //    console.log("Recursos para la Actividad:" , ActRecurso.recurso() );
-//process.exit();
+function nuevafuncion(){
 
-pedir.nomActividad = pedir;
+ask("Quieres otra funcion (s)", /.+/, function(nueva) {
 
-ask("Quieres otra funcion",/.+/, function(nueva) {
-
-if (nueva == "s"){
+if (nueva == "s" || nueva === "S" || nueva === "si" || nueva === "SI" || nueva === "Si" || nueva === "sI"){
 //console.log("Que actividad quires");
-Procesohacer();
-}else{
-process.exit();
+     Procesohacer();
+   }else{
+   process.exit();
+       }
+    });
 }
-});
 
+var actividades1 = new mymodule.ActividadesDidacticas();
+ 
+function pedirdatos(datos){
+
+    
+     ask("Nombre de la Actividad", /.+/, function(nombre) {
+      actividades1.setNombreAct(nombre);
+        ask("Tipo de Actividad (Grupo o Individual)", /.+/, function(tipo) {
+         actividades1.setTipo(tipo); 
+		  ask("Recursos para la Actividad (Internet, libros, etc.)", /.+/, function(recurso) {
+           actividades1.setRecurso(recurso); 
+		    ask("Duracion de la actividad", /.+/, function(tiempo) {
+             actividades1.setTiempo(tiempo); 
+               ask("Materia", /.+/, function(materia) {
+                actividades1.setMateria(materia); 
+    //console.log("La actividad es:" , actividades1.getNombreAct());
+
+	  nuevafuncion();
+
+        });
       });
      });
-    });
    });
-//proceso();
+   });
 }
 
-var nomActividad = new mymodule.Actividadnombre();
-         
-          var tipoActividad = new mymodule.Acttipo();
-		   
-             var Actduracion = new mymodule.ActividadDuracion();
-		      
-               var ActRecurso = new mymodule.ActividadRecursos();
+
 			   
 			   
 function MostrarDatos(datos){
-
-//proces procesos = new proces();
- 
- 
-console.log("La actividad es:" , nomActividad);
+    
+       actividades1.getNombreAct();
+	   actividades1.getTipo();
+	   actividades1.getRecurso();
+	   actividades1.getTiempo();
+	   actividades1.getMateria();
+	
+       console.log("El nombre de la actividad es:" + actividades1.getNombreAct() );
+	   console.log("La Actividad es :" + actividades1.getTipo() );
+	   console.log("Recursos :" + actividades1.getRecurso() );
+	   console.log("Duracion: " + actividades1.getTiempo());
+	    console.log("Materia: " + actividades1.getMateria());
+	
+	nuevafuncion();
 
 }
+
+
 Procesohacer();
 
 
