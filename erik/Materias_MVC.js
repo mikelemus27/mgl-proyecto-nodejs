@@ -52,11 +52,11 @@ classProcesos.prototype.ask=function(question,format,callback)
 			data=data.toString().trim();
 			if(format.test(data))
 			{
-				callback(data);
+			callback(data)
 			}
 			else
 				stdout.write("No cumple con el formato "+format+" \n")
-				ask(question,format,callback);
+//				this.ask(question,format,callback);
 		});
 };
 //////////
@@ -70,18 +70,29 @@ classControl.prototype.inicio =function()
 	var maestro="";
 	var datos= new classMaterias();
 	var peticion=new classProcesos();
-	peticion.ask("Clave ",/.+/,datos.setClave(clave));
-	/*peticion.ask("Nombre ",/.+/,datos.setNombre(nombre));				
-	peticion.ask("Turno ",/.+/,datos.setTurno(turno));					
-	peticion.ask("Creditos ",/[0-9]+/,datos.setCreditos(creditos));
-	peticion.ask("Maestro ",/.+/,datos.setMaestro(maestro));*/
-		/*console.log("\n\n Resumen:\n------------------------------");
-		console.log(">>Clave: ",datos.getClave());
-		console.log(">>Nombre: ",datos.getNombre());
-		console.log(">>Turno: ",datos.getTurno());
-		console.log(">>Creditos: ",datos.getCreditos());
-		console.log(">>Maestro: ",datos.getMaestro());*/
-		
+	peticion.ask("Clave ",/.+/,function(){datos.setClave(clave)
+peticion.ask("Nombre ",/.+/,function(){datos.setNombre(nombre)
+
+	peticion.ask("Turno ",/.+/,function(){datos.setTurno(turno)
+	peticion.ask("Creditos ",/[0-9]+/,function(){datos.setCreditos(creditos)
+	peticion.ask("Maestro ",/.+/,function(){datos.setMaestro(maestro)
+	 console.log("\n\n Resumen:\n------------------------------");                                            
+	                   console.log(">>Clave: ",datos.getClave());
+	                   console.log(">>Nombre: ",datos.getNombre());
+	                   console.log(">>Turno: ",datos.getTurno());
+	                   console.log(">>Creditos: ",datos.getCreditos());
+	                   console.log(">>Maestro: ",datos.getMaestro());
+	            process.exit();
+
+	});
+	
+	});
+	
+	});					
+
+});				
+
+});				
 };
 var main=new classControl();
 main.inicio();
