@@ -1,4 +1,11 @@
-var classMaterias= function(){}
+var classMaterias= function()
+{
+	var clave="";
+	var nombre="";
+	var turno="";
+	var creditos=0;
+	var maestro="";	
+}
 classMaterias.prototype.setClave = function(clave)
 {
 	this.clave=clave;
