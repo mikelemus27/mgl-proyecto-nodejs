@@ -48,7 +48,7 @@ classProcesos.prototype.ask=function(question,format,callback)
 	var stdout=process.stdout;
 	stdin.resume();
 	stdout.write(question+": ");
-	stdin.once('data',function(data)
+	stdin.once('data',(function(data)
 		{
 			data=data.toString().trim();
 			if(format.test(data))
@@ -58,7 +58,7 @@ classProcesos.prototype.ask=function(question,format,callback)
 			else
 				stdout.write("No cumple con el formato "+format+" \n");
 				this.ask(question,format,callback);
-		}).bind(this);
+		}).bind(this));
 };
 
 //////////
