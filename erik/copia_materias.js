@@ -1,11 +1,4 @@
-var classMaterias= function()
-{
-	var clave="";
-	var nombre="";
-	var turno="";
-	var creditos=0;
-	var maestro="";	
-}
+var classMaterias= function(){}
 classMaterias.prototype.setClave = function(clave)
 {
 	this.clave=clave;
@@ -50,12 +43,11 @@ classMaterias.prototype.getMaestro = function()
 var classProcesos=function(){}
 classProcesos.prototype.ask=function(question,format,callback)
 {
-
 	var stdin=process.stdin;
 	var stdout=process.stdout;
 	stdin.resume();
 	stdout.write(question+": ");
-	stdin.once('data',(function(data)
+	stdin.once('data',function(data)
 		{
 			data=data.toString().trim();
 			if(format.test(data))
@@ -63,29 +55,26 @@ classProcesos.prototype.ask=function(question,format,callback)
 			callback(data)
 			}
 			else
-			{
 				stdout.write("No cumple con el formato "+format+" \n");
-				this.ask(question,format,callback);
-			}
-		}).bind(this));
+				ask(question,format,callback);
+		});
 };
-
 //////////
 var classControl=function(){};
 classControl.prototype.inicio =function()
 {
-	var clave;
-	var nombre;
-	var turno;
-	var creditos;
-	var maestro;
+	var clave="";
+	var nombre="";
+	var turno="";
+	var creditos=0;
+	var maestro="";
 	var datos= new classMaterias();
 	var peticion=new classProcesos();
-	peticion.ask("Clave ",/.+/,function(clave){datos.setClave(clave)
-	peticion.ask("Nombre ",/.+/,function(nombre){datos.setNombre(nombre)
-	peticion.ask("Turno ",/.+/,function(turno){datos.setTurno(turno)
-	peticion.ask("Creditos ",/[0-9]+/,function(creditos){datos.setCreditos(creditos)
-	peticion.ask("Maestro ",/.+/,function(maestro){datos.setMaestro(maestro)
+	/*peticion.ask("Clave ",/.+/,function(){datos.setClave(clave)
+	peticion.ask("Nombre ",/.+/,function(){datos.setNombre(nombre)
+	peticion.ask("Turno ",/.+/,function(){datos.setTurno(turno)
+	peticion.ask("Creditos ",/[0-9]+/,function(){datos.setCreditos(creditos)
+	peticion.ask("Maestro ",/.+/,function(){datos.setMaestro(maestro)
 	 console.log("\n\n Resumen:\n------------------------------");                                            
 	                   console.log(">>Clave: ",datos.getClave());
 	                   console.log(">>Nombre: ",datos.getNombre());
@@ -102,8 +91,7 @@ classControl.prototype.inicio =function()
 
 });				
 
-});			
+});*/				
 };
 var main=new classControl();
 main.inicio();
-

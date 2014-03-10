@@ -63,10 +63,8 @@ classProcesos.prototype.ask=function(question,format,callback)
 			callback(data)
 			}
 			else
-			{
 				stdout.write("No cumple con el formato "+format+" \n");
 				this.ask(question,format,callback);
-			}
 		}).bind(this));
 };
 
@@ -82,10 +80,15 @@ classControl.prototype.inicio =function()
 	var datos= new classMaterias();
 	var peticion=new classProcesos();
 	peticion.ask("Clave ",/.+/,function(clave){datos.setClave(clave)
+	console.log(datos.getClave());
 	peticion.ask("Nombre ",/.+/,function(nombre){datos.setNombre(nombre)
+	console.log(datos.getNombre());
 	peticion.ask("Turno ",/.+/,function(turno){datos.setTurno(turno)
+	console.log(datos.getTurno());
 	peticion.ask("Creditos ",/[0-9]+/,function(creditos){datos.setCreditos(creditos)
+	console.log(datos.getCreditos());
 	peticion.ask("Maestro ",/.+/,function(maestro){datos.setMaestro(maestro)
+	console.log(datos.getMaestro());
 	 console.log("\n\n Resumen:\n------------------------------");                                            
 	                   console.log(">>Clave: ",datos.getClave());
 	                   console.log(">>Nombre: ",datos.getNombre());
