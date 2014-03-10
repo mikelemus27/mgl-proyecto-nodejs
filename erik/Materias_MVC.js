@@ -8,7 +8,14 @@ var classMaterias= function()
 }
 classMaterias.prototype.setClave = function(clave)
 {
-	this.clave=clave;
+	
+console.log("entrando en sentclave");
+
+        console.log("el valor del parametro clave es "+clave);
+
+        this.clave=clave;
+
+        console.log("el valor de la clave es "+this.clave);
 };
 classMaterias.prototype.getClave = function()
 {
@@ -62,9 +69,10 @@ classProcesos.prototype.ask=function(question,format,callback)
 			{
 			callback(data)
 			}
-			else
+			else{
 				stdout.write("No cumple con el formato "+format+" \n");
-				this.ask(question,format,callback);
+			this.ask(question,format,callback);
+			}
 		}).bind(this));
 };
 
