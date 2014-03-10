@@ -113,9 +113,6 @@ var Entidad = Entidad || {};
   
   Vista.prototype.Capturar = function(valClave,valNombre,valModulos,valCreditos,valPeriodo){
   
-  
-  
-  
   datos.setClave(valClave);
   datos.setNombre(valNombre);
   datos.setModulos(valModulos);
@@ -123,10 +120,10 @@ var Entidad = Entidad || {};
   datos.setPeriodo(valPeriodo);
   
   console.log("Se guardo exitosamente..");
-   
-  }
 
-  
+
+
+
  
   Entidad.Vista = Vista;
 })(); 
@@ -149,19 +146,19 @@ var Entidad = Entidad || {};
 	if(valor ==="1"){
       
       op.Capturar();
-     
+    
 	}
 	else if(valor ==="2"){
 	  op.Mostrar();
 	}
 	else if(valor ==="3"){
 	console.log("Bye...");
+	
 	}
 	
     process.exit();
-    
     });
-	});
+	
 
 
    }
