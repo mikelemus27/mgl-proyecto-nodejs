@@ -120,7 +120,7 @@ var Entidad = Entidad || {};
   datos.setPeriodo(valPeriodo);
   
   console.log("Se guardo exitosamente..");
-
+}
 
 
 
