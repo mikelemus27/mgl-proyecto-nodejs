@@ -145,12 +145,13 @@ var Entidad = Entidad || {};
 	
 
 	if(valor ==="1"){
+	var dato = new Entidad.Control();
 	
-	pedir("Clave: ",/.+/,function(valA) {
-	 pedir("Nombre: ",/.+/,function(valB) {
-	  pedir("Modulos: ",/.+/,function(valC) {
-	    pedir("Creditos: ",/.+/,function(valC) {
-	    pedir("Periodos: ",/.+/,function(valC) {
+	dato.pedir("Clave: ",/.+/,function(valA) {
+	 dato.pedir("Nombre: ",/.+/,function(valB) {
+	  dato.pedir("Modulos: ",/.+/,function(valC) {
+	    dato.pedir("Creditos: ",/.+/,function(valD) {
+	    dato.pedir("Periodos: ",/.+/,function(valE) {
       
 			op.Capturar(valA,valB,valC,valD,valE);
 			process.exit();
@@ -204,6 +205,6 @@ var Entidad = Entidad || {};
 
 
 
-var Controls = new Entidad.Control();
-Controls.opciones();
+var inicio = new Entidad.Control();
+inicio.opciones();
 
