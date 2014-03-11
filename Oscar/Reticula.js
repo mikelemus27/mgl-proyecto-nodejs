@@ -146,11 +146,11 @@ var Entidad = Entidad || {};
 
 	if(valor ==="1"){
 	
-	this.pedir("Clave: ",/.+/,function(valA) {
-	 this.pedir("Nombre: ",/.+/,function(valB) {
-	  this.pedir("Modulos: ",/.+/,function(valC) {
-	   this.pedir("Creditos: ",/.+/,function(valC) {
-	    this.pedir("Periodos: ",/.+/,function(valC) {
+	pedir("Clave: ",/.+/,function(valA) {
+	 pedir("Nombre: ",/.+/,function(valB) {
+	  pedir("Modulos: ",/.+/,function(valC) {
+	    pedir("Creditos: ",/.+/,function(valC) {
+	    pedir("Periodos: ",/.+/,function(valC) {
       
 			op.Capturar(valA,valB,valC,valD,valE);
 			process.exit();
@@ -162,9 +162,11 @@ var Entidad = Entidad || {};
 	}
 	else if(valor ==="2"){
 	  op.Mostrar();
+	  process.exit();
 	}
 	else if(valor ==="3"){
 	console.log("Bye...");
+	process.exit();
 	
 	}
 	
