@@ -120,33 +120,10 @@ var Entidad = Entidad || {};
   datos.setPeriodo(valPeriodo);
   
   
-     dato("",/.+/,function(valA) {
-	
-           
-	  datos.setClave(valA);
-    process.exit();
-    });
   
   console.log("Se guardo exitosamente..");
 }
 
- function dato(question, format, callback) {
-			var stdin = process.stdin, stdout = process.stdout;
- 
-				stdin.resume();
-				stdout.write(question+":");
- 
-				stdin.once('data', function(data) {
-				data = data.toString().trim();
- 
-				if (format.test(data)) {
-					callback(data);
-					} else {
-					stdout.write("It should match: "+ format +"\n");
-						dato(question, format, callback);
-							}
-													});
-														}
 
  
   Entidad.Vista = Vista;
@@ -164,13 +141,24 @@ var Entidad = Entidad || {};
     
 	console.log("1)Capturar 2)Mostrar 3)Salir \n");
 	
-    pedir("",/.+/,function(valor) {
+    this.pedir("",/.+/,function(valor) {
 	
 
 	if(valor ==="1"){
+	
+	this.pedir("Clave: ",/.+/,function(valA) {
+	 this.pedir("Nombre: ",/.+/,function(valB) {
+	  this.pedir("Modulos: ",/.+/,function(valC) {
+	   this.pedir("Creditos: ",/.+/,function(valC) {
+	    this.pedir("Periodos: ",/.+/,function(valC) {
       
-      op.Capturar();
-    
+			op.Capturar(valA,valB,valC,valD,valE);
+			process.exit();
+					});
+				});
+			});
+		});
+	  });
 	}
 	else if(valor ==="2"){
 	  op.Mostrar();
@@ -180,7 +168,7 @@ var Entidad = Entidad || {};
 	
 	}
 	
-    process.exit();
+   
     });
 	
 
@@ -188,7 +176,7 @@ var Entidad = Entidad || {};
    }
    
    
-   function pedir(question, format, callback) {
+  Control.prototype.pedir= function(question, format, callback) {
 			var stdin = process.stdin, stdout = process.stdout;
  
 				stdin.resume();
@@ -201,10 +189,10 @@ var Entidad = Entidad || {};
 					callback(data);
 					} else {
 					stdout.write("It should match: "+ format +"\n");
-						pedir(question, format, callback);
+						this.pedir(question, format, callback);
 							}
-													});
-														}
+													}.bind(this));
+	}
 
 
   Entidad.Control = Control;
