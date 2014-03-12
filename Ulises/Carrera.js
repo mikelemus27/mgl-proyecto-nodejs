@@ -1,21 +1,20 @@
 var myClase = myClase || {}; 
 
-;(function(){
-  
+
+  //Clase modelo
+  //entidad
   // Constructor
-  function Carrera(Nombre,Creditos,Clave,Area,Tipo){
-    this._Nombre = Nombre; // as convention, ._*** is for privates properties
-	this._Creditos = Creditos;
-	this._Clave = Clave;
-	this._Area = Area;
-	this._Tipo = Tipo;
+ var entidadCarrera = function (){
+    Nombre=""; 
+	Creditos="";
+	Clave="";
+	Area="";
+	Tipo="";
 	
-    // Note: there is a more robust way to do do private, but this will be for later
   }
   
-  // A ObjectType Method
-  Carrera.prototype.setNombre = function(Nombre){
-    // Note: here, we use the js/jQuery style, setter/getter in one method
+  entidadCarrera.prototype.setNombre = function(Nombre){
+   
     if (typeof Nombre === "undefined"){
       return this._Nombre ;
     }else{
@@ -23,12 +22,12 @@ var myClase = myClase || {};
     }
   }
   
-  Carrera.prototype.getNombre = function(){
+  entidadCarrera.prototype.getNombre = function(){
       return this._Nombre;
   }
   
-  Carrera.prototype.setCreditos = function(Creditos){
-    // Note: here, we use the js/jQuery style, setter/getter in one method
+  entidadCarrera.prototype.setCreditos = function(Creditos){
+   
     if (typeof Creditos === "undefined"){
       return this._Creditos ;
     }else{
@@ -36,12 +35,12 @@ var myClase = myClase || {};
     }
   }
   
-  Carrera.prototype.getCreditos = function(){
+  entidadCarrera.prototype.getCreditos = function(){
       return this._Creditos;
   }
   
-  Carrera.prototype.setClave = function(Clave){
-    // Note: here, we use the js/jQuery style, setter/getter in one method
+  entidadCarrera.prototype.setClave = function(Clave){
+    
     if (typeof Clave === "undefined"){
       return this._Clave ;
     }else{
@@ -49,12 +48,11 @@ var myClase = myClase || {};
     }
   }
   
-  Carrera.prototype.getClave = function(){
+  entidadCarrera.prototype.getClave = function(){
       return this._Clave;
   }
   
-  Carrera.prototype.setArea = function(Area){
-    // Note: here, we use the js/jQuery style, setter/getter in one method
+  entidadCarrera.prototype.setArea = function(Area){
     if (typeof Area === "undefined"){
       return this._Area ;
     }else{
@@ -62,111 +60,125 @@ var myClase = myClase || {};
     }
   }
   
-   Carrera.prototype.getArea = function(){
+   entidadCarrera.prototype.getArea = function(){
       return this._Area;
   }
   
-  Carrera.prototype.setTipo = function(Tipo){
-    // Note: here, we use the js/jQuery style, setter/getter in one method
+  entidadCarrera.prototype.setTipo = function(Tipo){
+    
     if (typeof Tipo === "undefined"){
       return this._Tipo ;
     }else{
       this._Tipo = Tipo;
     }
   }
-  Carrera.prototype.getTipo = function(){
+  entidadCarrera.prototype.getTipo = function(){
       return this._Tipo;
   }
   
-  // expose the Carrera "Object Type" in the myClase Nombrespace
-  myClase.Carrera = Carrera;
-})(); 
-
-
-
-
-
-;(function(){
   
-  // Constructor
-  function Carrera(Nombre,Creditos,Clave,Area,Tipo){
-    this._Nombre = Nombre; // as convention, ._*** is for privates properties
-	this._Creditos = Creditos;
-	this._Clave = Clave;
-	this._Area = Area;
-	this._Tipo = Tipo;
+  
+  var claseVista = function(){
+   
+  }
+  var obj = new entidadCarrera();
+  
+  
+ 
+  claseVista.prototype.Capturar = function(nombre,creditos,clave,area,tipo){
+     //var objCarrera = new entidadCarrera();
+	 
+	 obj.setNombre(nombre);
+	 obj.setCreditos(creditos);
+	 obj.setClave(clave);
+	 obj.setArea(area);
+	 obj.setTipo(tipo);
+	 
+	 console.log("guardando....");
+   
+  }
+  
+  
+  claseVista.prototype.Mostrar = function(){
+   console.log("mostrando.....");
+     console.log(obj.getNombre());
+	 console.log(obj.getCreditos());
+	 console.log(obj.getClave());
+	 console.log(obj.getArea());
+	 console.log(obj.getTipo());
+	 
+  
+  }
+  
+  
+  
+  var claseControl = function(){
+  
+  }
+  var opcion = new claseVista();
+  
+  claseControl.prototype.opciones = function(){
+      var obj = new claseControl();
+  
+  
+     console.log("1.-Capturar");
+     console.log("2.-Mostrar");
+     console.log("3.-Salir");
+	 
+	 this.pedir("elige una opcion",/.+/,function(eleccion){
+	 
+	   if(eleccion === "1"){
+	      obj.pedir("Nombre", /\w/, function(nombre) {
+          obj.pedir("Creditos", /\w/, function(creditos) {
+          obj.pedir("Clave", /\w/, function(clave) {
+          obj.pedir("Area", /\w/, function(area) {
+          obj.pedir("Tipo", /\w/, function(tipo) {
+		  
+		    opcion.Capturar(nombre,creditos,clave,area,tipo);
+			console.log("");
+			
+			opcion.Mostrar();
+			
+			
+			process.exit();
+		  
+		           });
+				});
+			});
+		 });
+	  });
+		  
+	   }
+	   if(eleccion === "2"){
+           opcion.Mostrar();	
+          process.exit();		   
+	   }
+	   if(eleccion === "3"){
+	     console.log("SALIR")
+		 process.exit();
+	   }
+	 });
+	 
+  
+  }
+
+	claseControl.prototype.pedir = function(question, format, callback) {
+ 		var stdin = process.stdin, stdout = process.stdout;
+ 		stdin.resume();
+ 		stdout.write(question + ": ");
+ 		stdin.once('data', function(data) {
+   			data = data.toString().trim();
+   			if (format.test(data)) {
+     			callback(data);
+   			} else {
+     			stdout.write("It should match: "+ format +"\n");
+     		this.pedir(question, format, callback);
+   			}
+ 		}.bind(this));
+	}
 	
-    // Note: there is a more robust way to do do private, but this will be for later
-  }
-  
-  // A ObjectType Method
-  Carrera.prototype.setNombre = function(Nombre){
-    // Note: here, we use the js/jQuery style, setter/getter in one method
-    if (typeof Nombre === "undefined"){
-      return this._Nombre ;
-    }else{
-      this._Nombre = Nombre;
-    }
-  }
-  
-  Carrera.prototype.getNombre = function(){
-      return this._Nombre;
-  }
-  
-  Carrera.prototype.setCreditos = function(Creditos){
-    // Note: here, we use the js/jQuery style, setter/getter in one method
-    if (typeof Creditos === "undefined"){
-      return this._Creditos ;
-    }else{
-      this._Creditos = Creditos;
-    }
-  }
-  
-  Carrera.prototype.getCreditos = function(){
-      return this._Creditos;
-  }
-  
-  Carrera.prototype.setClave = function(Clave){
-    // Note: here, we use the js/jQuery style, setter/getter in one method
-    if (typeof Clave === "undefined"){
-      return this._Clave ;
-    }else{
-      this._Clave = Clave;
-    }
-  }
-  
-  Carrera.prototype.getClave = function(){
-      return this._Clave;
-  }
-  
-  Carrera.prototype.setArea = function(Area){
-    // Note: here, we use the js/jQuery style, setter/getter in one method
-    if (typeof Area === "undefined"){
-      return this._Area ;
-    }else{
-      this._Clave = Area;
-    }
-  }
-  
-   Carrera.prototype.getArea = function(){
-      return this._Area;
-  }
-  
-  Carrera.prototype.setTipo = function(Tipo){
-    // Note: here, we use the js/jQuery style, setter/getter in one method
-    if (typeof Tipo === "undefined"){
-      return this._Tipo ;
-    }else{
-      this._Tipo = Tipo;
-    }
-  }
-  Carrera.prototype.getTipo = function(){
-      return this._Tipo;
-  }
-  
-  // expose the Carrera "Object Type" in the myClase Nombrespace
-  myClase.Carrera = Carrera;
-})(); 
+	var objControl = new claseControl();
+	objControl.opciones();
 
 
 
@@ -175,12 +187,8 @@ var myClase = myClase || {};
 
 
 
-// ... somewhere else in your js or page code
 
-// create an instance of this Object Type
-var Carrera2 = new myClase.Carrera();
 
-Carrera2.setNombre("Sistemas");
 
-// get some properties
-console.log("Tu carrera es:  " + Carrera2.getNombre());
+
+

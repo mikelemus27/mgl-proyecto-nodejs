@@ -1,9 +1,9 @@
 var alumnos = function (){
-		nombre = ""
-		edad = 0
-		carrera = ""
-		semestre = 0
-		numero=  ""
+		var nombre = "";
+		var edad = 0;
+		var carrera = "";
+		var semestre = 0;
+		var numero=  "";
 	}
 	alumnos.prototype.setNombre = function(nombre){
 		this.nombre = nombre;
@@ -43,13 +43,13 @@ var vista = function (){
 		var model = new alumnos();
 		var view = new vista();
 		var a = null
-		pro.ask("Nombre", /.+/, function(nombre) {model.setNombre(nombre)
-    	pro.ask("Edad", /.+/, function(edad) {model.setEdad(edad)
-    		pro.ask("Carrera", /.+/, function(carrera) {model.setCarrera(carrera)
-      			pro.ask("Semestre", /.+/, function(semestre) {model.setSemestre(semestre)
-        			pro.ask("Numero de control", /.+/, function(numero) {model.setNumero(numero)
+		pro.ask("Nombre", /.+/, function(nombre) {model.setNombre(nombre);
+    	pro.ask("Edad", /.+/, function(edad) {model.setEdad(edad);
+    		pro.ask("Carrera", /.+/, function(carrera) {model.setCarrera(carrera);
+      			pro.ask("Semestre", /.+/, function(semestre) {model.setSemestre(semestre);
+        			pro.ask("Numero de control", /.+/, function(numero) {model.setNumero(numero);
 	  					console.log("");
-	  					a=model
+	  					a=model;
 	  					view.mostrar(a);
  					});
 				});
