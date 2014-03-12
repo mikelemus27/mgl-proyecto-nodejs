@@ -86,30 +86,138 @@ var Entidad = Entidad || {};
 	}
   
   
-  Entidad.Reticula = Reticula;
+ Entidad.Reticula = Reticula;
 })(); 
 
-var Vista = Vista || {}; 
 
 ;(function(){
+
+  var datos=new Entidad.Reticula();
   
-  function Reticula(Clave,Nombre,Modulos,Creditos,Periodo){
-    this._Clave = Clave; 
-	this._Nombre= Nombre;
-	this._Modulos= Modulos;
-	this._Creditos= Creditos;
-	this._Periodo= Periodo;
+  function Vista(){
+ 
   }
   
+  Vista.prototype.Mostrar = function (){
+   
+   console.log("\nEs lo que se encuentra... \n");
+   console.log(datos.getClave());
+   console.log(datos.getNombre());
+   console.log(datos.getModulos());
+   console.log(datos.getCreditos());
+   console.log(datos.getPeriodo());
+  }
+  
+  Vista.prototype.Capturar = function(valA){
+	console.log("imprimiendo "+valA);
+  datos.setClave(valClave);
+  datos.setNombre(valNombre);
+  datos.setModulos(valModulos);
+  datos.setCreditos(valCreditos);
+  datos.setPeriodo(valPeriodo);
+  
+  
+//    this.dato("prueba",/.+/,function(valA) {
+	
+           
+	  datos.setClave(valA);
+   // process.exit();
+
+  console.log("Se guardo exitosamente..");
+ //   });
+  
+}
+
+Vista.prototype.dato=function(question, format, callback) {
+		var stdin = process.stdin, stdout = process.stdout;
+console.log(question);
+ 
+				stdin.resume();
+				stdout.write(question+":");
+ 
+				stdin.once('data', function(data) {
+				data = data.toString().trim();
+ 
+				if (format.test(data)) {
+					callback(data);
+					} else {
+					stdout.write("It should match: "+ format +"\n");
+						dato(question, format, callback);
+							}
+													});
+														}
 
  
-  Vista.Reticula = Reticula;
+ Entidad.Vista = Vista;
 })(); 
 
 
-var Reticula1 = new Entidad.Reticula();
+;(function(){
 
-Reticula1.setClave("34SE2");
+ var op = new Entidad.Vista();
+   function Control(){
+    
+   }
+   
+   Control.prototype.opciones = function(){
+    
+	console.log("1)Capturar 2)Mostrar 3)Salir \n");
+	
+    pedir("",/.+/,function(valor) {
+	
 
-console.log("Clave: " + Reticula1.getClave());
+	if(valor ==="1"){
+console.log("entrando en el if de  opccion 1");
+      
+pedir ("",/.+/,function(valora)     {
+op.Capturar(valora);
+  process.exit();
+
+    });
+    
+	}
+	else if(valor ==="2"){
+	  op.Mostrar();
+	}
+	else if(valor ==="3"){
+	console.log("Bye...");
+	
+	}
+	
+//    process.exit();
+    });
+	
+
+
+   }
+   
+   
+   function pedir(question, format, callback) {
+			var stdin = process.stdin, stdout = process.stdout;
+ 
+				stdin.resume();
+				stdout.write(question);
+ 
+				stdin.once('data', function(data) {
+				data = data.toString().trim();
+ 
+				if (format.test(data)) {
+					callback(data);
+					} else {
+					stdout.write("It should match: "+ format +"\n");
+						pedir(question, format, callback);
+							}
+													});
+														}
+
+
+  Entidad.Control = Control;
+  
+})(); 
+
+
+
+
+var Controls = new Entidad.Control();
+Controls.opciones();
 
