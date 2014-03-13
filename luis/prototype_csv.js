@@ -1,13 +1,14 @@
 var fs = require('fs');//declaramos como semi global la libreria para leer y escribir archivos de texto
 
 function leerarchivo(){//funcion para leer el archivo csv
+var fs = require('fs');
 var data = fs.readFileSync('./base.csv', 'utf8');
 // wait for the result, then use it
 console.log(data);
 var fs = require('fs');
 }//fin de leer archivo csv
 
-function leerarchivo(a,b,c,d,e){//funcion para leer el archivo csv
+function escribirarchivo(a,b,c,d,e){//funcion para leer el archivo csv
 fs.writeFile('./base.csv',a+b+c+d+e, function (err) {
   if (err) throw err;
   console.log('Se han guardado los datos!!');
@@ -123,16 +124,19 @@ else {
   })(); //se inicialisan todas la variables y clases de aqui para abajo
 
 function accionhacer(){ //se muestra el menu para decidir la accion a seguir
-accion("Que quieres hacer?? (Mostrar o Guardar)", /.+/, function(proces) {
+accion("Que quieres hacer?? (Mostrar o Guardar o ver guardados)", /.+/, function(proces) {
  if(proces =="guardar"){
  pedirdatos(); 	  //se manda a pedir la funcion
  }else{
  if(proces=="mostrar"){
  MostrarDatos();	//se manda a pedir la funcion
  }else{
+	 if(proces =="ver"){
+ leerarchivo(); 	  //se manda a pedir la funcion
+ }else{
  console.log("Error no se tiene la opcion el programa se finalizara por seguridad ", proces);
  
- } } } );
+ } } } } );
  }
 
    function nuevafuncion(){
@@ -156,8 +160,8 @@ accion("Que quieres hacer?? (Mostrar o Guardar)", /.+/, function(proces) {
     gruposfin.setactiv(activ); 
     intro("Que carrera eres: ", /.+/, function(carrera) {
     gruposfin.setcarrera(carrera); 
-   
-   leerarchivo(gruposfin.getgrupoAct(),gruposfin.getnombrealum(),gruposfin.getintegr(),gruposfin.getactiv(),gruposfin.getcarrera());
+   //se guardan los datos en el archivo csv de manera automatica
+   escribirarchivo(gruposfin.getgrupoAct(),gruposfin.getnombrealum(),gruposfin.getintegr(),gruposfin.getactiv(),gruposfin.getcarrera());
    
 	nuevafuncion();
 });	});	}); }); }); }
