@@ -30,7 +30,11 @@ comandos
 ********************************************************
 1.-clonar repositorio: crear un repositorio local, copiando un repositorio propio de nuestra cuenta de github, a nuestra propia pc
 	a) hacer fork: al repositorio remoto para que se cree un repositorio nuestro en nuestra cuenta en github
-	b)clonar el repositorio
+	b)clonar el repositorio en una maquina local
+		git clone https://github.com/tuusario-github/mgl-proyecto-nodejs.git
+              
+		ejemplo: git clone https://github.com/jesuscota/mgl-proyecto-nodejs.git
+
 2.-para actualizar  todos los cambios del repositorio local
 	git pull [repositorio propio][rama]
 3.-para  agregar  archivos  con cambios:  
@@ -51,6 +55,9 @@ revisar  cuales  son los   repositorios  remotos que tenemos
 
 1.- agrega el repositorio remoto a nuestro git local , para  poder interconmectarlo, rastrearlo y mezclarlo con el nuestro	
 	git remote add nombre-repositorio https://github.com/user/repositorio-remoto.git
+	example: 
+		git remote add upstream https://github.com/lemus27/mgl-proyecto-nodejs.git
+
 2.- obtener los cambios del repositorio remoto que no estan en el repositorio local por primera y unica vez 
 	git fetch nombre-repositorio
 	example: git fetch upstream
