@@ -46,13 +46,13 @@ var vista = function (){}
     	pro.ask("Edad", /.+/, function(edad) {model.setEdad(edad)
     		pro.ask("Carrera", /.+/, function(carrera) {model.setCarrera(carrera)
       			pro.ask("Semestre", /.+/, function(semestre) {model.setSemestre(semestre)
-        			pro.ask("Numero de control", /.+/, function(numero) {model.setNumero(numero)
+        			pro.ask("Numero de control", /.+/, (function(numero) {model.setNumero(numero)
 	  					console.log("");
 	  					cadena= (model.getNombre()+","+model.getEdad()+","+model.getCarrera()+","+model.getSemestre()+","+model.getNumero());
 	  					a = new Buffer(cadena);
-	  					//file.escribir(a);
+	  					this.file.escribir(a);
 	  					view.mostrar(model);
-	  					});
+	  					}).bind(this));
 						});
  					});
     		file.escribir(a);
