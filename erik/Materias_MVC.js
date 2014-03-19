@@ -8,7 +8,14 @@ var classMaterias= function()
 }
 classMaterias.prototype.setClave = function(clave)
 {
-	this.clave=clave;
+	
+console.log("entrando en sentclave");
+
+        console.log("el valor del parametro clave es "+clave);
+
+        this.clave=clave;
+
+        console.log("el valor de la clave es "+this.clave);
 };
 classMaterias.prototype.getClave = function()
 {
@@ -62,10 +69,16 @@ classProcesos.prototype.ask=function(question,format,callback)
 			{
 			callback(data)
 			}
+<<<<<<< HEAD
+			else{
+				stdout.write("No cumple con el formato "+format+" \n");
+			this.ask(question,format,callback);
+=======
 			else
 			{
 				stdout.write("No cumple con el formato "+format+" \n");
 				this.ask(question,format,callback);
+>>>>>>> 39b81f058b15c447750deef8c4268b9005fa2b3e
 			}
 		}).bind(this));
 };
