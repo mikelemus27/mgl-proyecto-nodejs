@@ -70,6 +70,28 @@ revisar  cuales  son los   repositorios  remotos que tenemos
 5.- eliminar un repositorio remoto
     git remote remove nombre-repositorio
     example:git remote remove upstream
+
+6.- poner  en espera  los commits, para poder bajar los cambios del servidor
+        How do I resolve git saying “Commit your changes or stash them before you can merge”?
+	The second is to stash it. stashing acts as a stack, where you can push changes, and you pop them in reverse order.
+
+To stash type:
+
+git stash
+Do the merge, and than pull the stash:
+
+git stash pop
+The third options is to discard the local changes using git reset --hard.
+    git stash
+ git pull
+ git stash pop
+Another option is:
+
+git stash
+git checkout -b newwork
+git stash apply
+git commit ...
+This creates a new branch, which will allow you to get your master up to date without conflicts, (checkout master again, then pull or fetch + merge). Then you can merge your branch back with (while still on master)  git merge newwork. You can resolve the conflicts on master, while still retaining the work on newwork without any conflicts. This is a bit safer if you are worried about conflicts really screwing things up, but generally, conflicts are just part of the process, so don't worry too much about them.
 ****************************************************************************
 para manejar los archivos y directorios desde la consola de  git(gitbash)
 ****************************************************************************
