@@ -15,7 +15,7 @@ var mymodule = mymodule || {};
 	}
 
 	//El objeto del metodo resive un dato
-	Temario.prototype.settema = function(tema){
+	Temario.prototype.setTema = function(tema){
 		if (typeof tema === "undefined"){
 			return this._tema;
 		}else{
@@ -25,12 +25,12 @@ var mymodule = mymodule || {};
 	}
 
    //En esta funcion regresa el valor que se mando
-	Temario.prototype.gettema = function(){
+	Temario.prototype.getTema = function(){
 		return this._tema;
 	}
 
 
-	Temario.prototype.setsubtemas = function(subtemas){
+	Temario.prototype.setSubtemas = function(subtemas){
 		if (typeof subtemas === "undefined"){
 			return this._subtemas;
 		}else{
@@ -40,11 +40,11 @@ var mymodule = mymodule || {};
 	}
 
    //En esta funcion regresa el valor que se mando
-	Temario.prototype.getsubtemas = function(){
+	Temario.prototype.getSubtemas = function(){
 		return this._subtemas;
 	}
 
-	Temario.prototype.setunidades = function(unidades){
+	Temario.prototype.setUnidades = function(unidades){
 		if (typeof unidades === "undefined"){
 			return this._unidades;
 		}else{
@@ -54,11 +54,11 @@ var mymodule = mymodule || {};
 	}
 
    //En esta funcion regresa el valor que se mando
-	Temario.prototype.getunidades = function(){
+	Temario.prototype.getUnidades = function(){
 		return this._unidades;
 	}
 
-	Temario.prototype.setOG = function(OG){
+	Temario.prototype.setObjG = function(OG){
 		if (typeof OG === "undefined"){
 			return this._OG;
 		}else{
@@ -68,11 +68,11 @@ var mymodule = mymodule || {};
 	}
 
    //En esta funcion regresa el valor que se mando
-	Temario.prototype.getOG = function(){
+	Temario.prototype.getObjG = function(){
 		return this._OG;
 	}
 
-	Temario.prototype.setbibliografia = function(bibliografia){
+	Temario.prototype.setBibliografia = function(bibliografia){
 		if (typeof bibliografia === "undefined"){
 			return this._bibliografia;
 		}else{
@@ -81,7 +81,7 @@ var mymodule = mymodule || {};
 
 	}
    //En esta funcion regresa el valor que se mando
-	Temario.prototype.getbibliografia = function(){
+	Temario.prototype.getBibliografia = function(){
 		return this._bibliografia;
 	}
 
@@ -91,19 +91,160 @@ var mymodule = mymodule || {};
 
 })();
 
-//En esta variable estamos creando instancia entre temario1 y Temario
-var temario1 = new mymodule.Temario();
-
-temario1.settema("PWEB");
-
-temario1.setsubtemas("1.2. Modelado");
-
-temario1.setunidades("4");
 
 
 
-console.log("Nombre del tema: " + temario1.gettema());
+//;(function(){
 
-console.log("Nombre del subtema: " + temario1.getsubtemas());
+	var temario1 = new mymodule.Temario();
 
-console.log("Numero de unidades: " + temario1.getunidades());
+//------------Clase Vista-----------------------------------------------
+	function Vista(){
+
+
+	}
+
+
+
+Vista.prototype.Pedirdatos = function(Tema,Subtemas,Unidades,ObjG,Bibliografia){
+
+
+
+pro.ask("Tema", /.+/, function(tema){
+	temario1.setTema(tema);
+		pro.ask("Subtemas", /.+/, function(subtemas){
+			temario1.setSubtemas(subtemas);
+				pro.ask("Unidades", /.+/, function(unidades){
+					temario1.setUnidades(unidades);
+						pro.ask("Objetivo general", /.+/, function(OG){
+							temario1.setObjG(OG);
+								pro.ask("Bibliografia", /.+/, function(bibliografia){
+									temario1.setBibliografia(bibliografia);
+
+	pro.ask("Deseas hacer otra funcion (si / No)", /.+/, function(ejecutar){
+
+		if(ejecutar == "s" || ejecutar == "si"){
+			pro.ejecutarproceso();
+		}else{
+			process.exit();
+		}
+
+	});
+
+								});
+
+						});
+
+				});
+		});
+});
+
+}
+
+Vista.prototype.Mostrardatos = function(){
+	temario1.getTema();
+	temario1.getSubtemas();
+	temario1.getUnidades();
+	temario1.getObjG();
+	temario1.getBibliografia
+
+
+
+	console.log("Nombre del tema: " + temario1.getTema() );
+	console.log("Nombre de los subtemas: " + temario1.getSubtemas() );
+	console.log("Cuantas unidades son: " + temario1.getUnidades() ) ;
+	console.log("Obgetivo general: " + temario1.getObjG() );
+	console.log("Bibliografia: " + temario1.getBibliografia() );
+
+	pro.ask("Deseas hacer otra funcion (si / no)", /.+/, function(ejecutar){
+
+		if(ejecutar == "s" || ejecutar =="si"){
+			pro.ejecutarproceso();
+
+		}else{
+			if(ejecutar == "n" || ejecutar == "No"){
+
+               pro.ejecutarproceso();  
+			}
+			console.log("Bye a finalizado la ejecucion...")
+			process.exit();
+		}
+	});
+}
+
+
+mymodule.Vista = Vista;
+
+
+//}) ();
+
+
+
+
+//----------------Class Control----------------------------------
+
+//;(funtion(){
+
+
+var opcion = new mymodule.Vista
+
+
+function Control(){
+
+}
+
+Control.prototype.ask = function(question, format, callback){
+	var stdin = process.stdin, stdout = process.stdout;
+
+
+	stdin.resume();
+ stdout.write(question + ": ");
+
+ stdin.once('data', function(data) {
+   data = data.toString().trim();
+
+    if (format.test(data)) {
+       callback(data);
+   }else {
+     stdout.write("It should match: "+ format +"\n");
+     ask(question, format, callback);
+   }
+ });
+}
+
+Control.prototype.ejecutarproceso = function(){
+	pro.ask("Que proceso quieres (Mostrar o Capturar o Salir)", /.+/, function(proceso){
+
+			if(proceso == "Guardar" || proceso == "g" || proceso == "capturar" || proceso == "c"){
+				opcion.Pedirdatos();
+
+			}else{
+				if(proceso == "mostrar" || proceso == "m"){
+					opcion.Mostrardatos();
+
+				}else{
+					console.log("A seleccionado el proceso salir: ", proceso);
+					process.exit();
+				}
+			}
+	});
+}
+
+
+
+mymodule.Control = Control;
+
+
+//}) ();
+
+
+
+
+
+
+
+var pro = new Control();
+pro.ejecutarproceso();
+
+
+
