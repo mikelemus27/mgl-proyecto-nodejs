@@ -37,22 +37,29 @@ var alumnos = function (){
 	}
 var vista = function (){}
 	vista.prototype.pedir = function (){
+	    var cadena= "";
+	  var 	a = new Buffer(cadena);
 		var pro = new proceso();
 		var model = new alumnos();
 		var view = new vista();
 		var file = new archivo();
-		
+		var self=this;
+		file.escribir(a);
 		pro.ask("Nombre", /.+/, function(nombre) {model.setNombre(nombre)
+		self.file.escribir(a);
     	pro.ask("Edad", /.+/, function(edad) {model.setEdad(edad)
+    	self.file.escribir(a);
     		pro.ask("Carrera", /.+/, function(carrera) {model.setCarrera(carrera)
+    		self.file.escribir(a);
       			pro.ask("Semestre", /.+/, function(semestre) {model.setSemestre(semestre)
+      			self.file.escribir(a);
         			pro.ask("Numero de control", /.+/, (function(numero) {model.setNumero(numero)
 	  					console.log("");
 	  					cadena= (model.getNombre()+","+model.getEdad()+","+model.getCarrera()+","+model.getSemestre()+","+model.getNumero());
 	  					a = new Buffer(cadena);
-	  					this.file.escribir(a);
+	  					self.file.escribir(a);
 	  					view.mostrar(model);
-	  					}).bind(this));
+	  					}));
 						});
  					});
     		file.escribir(a);
@@ -69,7 +76,7 @@ var vista = function (){}
     	process.exit();
 	}
 
-var proceso = function(){}
+var proceso = function(){};
 	proceso.prototype.ask = function(question, format, callback) {
  		var stdin = process.stdin, stdout = process.stdout;
  		stdin.resume();
@@ -85,7 +92,7 @@ var proceso = function(){}
  		});
 	}
 
-var archivo = function(){}
+var archivo = function(){};
 	archivo.prototype.leer = function(){
 		var model = new alumnos();
 		var view = new vista();
@@ -127,14 +134,14 @@ var archivo = function(){}
 var control = function(){}
 	control.prototype.inicio = function(){
 		var file = new archivo();
-		a= new Buffer("hola");
+	//	a= new Buffer("hola");
 		var view = new vista();
 		view.pedir();
 		//var fs = require("fs");
 		//var model = new alumnos();
 		//fs.open("D:\\bd.txt",'a');
 		//fs.write(model.getNombre,model.getEdad,model.getCarrera,model.getSemestre,model.getNumero);
-		file.escribir(a);
+		//file.escribir(a);
 	}
 //var file = new archivo();
 //a= new Buffer("hola");
