@@ -1,0 +1,117 @@
+**********************************************************************
+   __                          
+  / /  ___ _ __ ___  _   _ ___ 
+ / /  / _ \ '_ ` _ \| | | / __|
+/ /___  __/ | | | | | |_| \__ \
+\____/\___|_| |_| |_|\__,_|___/
+*******************************************************************************
+
+****************************************************************************
+links:
+****************************************************************************
+imagen que muestra la  comunicacion entre repositorios:
+	http://homes.cs.washington.edu/~mernst/advice/version-control-fig3.png
+***************************************************************************
+NOTAS
+***************************************************************************
+corchetes: los [] corchetes indican opcional
+git: sistema de manejo de versiones y control de  codigo
+github: servicio web para  almacenar  repositorios de  codigo usando github
+repositorio: directorio que contines  archivo y derectorios  con el codigo de un software
+repositorio local: repositorio que funciona en la PC propia
+repositorio remoto: repositorio que  funciona en un servidor remoto( pero no en nuestra  cuenta en github)
+repositorio propio: repositorio que existe en nuestra cuenta en github
+fork:hacer una  copia de un repositorio de github a nuestra cuenta propio de  github (pero no estan interconectados entre ellos)
+rama: es una nueva  copia del repositorio, donde se  codificara una version distinta  a la original
+master: es el nombre que se le da  ala  rama  original-principal, del repositorio
+origin: es el nombre que se le  da al repositorio original, del cual hicimos fork y clonamos
+**********************************************************************************
+comandos
+********************************************************
+1.-clonar repositorio: crear un repositorio local, copiando un repositorio propio de nuestra cuenta de github, a nuestra propia pc
+	a) hacer fork: al repositorio remoto para que se cree un repositorio nuestro en nuestra cuenta en github
+	b)clonar el repositorio en una maquina local
+		git clone https://github.com/tuusario-github/mgl-proyecto-nodejs.git
+              
+		ejemplo: git clone https://github.com/jesuscota/mgl-proyecto-nodejs.git
+
+2.-para actualizar  todos los cambios del repositorio local
+	git pull [repositorio propio][rama]
+3.-para  agregar  archivos  con cambios:  
+	git add archivo.js (por cada cambio en cada nuevo archivo)
+	git add -A .  (para  que  agregue  todos  los cambios de todos los  archivos, el punto indica  todo lo de este directorio)
+3.- para indicar  que se  deben preparar para subir los  cambios al repositorio propio 
+	git commit -a -m "cualquier comentario para describirlo" (para agregarlo a cola)
+	a) -a : agregar  todos los cambio del  proyecto , al commit
+	b) -m : agregar el mensaje del commit(recomendado y obligatorio)
+4.- para  subir  los  cambios al repositorio propio
+	git push (sube  todos los  cambios indicados con "add" y "commit" en el repositorio propio)
+			     
+****************************************************************************
+para  conectar el repositorio local , con el repositorio remoto y rastrear para mezclar cambios
+****************************************************************************
+revisar  cuales  son los   repositorios  remotos que tenemos
+    git remote
+
+1.- agrega el repositorio remoto a nuestro git local , para  poder interconmectarlo, rastrearlo y mezclarlo con el nuestro	
+	git remote add nombre-repositorio https://github.com/user/repositorio-remoto.git
+	example: 
+		git remote add upstream https://github.com/lemus27/mgl-proyecto-nodejs.git
+
+2.- obtener los cambios del repositorio remoto que no estan en el repositorio local por primera y unica vez 
+	git fetch nombre-repositorio
+	example: git fetch upstream
+3.- descragar los cambios del repositorio remoto a nuestro repositorio local
+	git pull nombre-repositorio rama
+	example: git pull upstream master
+4.- subir  los  cambios del respositorio local  al repositorio remoto
+	git push nombre-repositorio rama
+	example: git push upstream master
+5.- eliminar un repositorio remoto
+    git remote remove nombre-repositorio
+    example:git remote remove upstream
+
+6.- poner  en espera  los commits, para poder bajar los cambios del servidor
+        How do I resolve git saying “Commit your changes or stash them before you can merge”?
+	The second is to stash it. stashing acts as a stack, where you can push changes, and you pop them in reverse order.
+
+To stash type:
+
+git stash
+Do the merge, and than pull the stash:
+
+git stash pop
+The third options is to discard the local changes using git reset --hard.
+    git stash
+ git pull
+ git stash pop
+Another option is:
+
+git stash
+git checkout -b newwork
+git stash apply
+git commit ...
+This creates a new branch, which will allow you to get your master up to date without conflicts, (checkout master again, then pull or fetch + merge). Then you can merge your branch back with (while still on master)  git merge newwork. You can resolve the conflicts on master, while still retaining the work on newwork without any conflicts. This is a bit safer if you are worried about conflicts really screwing things up, but generally, conflicts are just part of the process, so don't worry too much about them.
+****************************************************************************
+para manejar los archivos y directorios desde la consola de  git(gitbash)
+****************************************************************************
+1.- Crear Directorio
+mkdir "nombre de directorio"
+2.- mover un archivo de un ditectorio a otro
+mv directorioOrigen/archivo    directoriodestino/
+3.-Renombrar un archivo o directorio
+	mv nombre de archivo  nuevo nombre de  archivo
+4.- eliminar un archivo o directorio
+    rm -r nombre-directorio
+****************************************************************************
+utilizar la herramienta para comparar diferencias entre archivos del proyecto 
+****************************************************************************
+1.- mostrar las  diferencias  entre el ultimo commit y los  ultimos  cambio
+
+	git diff
+2.- mostrar las diferencias  entre el ultimo commit y los cambios  con  difftool
+	git difftool
+3.- indicar que la  herramienta difftool sera   'vimdiff'	
+	git config --global diff.tool vimdiff
+	git config --global merge.tool vimdiff
+
