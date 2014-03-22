@@ -148,34 +148,34 @@ var Entidad = Entidad || {};
 		  
           //ciclo para leer linea individualmente
 		  for(var x=0;  x < numLINEAS ; x++){
-		    console.log("\nEn la linea "+ (x+1) + " Del archivo se encuentra");
+		    console.log("\nEn la linea" + (x+1)+ " del archivo se encuentra");
 		    var array = f.toString().split('\n');
 			var txtLINEA=array[x].split(',');
 			
 			//ahora palabra por palabra para insertarlas en el array del modelo de la entidad
-				for(var j=1; j<5; j++){
+				for(var j=0; j<5; j++){
 			     	
+
 					
-					
-					if(j==1){
+					if(j===0){
 					var valCVE=txtLINEA[j];
 					console.log("Clave: "+valCVE);
 					}
-					else if(j==2){
+					else if(j===1){
 					var valNBR=txtLINEA[j];
 					console.log("Nombre: "+valNBR);
 					}
-					else if(j==3){
+					else if(j===2){
 					var valMOD=txtLINEA[j];
 					console.log("Modulos: "+valMOD);
 					}
-					else if(j==4){
+					else if(j===3){
 					var valCRE=txtLINEA[j];
 					console.log("Creditos: "+valCRE);
 					}
-					else if(j==5){
+					else if(j===4){
 					var valPER=txtLINEA[j];
-					console.log("Periodo: "+valPeriodo);
+					console.log("Periodo: "+valPER);
 					}
 					
 				}
@@ -229,10 +229,15 @@ var Entidad = Entidad || {};
 	
 	}
 	else if(valor==="4"){
-	Control.prototype.cargar();
+     Control.prototype.cargar();
+	 process.exit();
+	
+	}
+	else if(valor >5){
+	process.exit();
 	}
 	
-   
+  
     });
 	
 
@@ -267,6 +272,5 @@ var Entidad = Entidad || {};
 
 
 var inicio = new Entidad.Control();
-
 inicio.opciones();
 
