@@ -9,13 +9,30 @@ http.createServer(function (req, res) {
     res.writeHead(200);
 
     if(pathname == "/") {
+      //  var html="";
        res.writeHead(200, {'Content-Type': 'text/html'});
-        html = fs.readFileSync("index.html", "utf8");
-        res.write(html);
-
-    } else if (pathname == "saludo.js") {
+       // fs.readFile('node.js/ex.html', only en c9.io
+              //html = fs.readFileSync("index.html", "utf8");
+              //for c9.io
+              html = fs.readFileSync('lemus/_00_nodejs/_00_nodejs_web/_06_webpage_url_1.2/index.html', 'utf8');
+            /*   fs.realpath('./index', function(err, resolvedPath) {
+                   console.log("el path es "+ resolvedPath);
+                   
+            // pass the resolved path to read asynchronously
+            fs.readFile(resolvedPath, function(err, data) { 
+                // assign the variable per your use case
+                  var html = data;
+                 
+            })
+        });*/
        
-        script = fs.readFileSync("/saludo.js", "utf8");
+res.write(html);
+    } else if (pathname == "/saludo.js") {
+       
+       script = fs.readFileSync("saludo.js", "utf8");
+       
+       //for c9.io
+        script = fs.readFileSync("lemus/_00_nodejs/_00_nodejs_web/_06_webpage_url_1.2/saludo.js", "utf8");
         res.write(script);
     }
 

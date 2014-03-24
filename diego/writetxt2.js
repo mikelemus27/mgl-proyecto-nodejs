@@ -20,7 +20,7 @@ var archivo = function(){}
 	archivo.prototype.escribir = function(cadena){
 			console.log(cadena)
 			var fs = require("fs")
-			fs.open('./prueba2.txt', 'a', function opened(err, fd) {
+			fs.open('diego/prueba7.txt', 'a', function opened(err, fd) {
 				if (err) { return callback(err); }
 					function notifyError(err) {
 						console.log("error")
