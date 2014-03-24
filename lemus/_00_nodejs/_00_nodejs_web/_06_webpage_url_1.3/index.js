@@ -9,8 +9,7 @@ onrequest=function(request,response)
 //	watch("req");
 debugger;
 	console.log ("iniciando server")  ;
-    console.log("Request for " + 
-    req.url);
+    console.log("Request for " + req.url);
 debugger;
     var pathname = url.parse(req.url).pathname;
     console.log("Request for " + pathname + " received.");
@@ -25,7 +24,7 @@ debugger;
        // fs.readFile('node.js/ex.html', only en c9.io
               //html = fs.readFileSync("page.html", "utf8");
               //for c9.io
-              html = fs.readFileSync('lemus/_00_nodejs/_00_nodejs_web/_06_webpage_url_1.2/page.html', 'utf8');
+              html = fs.readFileSync('lemus/_00_nodejs/_00_nodejs_web/_06_webpage_url_1.3/page.html', 'utf8');
             /*   fs.realpath('./index', function(err, resolvedPath) {
                    console.log("el path es "+ resolvedPath);
                    
@@ -45,12 +44,20 @@ res.write(html);
        //script = fs.readFileSync("saludo.js", "utf8");
        
        //for c9.io
-       script = fs.readFileSync("lemus/_00_nodejs/_00_nodejs_web/_06_webpage_url_1.2/saludo.js", "utf8");
+       script = fs.readFileSync("lemus/_00_nodejs/_00_nodejs_web/_06_webpage_url_1.3/saludo.js", "utf8");
+        res.write(script);
+    }
+    else if (pathname == "/part1.css") {
+       
+       res.writeHead(200, {'Content-Type': 'text/css'});
+       //script = fs.readFileSync("saludo.js", "utf8");
+       
+       //for c9.io
+       script = fs.readFileSync("lemus/_00_nodejs/_00_nodejs_web/_06_webpage_url_1.3/part1.css", "utf8");
         res.write(script);
     }
 
  res.end();
 }
-http.createServer(onrequest
-).listen(process.env.PORT, process.env.IP);//.listen(8888, '127.0.0.1');
+http.createServer(onrequest).listen(process.env.PORT, process.env.IP);//.listen(8888, '127.0.0.1');
 console.log('Server running at http://127.0.0.1:8888');
