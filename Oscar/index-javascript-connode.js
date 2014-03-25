@@ -7,6 +7,7 @@ http.createServer(function (req, res) {
     '<head>'+
         '<title>Prueba con HTML5</title>'+
         '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">'+
+		'<script src="libreria.js" type="text/javascript" ></script>'+
     '</head>'+
     '<body>'+
         '<header> <!-- Cabecera de la página -->'+
@@ -44,7 +45,9 @@ http.createServer(function (req, res) {
         '<footer>'+
             '<p>Copyright 2011 La Villa Digital</p>'+
         '</footer>'+
-
+  '<script type="text/javascript" >'+
+  'mensaje();'+
+  '</script>'+
     '</body>'+
 '</html>');
  res.end();
