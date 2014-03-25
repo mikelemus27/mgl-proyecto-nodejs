@@ -62,7 +62,7 @@ if(pathname == "/"){
 }
  else if(pathname == "/libreria.js"){
  	
- 	res.writeHead(200, ('Content Type'; 'text/javascript'));
+ 	res.writeHead(200, {'Content-Type': 'text/javascript'});
  	res.write("mensaje = function() {alert ('hola');}");
  }
  
