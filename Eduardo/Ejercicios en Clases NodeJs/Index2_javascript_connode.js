@@ -1,10 +1,18 @@
-var http = require('http');
-http.createServer(function (req, res) {
- res.writeHead(200, {'Content-Type': 'text/html'});
- res.write(
- '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">'+
+var  http  =  require ( 'http' );
+var url = require('url');
+
+http.createServer ( function  ( req ,  res ) {
+
+	var pathname = url.parse(req.url).pathname;
+	console.log(pathname + "Esto se ve en node");
+
+	if(pathname == "/"){
+ res.writeHead ( 200 ,  { 'Content-Type' :  'text / html' });
+ res.write (
+ 	'<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">'+
 '<html lang="en">'+
     '<head>'+
+    '<script src = "lib-javaScript.js" type = "text/javascript"> </script>'+
         '<title>Prueba con HTML5</title>'+
         '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">'+
     '</head>'+
@@ -21,7 +29,7 @@ http.createServer(function (req, res) {
         '<section>'+
             '<article>'+
                 '<header>'+
-                   '<h2>Título de artículo 1</h2>'+
+                    '<h2>Título de artículo 1</h2>'+
                     '<p>Posteado el <time datetime="2011-03-04T16:31:24+02:00">4 de Marzo 4th de 2011</time> por <a href="#">Escritor</a> - <a href="#">6 comentarios</a></p>'+
                 '</header>'+
                 '<p>Extracto del primer post.</p>'+
@@ -44,9 +52,21 @@ http.createServer(function (req, res) {
         '<footer>'+
             '<p>Copyright 2011 La Villa Digital</p>'+
         '</footer>'+
-
+		'<script type="text/javascript">'+
+'Saludos();'+		
+'</script>'+
+ 
     '</body>'+
 '</html>');
+
+
+
+} else if(pathname == "/lib-javaScript.js"){
+	res.writeHead(200, {'Content-Type': 'text/javascript'});
+	res.write("Saludos = function() {alert('hola desde node');}");
+	
+}
+ 
  res.end();
-}).listen(8888,'127.0.0.1');//.listen(8888, '127.0.0.1');
+}).listen(8888, '127.0.0.1');
 console.log('Server running at http://127.0.0.1:8888');
