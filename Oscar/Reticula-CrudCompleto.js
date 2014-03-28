@@ -139,28 +139,8 @@ var Entidad = Entidad || {};
     
    }
  
-   Control.prototype.opciones = function(){
-   
-     function iniciar(callbackLOAD,callbackMENU){
-	  console.log("Cargando el Archivo,creo...");
-	 callbackLOAD();
-	 console.log("Comienza el menu,creo...");
-	 
-	 
-	 var i="0";
-	 
-	 while(i<4){
-	 var x = callbackMENU("0");
-	 console.log(x);
-	 i++;
-	 }
-	 
-	 
-	 }
-     
-    function callbackLOAD(){
-   
-    //COMIENZA EL PROCESO DE CARGAR EL ARCHIVO
+   Control.prototype.cargar =function(){
+   //COMIENZA EL PROCESO DE CARGAR EL ARCHIVO
 
 		var numLINEAS = fs.readFileSync('c:/archivo.csv').toString().split('\n').length;
           //ciclo para leer linea individualmente
@@ -205,28 +185,93 @@ var Entidad = Entidad || {};
 		
 		
 	//Termina el proceso de cargar el archivo
+   
+   }
+   
+   Control.prototype.iniciar = function(){
+   
+	function iniciar(callbackLOAD,callbackMENU){
+	 
+	 //comienza mi primera funcion
+	 console.log("Cargando el Archivo,creo...");
+	 callbackLOAD();
+	 
+	 //comienza mi segunda funcion
+	 console.log("Comienza el menu,creo...");
+     callbackMENU();
+ 
+	 }
+     
+	 //Funcion para cargar el archivo existente antes del menu
+    function callbackLOAD(){
+     Control.prototype.cargar();
     }
 	 
-	function callbackSAVE(){
-	 console.log("Guardando el Archivo..");
-	 
-	 
-	}
 	
+	//Funcion para pedir al usuario una opcion
 	function callbackMENU(){
+     
+     function opciones(Opcion,Preguntar){
+	  console.log("1)Capturar 2)Mostrar 3)Buscar 4)Editar 5)Guardar\n");
 	
-	console.log("1)Capturar 2)Mostrar 3)Salir \n");
-	
+	   Control.prototype.pedir("",/.+/,function(valorA) {
+	   
+	   Opcion(valorA);
+	   Preguntar();
+	   });
+	   
+	  
+	 }
+	 
+	 function Opcion(valor){
+	   
+	   if(valor === "1"){
+	   
+	   }
+	   else if(valor === "2"){
+	     Control.prototype.cargar();
+	   }
+	   else if(valor === "3"){
+	   }
+	   else if(valor === "4"){
+	   }
+	   else if(valor === "5"){
+	   }
+	   else if(valor > "5" || valor ==="0"){
+	   console.log("opcion no valida intenta de nuevo");
+	   }
+	  
+	   
+
+	 }
+	 
+     function Preguntar(){
+	 console.log("Quieres continuar? 1)Si 2)no");
+	 
+	 Control.prototype.pedir("",/.+/,function(valorB) {
+	 if(valorB==="2"){
+	 process.exit();
+	 
+	 }
+	 if(valorB=="1"){
+	 Control.prototype.iniciar();
+	 }
+	 
+	 
+	 });
+	 }
+	 
+	 opciones(Opcion,Preguntar);
+  
 	}
 	
 	
-     //Da comienzo a los callback segun el orden que los llama creo ?
+    //Da comienzo a los callback segun el orden que los llama creo que es asi no?
      iniciar(callbackLOAD,callbackMENU);
 
 	} 
 	 
-
-   
+ 
    
    Control.prototype.pedir= function(question, format, callback) {
 			var stdin = process.stdin, stdout = process.stdout;
@@ -255,5 +300,5 @@ var Entidad = Entidad || {};
 
 
 var inicio = new Entidad.Control();
-inicio.opciones();
+inicio.iniciar();
 
