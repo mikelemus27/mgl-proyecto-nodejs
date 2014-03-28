@@ -130,7 +130,7 @@ var Entidad = Entidad || {};
 
 ;(function(){
 
-
+ var fs  = require("fs");
  var op = new Entidad.Vista();
  var valOPCION=0;
  
@@ -142,20 +142,30 @@ var Entidad = Entidad || {};
    Control.prototype.opciones = function(){
    
      function iniciar(callbackLOAD,callbackMENU){
-	 
+	  console.log("Cargando el Archivo,creo...");
 	 callbackLOAD();
-	 callbackMENU();
+	 console.log("Comienza el menu,creo...");
+	 
+	 
+	 var i="0";
+	 
+	 while(i<4){
+	 var x = callbackMENU("0");
+	 console.log(x);
+	 i++;
+	 }
+	 
+	 
 	 }
      
     function callbackLOAD(){
-     console.log("Cargando el Archivo...");
+   
     //COMIENZA EL PROCESO DE CARGAR EL ARCHIVO
-	   console.log("Cargando el Archivo...");
-        var fs  = require("fs");
+
 		var numLINEAS = fs.readFileSync('c:/archivo.csv').toString().split('\n').length;
           //ciclo para leer linea individualmente
 		  for(var x=0;  x < numLINEAS ; x++){
-		    console.log("\nEn la linea" + (x+1)+ " del archivo se encuentra");
+		    console.log("En la linea " + (x+1)+ " del archivo se encuentra");
 		    var array = fs.readFileSync('c:/archivo.csv').toString().split('\n');
 			var txtLINEA=array[x].split(',');
 			
