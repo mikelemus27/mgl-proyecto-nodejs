@@ -28,7 +28,7 @@ var Entidad = Entidad || {};
   }
   
   
-    Reticula.prototype.setNombre = function(Nombre){
+  Reticula.prototype.setNombre = function(Nombre){
   
     if (typeof Nombre === "undefined"){
       return this._Nombre;
@@ -38,7 +38,7 @@ var Entidad = Entidad || {};
   }
   
   
-    Reticula.prototype.getNombre = function(){
+  Reticula.prototype.getNombre = function(){
 	
 	 return this._Nombre;
 	}
@@ -132,7 +132,7 @@ var Entidad = Entidad || {};
 
  var fs  = require("fs");
  var op = new Entidad.Vista();
- var valOPCION=0;
+ var flag="1";
  
    function Control(){
     
@@ -145,7 +145,7 @@ var Entidad = Entidad || {};
 		var numLINEAS = fs.readFileSync('c:/archivo.csv').toString().split('\n').length;
           //ciclo para leer linea individualmente
 		  for(var x=0;  x < numLINEAS ; x++){
-		    console.log("En la linea " + (x+1)+ " del archivo se encuentra");
+		    console.log("\nEn la linea " + (x+1)+ " del archivo se encuentra");
 		    var array = fs.readFileSync('c:/archivo.csv').toString().split('\n');
 			var txtLINEA=array[x].split(',');
 			
@@ -193,60 +193,91 @@ var Entidad = Entidad || {};
 	function iniciar(callbackLOAD,callbackMENU){
 	 
 	 //comienza mi primera funcion
-	 console.log("Cargando el Archivo,creo...");
-	 callbackLOAD();
-	 
+	 callbackLOAD(flag);
+
 	 //comienza mi segunda funcion
-	 console.log("Comienza el menu,creo...");
+	 console.log("\nComienza el menu,creo...");
      callbackMENU();
- 
+     
 	 }
      
 	 //Funcion para cargar el archivo existente antes del menu
     function callbackLOAD(){
+	
+	if(flag==="1"){
+	 console.log("Se carga el archivo por primera vez y se muestra...");
      Control.prototype.cargar();
+	 }
+	 flag++;
     }
 	 
 	
 	//Funcion para pedir al usuario una opcion
 	function callbackMENU(){
      
-     function opciones(Opcion,Preguntar){
 	  console.log("1)Capturar 2)Mostrar 3)Buscar 4)Editar 5)Guardar\n");
 	
 	   Control.prototype.pedir("",/.+/,function(valorA) {
 	   
-	   Opcion(valorA);
-	   Preguntar();
+	    Control.prototype.movimiento(valorA);
+	   
 	   });
 	   
 	  
-	 }
+	
 	 
-	 function Opcion(valor){
+  
+	}
+	
+	
+    //Da comienzo a los callback segun el orden que los llama creo que es asi no?
+     iniciar(callbackLOAD,callbackMENU);
+
+	} 
+	 
+   Control.prototype.movimiento=function(valor){
+     function comparar(preguntar){
+		if(valor === "1"){
+			Control.prototype.pedir("Clave: ",/.+/,function(valA) {
+				Control.prototype.pedir("Nombre: ",/.+/,function(valB) {
+					Control.prototype.pedir("Modulos: ",/.+/,function(valC) {
+						Control.prototype.pedir("Creditos: ",/.+/,function(valD) {
+							Control.prototype.pedir("Periodos: ",/.+/,function(valE) {
+      
+		
+								preguntar();
+						});
+					});
+				});
+			});
+		});
+	  }
 	   
-	   if(valor === "1"){
 	   
-	   }
 	   else if(valor === "2"){
 	     Control.prototype.cargar();
+		 preguntar();
 	   }
 	   else if(valor === "3"){
+	     
+	     preguntar();
 	   }
 	   else if(valor === "4"){
+	     preguntar();
 	   }
 	   else if(valor === "5"){
+	   var A= new Array();
+	     preguntar();
 	   }
 	   else if(valor > "5" || valor ==="0"){
-	   console.log("opcion no valida intenta de nuevo");
+	     console.log("opcion no valida intenta de nuevo");
+	     preguntar();
 	   }
-	  
-	   
-
+	 
 	 }
 	 
-     function Preguntar(){
-	 console.log("Quieres continuar? 1)Si 2)no");
+	 function preguntar(){
+	  console.log("Quieres continuar? 1)Si 2)no");
 	 
 	 Control.prototype.pedir("",/.+/,function(valorB) {
 	 if(valorB==="2"){
@@ -261,18 +292,11 @@ var Entidad = Entidad || {};
 	 });
 	 }
 	 
-	 opciones(Opcion,Preguntar);
-  
-	}
-	
-	
-    //Da comienzo a los callback segun el orden que los llama creo que es asi no?
-     iniciar(callbackLOAD,callbackMENU);
-
-	} 
+	 comparar(preguntar);
 	 
- 
+   }
    
+  
    Control.prototype.pedir= function(question, format, callback) {
 			var stdin = process.stdin, stdout = process.stdout;
  
