@@ -16,10 +16,10 @@ debugger;
     console.log("Request for " + pathname + " received.");
     console.log("pathname = "+pathname);
 console.log("iniciando responses");
-    res.writeHead(200);
+  
 
 debugger;
-    if(pathname == "/") {
+    if(pathname == "/lemus") {
       //  var html="";
        res.writeHead(200, {'Content-Type': 'text/html'});
        // fs.readFile('node.js/ex.html', only en c9.io

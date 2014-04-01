@@ -7,17 +7,17 @@ onrequest=function(request,response)
 	req=request;
 	res=response;
 //	watch("req");
-debugger;
+    debugger;
 	console.log ("iniciando server")  ;
     console.log("Request for " + req.url);
-debugger;
+    debugger;
     var pathname = url.parse(req.url).pathname;
     console.log("Request for " + pathname + " received.");
     console.log("pathname = "+pathname);
-console.log("iniciando responses");
+    console.log("iniciando responses");
     res.writeHead(200);
 
-debugger;
+    debugger;
     if(pathname == "/") {
       //  var html="";
        res.writeHead(200, {'Content-Type': 'text/html'});
@@ -36,8 +36,8 @@ debugger;
             })
         });*/
        
-debugger;
-res.write(html);
+    debugger;
+    res.write(html);
     } else if (pathname == "/saludo.js") {
        
        res.writeHead(200, {'Content-Type': 'text/javascript'});
