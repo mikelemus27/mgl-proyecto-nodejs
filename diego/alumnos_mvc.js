@@ -43,12 +43,9 @@ var vista = function (){}
 		var model = new alumnos();
 		var view = new vista();
 		var file = new archivo();
-<<<<<<< Updated upstream
 		var self=this;
 		file.escribir(a);
-=======
 		var self = this;	
->>>>>>> Stashed changes
 		pro.ask("Nombre", /.+/, function(nombre) {model.setNombre(nombre)
 		self.file.escribir(a);
     	pro.ask("Edad", /.+/, function(edad) {model.setEdad(edad)
