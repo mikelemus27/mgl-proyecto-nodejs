@@ -193,11 +193,6 @@ var Entidad = Entidad || {};
 	  this.pedir("Introduce el texto a guardar: ",/.+/,function(valor) {
 	  fs.writeFile("c:/archivo.csv", valor);
 	  });
-	  
-	 
-      
-    
-	
 
 	 }
 	
