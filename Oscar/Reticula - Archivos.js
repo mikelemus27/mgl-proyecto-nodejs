@@ -133,23 +133,18 @@ var Entidad = Entidad || {};
 ;(function(){
 
  var op = new Entidad.Vista();
-   function Control(){
-   
-    
-   }
-    //Metodo para cargar los datos del archivo a un array siguiendo el modelo de la entidad
+ var fs  = require("fs");
+	function Control(){}
+
 	Control.prototype.cargar = function(){
-	    //Indica informacion sobre el archivo
-		var fs  = require("fs");
-		fs.readFile('c:/archivo.csv', function(err, f){
-		
-		//contamos el numero de lineas del archivo
-		var numLINEAS = f.toString().split('\n').length;
-		  
+    //COMIENZA EL PROCESO DE CARGAR EL ARCHIVO
+	   console.log("Cargando el Archivo...");
+        
+		var numLINEAS = fs.readFileSync('c:/archivo.csv').toString().split('\n').length;
           //ciclo para leer linea individualmente
 		  for(var x=0;  x < numLINEAS ; x++){
-		    console.log("\nEn la linea" + (x+1)+ " del archivo se encuentra");
-		    var array = f.toString().split('\n');
+		    console.log("\nEn la linea " + (x+1)+ " del archivo se encuentra");
+		    var array = fs.readFileSync('c:/archivo.csv').toString().split('\n');
 			var txtLINEA=array[x].split(',');
 			
 			//ahora palabra por palabra para insertarlas en el array del modelo de la entidad
@@ -184,15 +179,21 @@ var Entidad = Entidad || {};
 		  }
 		  
 		  console.log("\n");
-		   
-		});
+	
+		
+		
+	//Termina el proceso de cargar el archivo
+
 	
 	}
 	
-	//Metodo para guardar los cambios en el archivo
+
 	 Control.prototype.guardar = function(){
-	 
-	 
+     
+	  this.pedir("Introduce el texto a guardar: ",/.+/,function(valor) {
+	  fs.writeFile("c:/archivo.csv", valor);
+	  });
+
 	 }
 	
    Control.prototype.opciones = function(){
@@ -233,7 +234,11 @@ var Entidad = Entidad || {};
 	 process.exit();
 	
 	}
-	else if(valor >5){
+	else if(valor ==="5"){
+	Control.prototype.guardar();
+    
+	}
+	else if(valor >"5"){
 	process.exit();
 	}
 	
