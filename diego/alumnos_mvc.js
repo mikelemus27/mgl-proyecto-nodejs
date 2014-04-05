@@ -37,50 +37,57 @@ var alumnos = function (){
 	}
 var vista = function (){}
 	vista.prototype.pedir = function (){
-	    var cadena= "";
-	  var 	a = new Buffer(cadena);
 		var pro = new proceso();
 		var model = new alumnos();
 		var view = new vista();
-		var file = new archivo();
-<<<<<<< Updated upstream
-		var self=this;
-		file.escribir(a);
-=======
-		var self = this;	
->>>>>>> Stashed changes
+
 		pro.ask("Nombre", /.+/, function(nombre) {model.setNombre(nombre)
-		self.file.escribir(a);
     	pro.ask("Edad", /.+/, function(edad) {model.setEdad(edad)
-    	self.file.escribir(a);
     		pro.ask("Carrera", /.+/, function(carrera) {model.setCarrera(carrera)
-    		self.file.escribir(a);
       			pro.ask("Semestre", /.+/, function(semestre) {model.setSemestre(semestre)
-      			self.file.escribir(a);
-        			pro.ask("Numero de control", /.+/, (function(numero) {model.setNumero(numero)
+        			pro.ask("Numero de control", /.+/, function(numero) {model.setNumero(numero)
 	  					console.log("");
-	  					cadena= (model.getNombre()+","+model.getEdad()+","+model.getCarrera()+","+model.getSemestre()+","+model.getNumero());
-	  					a = new Buffer(cadena);
-	  					self.file.escribir(a);
+	  					//cadena= (model.getNombre()+","+model.getEdad()+","+model.getCarrera()+","+model.getSemestre()+","+model.getNumero());
+	  					//datos = new Buffer(cadena);
 	  					view.mostrar(model);
-	  					}));
+	  					});
 						});
  					});
-    		//file.escribir(a);
 				});
 			});
 	}
 	vista.prototype.mostrar = function(a){
+		var view = new vista();
 		console.log(" ");
 		console.log("Nombre: ", a.getNombre());
 		console.log("Edad : ", a.getEdad());
 		console.log("Carrera :", a.getCarrera());
 		console.log("Semestre :", a.getSemestre());
 		console.log("Numero de control :", a.getNumero());
-    	process.exit();
+		console.log("")
+		view.menu(a);
+		//file.escribir(datos);
+		//process.exit();
+	}
+	vista.prototype.menu = function(modelo){
+		var pro = new proceso();
+		var con = new control();
+		var view = new vista();
+		console.log("--- CONTROL DE ALUMNOS---");
+		console.log(" selecciona la opcion deseada");
+		console.log(" 1.- Mostrar los datos");
+		console.log(" 2.- Modificar los datos");
+		console.log(" 3.- Eliminar los datos");
+		console.log(" 4.- Guardar en archivo");
+		console.log(" 5.- Salir");
+		pro.ask("Opcion", /.+/, function(opcion) {con.control_menu(opcion,modelo);
+			
+			//view.mostrar(modelo);
+			//process.exit();
+		});
 	}
 
-var proceso = function(){};
+var proceso = function(){}
 	proceso.prototype.ask = function(question, format, callback) {
  		var stdin = process.stdin, stdout = process.stdout;
  		stdin.resume();
@@ -95,34 +102,52 @@ var proceso = function(){};
    			}
  		});
 	}
-
-var archivo = function(){};
+	proceso.prototype.eliminar = function(model){
+		var view = new vista();
+		model.setNombre(null);
+		model.setEdad(null);
+		model.setCarrera(null);
+		model.setSemestre(null);
+		model.setNumero(null);
+		view.mostrar(model);
+	}
+var archivo = function(){}
 	archivo.prototype.leer = function(){
 		var model = new alumnos();
 		var view = new vista();
+		var file = new archivo();
 		var fs  = require("fs");
-		fs.exists("D:\\bd.txt", function(exists)
+		fs.exists("./alumnos.txt", function(exists)
 		{
 		if (exists===true){
-			array = fs.readFileSync("D:\\bd.txt").toString().split(",");
+			array = fs.readFileSync("./alumnos.txt").toString().split(",");
 			console.log("leyendo archivo.......")
 			model.setNombre(array[0]);
 			model.setEdad(array[1]);
 			model.setCarrera(array[2]);
 			model.setSemestre(array[3]);
 			model.setNumero(array[4]);
-			view.mostrar(model);
+			view.menu(model);
 		}
 		else{
 			console.log("creando nuevo archivo......")
-			view.pedir();
+			model.setNombre(null);
+			model.setEdad(null);
+			model.setCarrera(null);
+			model.setSemestre(null);
+			model.setNumero(null);
+			cadena= (model.getNombre()+","+model.getEdad()+","+model.getCarrera()+","+model.getSemestre()+","+model.getNumero());
+			file.escribir(new Buffer(cadena));
+			//view.pedir();
 		}
 	});
+		//view.menu();
 	}
-	
-	archivo.prototype.escribir = function(cadena){
+
+	archivo.prototype.escribir = function(cadena,modelo){
 			var fs = require("fs")
-			fs.open('./alumnos.txt', 'a', function opened(err, fd) {
+			var view = new vista();
+			fs.open('./alumnos.txt', 'w', function opened(err, fd) {
 				if (err) { return callback(err); }
 					function notifyError(err) {
 						console.log("error")
@@ -130,25 +155,42 @@ var archivo = function(){};
 							callback(err);
 						});
 					}
-				fs.write( fd, cadena, 0, cadena.length, null);
+				fs.write( fd, cadena, 0, cadena.length, null, function regreso(){
+					view.mostrar(modelo);
+				});
 			});
-		//process.exit();
 		}
-		
+
 var control = function(){}
 	control.prototype.inicio = function(){
 		var file = new archivo();
-	//	a= new Buffer("hola");
-		var view = new vista();
-		view.pedir();
-		//var fs = require("fs");
-		//var model = new alumnos();
-		//fs.open("D:\\bd.txt",'a');
-		//fs.write(model.getNombre,model.getEdad,model.getCarrera,model.getSemestre,model.getNumero);
-		//file.escribir(a);
+		file.leer();
+		//var view = new vista();
+		//view.menu();
 	}
-//var file = new archivo();
-//a= new Buffer("hola");
-//file.escribir(a);
-	var main=new control();
+	control.prototype.control_menu = function(opcion,modelo){
+		var view = new vista();
+		var pro = new proceso();
+		var file = new archivo();
+		console.log(opcion);
+		//view.mostrar(datos);
+		if(opcion==1){
+			view.mostrar(modelo);
+		}
+		if(opcion==2){
+			view.pedir();
+		}
+		if(opcion==3){
+			pro.eliminar(modelo);
+		}
+		if(opcion==4){
+			cadena= (modelo.getNombre()+","+modelo.getEdad()+","+modelo.getCarrera()+","+modelo.getSemestre()+","+modelo.getNumero());
+			file.escribir(new Buffer(cadena),modelo);
+		}
+		if(opcion==5){
+			process.exit();
+		}
+
+	}
+var main=new control();
 	main.inicio();

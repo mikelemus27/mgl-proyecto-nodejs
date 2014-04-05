@@ -100,12 +100,12 @@ var Entidad = Entidad || {};
   
   Vista.prototype.Mostrar = function (){
    
-   console.log("\nEs lo que se encuentra... \n");
-   console.log(datos.getClave());
-   console.log(datos.getNombre());
-   console.log(datos.getModulos());
-   console.log(datos.getCreditos());
-   console.log(datos.getPeriodo());
+   console.log("\nMostrando... \n");
+   console.log("Clave: "+datos.getClave());
+   console.log("Nombre: "+datos.getNombre());
+   console.log("Modulos: "+datos.getModulos());
+   console.log("Creditos: "+datos.getCreditos());
+   console.log("Periodo: "+datos.getPeriodo());
 
   
   }
@@ -117,14 +117,57 @@ var Entidad = Entidad || {};
   datos.setModulos(valModulos);
   datos.setCreditos(valCreditos);
   datos.setPeriodo(valPeriodo);
-  
-  
-  
-  console.log("Se guardo exitosamente..");
+
 }
 
-
- 
+  Vista.prototype.Cadena = function(){
+   var x=datos.getClave()+","+datos.getNombre()+","+datos.getModulos()+","+datos.getCreditos()+","+datos.getPeriodo();
+   return x;
+  }
+  
+  Vista.prototype.Busqueda= function(valA,valB){
+  
+    if(valA==="1"){
+	 if(valB===datos.getClave()){
+	 console.log("Si se encontro");
+	 }
+	 else{
+	 console.log("No se encontro");
+	 }
+	}
+	else if(valA==="2"){
+	 if(valB===datos.getNombre()){
+	 console.log("Si se encontro");
+	 }
+	 else{
+	 console.log("No se encontro");
+	 }
+	}
+	else if(valA==="3"){
+	 if(valB===datos.getModulos()){
+	 console.log("Si se encontro");
+	 }
+	 else{
+	 console.log("No se encontro");
+	 }
+	}
+	else if(valA==="4"){
+	 if(valB===datos.getCreditos()){
+	 console.log("Si se encontro");
+	 }
+	 else{
+	 console.log("No se encontro");
+	 }
+	}
+	else if(valA==="5"){ 
+	if(valB===datos.getPeriodo()){
+	 console.log("Si se encontro");
+	 }
+	 else{
+	 console.log("No se encontro");
+	 }
+	}
+  }
   Entidad.Vista = Vista;
 })(); 
 
@@ -176,7 +219,7 @@ var Entidad = Entidad || {};
 					}
 					
 				}
-		
+		       op.Capturar(valCVE,valNBR,valMOD,valCRE,valPER);
 		  
 		  }
 		  
@@ -187,6 +230,14 @@ var Entidad = Entidad || {};
 	//Termina el proceso de cargar el archivo
    
    }
+     
+   Control.prototype.Guardar = function(){
+     
+	  var valor= op.Cadena();
+	  fs.writeFile("c:/archivo.csv", valor);
+	
+	 }
+   
    
    Control.prototype.iniciar = function(){
    
@@ -196,7 +247,7 @@ var Entidad = Entidad || {};
 	 callbackLOAD(flag);
 
 	 //comienza mi segunda funcion
-	 console.log("\nComienza el menu,creo...");
+	
      callbackMENU();
      
 	 }
@@ -211,11 +262,10 @@ var Entidad = Entidad || {};
 	 flag++;
     }
 	 
-	
 	//Funcion para pedir al usuario una opcion
 	function callbackMENU(){
      
-	  console.log("1)Capturar 2)Mostrar 3)Buscar 4)Editar 5)Guardar\n");
+	  console.log("1)Editar 2)Mostrar 3)Buscar  4)Guardar en archivo\n");
 	
 	   Control.prototype.pedir("",/.+/,function(valorA) {
 	   
@@ -228,8 +278,7 @@ var Entidad = Entidad || {};
 	 
   
 	}
-	
-	
+		
     //Da comienzo a los callback segun el orden que los llama creo que es asi no?
      iniciar(callbackLOAD,callbackMENU);
 
@@ -244,32 +293,34 @@ var Entidad = Entidad || {};
 						Control.prototype.pedir("Creditos: ",/.+/,function(valD) {
 							Control.prototype.pedir("Periodos: ",/.+/,function(valE) {
       
-		
+		                       op.Capturar(valA,valB,valC,valD,valE);
 								preguntar();
 						});
 					});
 				});
 			});
 		});
-	  }
+		}
 	   
 	   
 	   else if(valor === "2"){
-	     Control.prototype.cargar();
+	     op.Mostrar();
 		 preguntar();
 	   }
 	   else if(valor === "3"){
+	     Control.prototype.pedir("¿Que elemento buscas? 1)Clave  2)Nombre 3)Modulos 4)Creditos 5)Periodo\n",/.+/,function(x) {
+			Control.prototype.pedir("Escribe el valor a buscar: ",/.+/,function(y){
+				op.Busqueda(x,y);
+				preguntar();
+			});
+		 });
 	     
-	     preguntar();
 	   }
 	   else if(valor === "4"){
+	     Control.prototype.Guardar();
 	     preguntar();
 	   }
-	   else if(valor === "5"){
-	   var A= new Array();
-	     preguntar();
-	   }
-	   else if(valor > "5" || valor ==="0"){
+	   else if(valor >4 || valor ===0 ){
 	     console.log("opcion no valida intenta de nuevo");
 	     preguntar();
 	   }
@@ -277,15 +328,21 @@ var Entidad = Entidad || {};
 	 }
 	 
 	 function preguntar(){
-	  console.log("Quieres continuar? 1)Si 2)no");
+	  console.log("\nQuieres continuar? 1)Si 2)no");
 	 
 	 Control.prototype.pedir("",/.+/,function(valorB) {
 	 if(valorB==="2"){
 	 process.exit();
 	 
 	 }
-	 if(valorB=="1"){
+	 else if(valorB=="1"){
 	 Control.prototype.iniciar();
+	 }
+	 else if(valorB>2 || valorB==="0"){
+	 
+	 console.log("opcion invalida cerrando y saliendo sin guardar cambios bye...");
+	 process.exit();
+	 
 	 }
 	 
 	 
