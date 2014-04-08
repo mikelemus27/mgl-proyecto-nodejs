@@ -21,8 +21,8 @@
 <script  type="text/javascript">
 
  function Task(data) {
-    this.title = ko.observable(data.title);
-    this.isDone = ko.observable(data.isDone);
+    this.number = ko.observable(data.num1);
+   
 }
 
 function TaskListViewModel() {
@@ -36,7 +36,7 @@ function TaskListViewModel() {
   
    
     self.save = function() {
-        $.ajax("https://mgl-proyecto-nodejs-c9-mike27.c9.io/form-test.html", {
+        $.ajax("http://localhost:8888/form-test.html", {
             data: ko.toJSON({ tasks: self.tasks }),
             type: "post", contentType: "application/json",
             success: function(result) { alert(result) }

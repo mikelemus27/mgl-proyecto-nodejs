@@ -10,10 +10,13 @@ app.use(express.json());       // to support JSON-encoded bodies
 app.use(express.urlencoded()); // to support URL-encoded bodies
 
 app.get('/hello.txt', function(req, res){
+	console.log("in hello  text");
   res.send('Hello World');
 });
 
 app.post('/form-test.html', function(req, res) {
+	console.log("in form-test");
+	res.writeHead(200, {'Content-Type': 'application/json'});
     var num1 = req.body.num1;
     var    num2 = req.body.num2;
   num1=  num1.toString();
@@ -25,4 +28,5 @@ app.post('/form-test.html', function(req, res) {
 /*var server = app.listen(3000, function() {
     console.log('Listening on port %d', server.address().port);
 });*/
-app.listen(process.env.PORT,process.env.IP); 
+/*app.listen(process.env.PORT,process.env.IP); */
+app.listen(8888,"localhost"); 
