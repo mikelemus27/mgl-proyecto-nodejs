@@ -1,0 +1,8 @@
+{
+    "name": "_08_knockoutjs",
+    "description": "knockout-form2express-app",
+    "version": "0.0.1",
+    "dependencies": {
+        "express": "3.5.1"
+    }
+}

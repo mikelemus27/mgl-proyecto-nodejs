@@ -11,51 +11,55 @@ var server = http.createServer(function(req, res)
   
   var now = new Date();
   var html = "<p>Hello World, the time is " + now + ".</p>";
-  if (req.method == 'POST') {
+  if (req.method == 'POST') 
+  {
     console.log("[200] " + req.method + " to " + req.url);
     var fullBody = '';
     
-    req.on('data', function(chunk) {
+    req.on('data', function(chunk) 
+    {
       // append the current chunk of data to the fullBody variable
       fullBody += chunk.toString();
     });
     
-    req.on('end', function() {
+    req.on('end', function() 
+    { var decodedBody;
+      var post;
+      var txt1;
+      var txt2;
+      var result;
     
       // request ended -> do something with the data
       res.writeHead(200, "OK", {'Content-Type': 'text/html'});
       
       // parse the received body data
-      var decodedBody = querystring.parse(fullBody);
+      decodedBody = querystring.parse(fullBody);
 
-      //var post=JSON.eval(utils.inspect(decodedBody));
-      var post= JSON.stringify(decodedBody);
-          post=JSON.parse(post) ;
+   
+      post= JSON.stringify(decodedBody);
+      post=JSON.parse(post) ;
       // output the decoded data to the HTTP response          
       res.write('<html><head><title>Post data</title></head><body><pre>');
       //res.write(utils.inspect(decodedBody));
-      res.write("proibando el servidor");
+      res.write("probando el servidor");
       res.write("</br>");
       res.write(utils.inspect(decodedBody));
       res.write("</br>");
-      //console.log(post.data);
-      //res.write(post.data.toString());
-         res.write("</br>");
-         txt1= post.num1.toString();
-          txt2= post.num2.toString();
-          result=parseInt(txt1)+parseInt(txt2);
+      res.write("</br>");
+      txt1= post.num1.toString();
+      txt2= post.num2.toString();
+      result=parseInt(txt1)+parseInt(txt2);
       res.write(txt1);
       res.write("</br>");
       res.write("+");
-       res.write("</br>");
-       res.write(txt2);
-           res.write("</br>");
+      res.write("</br>");
+      res.write(txt2);
+      res.write("</br>");
       res.write("=");
-       res.write("</br>");
-       res.write("</br>");
-        res.write(result.toString());
+      res.write("</br>");
+      res.write("</br>");
+      res.write(result.toString());
       res.write('</pre></body></html>');
-      
       res.end();
     });
     

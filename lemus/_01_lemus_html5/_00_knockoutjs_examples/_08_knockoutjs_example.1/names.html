@@ -1,0 +1,54 @@
+<html>
+<head>
+<script type='text/javascript' src='viewmodel.js'></script>
+<script type="text/javascript" src="knockout-3.1.0.js"></script>
+<script type="text/javascript" src="jquery-2.1.0.min.js"></script>
+
+
+</head>
+<body>
+    <!-- This is a *view* - HTML markup that defines the appearance of your UI -->
+    <h3>Suma</h3>
+
+
+        Num1: <input data-bind="value: num1" placeholder="Introduce num 1?" />
+            </br>
+        Num2: <input data-bind="value: num2" placeholder="Introduce Num2?" />
+
+
+<button data-bind="click: save">Sumar</button>  
+
+<script  type="text/javascript">
+
+ function Task(data) {
+    this.title = ko.observable(data.title);
+    this.isDone = ko.observable(data.isDone);
+}
+
+function TaskListViewModel() {
+    // Data
+    var self = this;
+    self.tasks = ko.observableArray([]);
+    self.num1 = ko.observable();
+    self.num2 = ko.observable();
+
+    // Operations
+  
+   
+    self.save = function() {
+        $.ajax("https://mgl-proyecto-nodejs-c9-mike27.c9.io/form-test.html", {
+            data: ko.toJSON({ tasks: self.tasks }),
+            type: "post", contentType: "application/json",
+            success: function(result) { alert(result) }
+        });
+    };
+}
+ko.applyBindings(new TaskListViewModel());
+     // (function(){
+ 
+         // AppSpace.start();
+        // Activates knockout.js
+     // })();
+    </script>
+</body>
+</html>
