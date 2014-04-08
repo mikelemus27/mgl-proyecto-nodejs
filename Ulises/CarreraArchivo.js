@@ -119,12 +119,13 @@ var myClase = myClase || {};
   
   claseControl.prototype.opciones = function(){
       var obj = new claseControl();
-      var objFile = new claseArchivo();
+      
   
      console.log("1.-Capturar");
      console.log("2.-Mostrar");
      console.log("3.-Salir");
 	 console.log("4.-Mostrar archivo");
+	 console.log("5.-Guardar en archivo");
 	 
 	 
 	 this.pedir("elige una opcion",/.+/,function(eleccion){
@@ -138,8 +139,8 @@ var myClase = myClase || {};
 		  
 		    opcion.Capturar(nombre,creditos,clave,area,tipo);
 			console.log("");
+			 obj.guardar();
 			
-			objFile.guardarArchivo();
 			//opcion.Mostrar();
 			
 			
@@ -162,10 +163,13 @@ var myClase = myClase || {};
 	   }
 	   
 	   if(eleccion === "4"){
-	      objFile.leerArchivo();
-		  
+	      
+		  obj.cargar();
 		  
 	   
+	   }
+	   if(eleccion === "5"){
+	       obj.grabarArchivo();
 	   }
 	   
 	   
@@ -173,6 +177,35 @@ var myClase = myClase || {};
 	 
   
   }
+  
+     claseControl.prototype.grabarArchivo = function(){
+	         var objCtrl = new claseControl();
+	         var fs = require('fs');
+	         objCtrl.pedir("escribe el texto que se guardara",/.+/,function(val){
+		     
+		     fs.writeFile('./archivo.csv',val, function(err) {
+             if(err) throw err;
+             console.log('guardando en archivo...');
+	         process.exit();
+         });
+		 }); 
+	 
+	 
+	 
+	 }
+  
+        
+     claseControl.prototype.guardar = function(){
+	      var objFile = new claseArchivo();
+	     
+		   objFile.guardarArchivo();
+	 
+	  }
+	  
+	  claseControl.prototype.cargar = function(){
+	      var objFile = new claseArchivo();
+	       objFile.leerArchivo();
+	  }
 
 	claseControl.prototype.pedir = function(question, format, callback) {
  		var stdin = process.stdin, stdout = process.stdout;
@@ -197,7 +230,7 @@ var myClase = myClase || {};
    claseArchivo.prototype.leerArchivo = function(){
        
 	   console.log("mostrando contenido del archivo...")
-	   fs.readFile('./archivo.txt', 'utf8', function(err, data) {
+	   fs.readFile('./archivo.csv', 'utf8', function(err, data) {
        //the data is passed to the callback in the second argument
        console.log(data);
 	   process.exit();
@@ -210,7 +243,7 @@ var myClase = myClase || {};
    
        //var obj   
        
-	   fs.writeFile('./archivo.txt', obj.getNombre() +','+ obj.getCreditos() +','+ obj.getClave() + ',' + obj.getArea() + ',' + obj.getTipo(), function(err) {
+	   fs.writeFile('./archivo.csv', obj.getNombre() +','+ obj.getCreditos() +','+ obj.getClave() + ',' + obj.getArea() + ',' + obj.getTipo(), function(err) {
        if(err) throw err;
        console.log('File write completed');
 	   process.exit();
