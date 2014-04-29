@@ -16,12 +16,12 @@ http.createServer(function (req, res) {
          '<script type="text/javascript" src="knockout.js"></script>'+
          '<style type="text/css">* {font-family:arial, sans-serif;}</style>\n' +
      '</head>\n'+
-     '<body>'	 +
-	'<p>First name: <strong data-bind="text: firstName"></strong></p>'+
-	'<p>Last name: <strong data-bind="text: lastName"></strong></p>'+
+     '<body background="C:\Users\iBBY\Pictures\m.jpg">'	 +
+	'<p><font color="red">First name: <strong data-bind="text: firstName"></strong></font></p>'+
+	'<p><font color="red">Last name: <strong data-bind="text: lastName"></strong></font></p>'+
 	
-	'<p>First name: <input data-bind="value: firstName" /></p>'+
-	'<p>Last name: <input data-bind="value: lastName" /></p>'+
+	'<p><font color="blue">First name: <input data-bind="value: firstName" /></font></p>'+
+	'<p><font color="blue">Last name: <input data-bind="value: lastName" /></font></p>'+
 	
 	'<p>Full name: <strong data-bind="text: fullName"></strong></p>'+
 	
@@ -29,8 +29,8 @@ http.createServer(function (req, res) {
 	'<script type="text/javascript">'+
 	'function AppViewModel()'+
 	'{'+
-	    'this.firstName = ko.observable("Bert");'+
-	   ' this.lastName = ko.observable("Bertington");'+
+	    'this.firstName = ko.observable("");'+
+	   ' this.lastName = ko.observable("");'+
 	
 	    'this.fullName = ko.computed(function() '+
 	    	    '{'+
