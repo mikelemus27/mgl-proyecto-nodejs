@@ -41,17 +41,22 @@ function TaskListViewModel() {
   
    
     self.save = function() {
-
-      //  $.ajax("http://localhost:8888/form-test.html", {
-       //     data: ko.toJSON({ tasks: self.tasks }),
-
-        $.ajax("https://mgl-proyecto-nodejs-c9-mike27.c9.io/form-test.html", {
+/////////localhost
+        $.ajax("http://localhost:8888/form-test.html", {
             data: ko.toJSON({ num1: self.num1,num2:self.num2 }),
 
             type: "post", contentType: "application/json",
             success: function(result) { alert(result) }
         });
-    };
+/////////c9.io
+       /* $.ajax("https://mgl-proyecto-nodejs-c9-mike27.c9.io/form-test.html", {
+            data: ko.toJSON({ num1: self.num1,num2:self.num2 }),
+
+            type: "post", contentType: "application/json",
+            success: function(result) { alert(result) }
+        });*/
+    
+}
 }
 ko.applyBindings(new TaskListViewModel());
      // (function(){

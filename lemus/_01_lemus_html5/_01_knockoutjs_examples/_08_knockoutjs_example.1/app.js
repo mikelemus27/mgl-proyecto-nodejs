@@ -4,19 +4,23 @@
  * *************************************************************************************
  * http://blog.greatrexpectations.com/2013/01/23/single-page-applications-using-node-knockout/
  * http://stackoverflow.com/questions/18310394/no-access-control-allow-origin-node-apache-port-issue
+ *http://stackoverflow.com/questions/19740613/origin-http-localhost-is-not-allowed-by-access-control-allow-origin
  ***************************************/
 var express = require('express');
+cors = require('cors')
 
 /**************************************************/
 var _ = require('underscore');
 var app = express();
 app.use(express.json());       // to support JSON-encoded bodies
 app.use(express.urlencoded()); // to support URL-encoded bodies
-app.use(function (req, res, next) {
+app.use(cors());
+/*app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'https://c9.io');
-
+    //res.setHeader('Access-Control-Allow-Origin', 'https://c9.io');
+  // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8888/');
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
@@ -29,7 +33,7 @@ app.use(function (req, res, next) {
 
     // Pass to next layer of middleware
     next();
-});
+});*/
 
 
 /*function allowCrossDomain(req, res, next) {
