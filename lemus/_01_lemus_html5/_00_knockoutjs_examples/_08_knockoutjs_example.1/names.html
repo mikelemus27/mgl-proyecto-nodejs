@@ -20,24 +20,34 @@
 
 <script  type="text/javascript">
 
+
  function Task(data) {
     this.number = ko.observable(data.num1);
    
 }
 
+ /*function number(data) {
+    this.num1 = ko.observable(data.title);
+    this.num2 = ko.observable(data.isDone);
+}*/
+
+
 function TaskListViewModel() {
     // Data
     var self = this;
-    self.tasks = ko.observableArray([]);
-    self.num1 = ko.observable();
-    self.num2 = ko.observable();
-
+    self.num1 = ko.observable("3");
+    self.num2 = ko.observable("3");
     // Operations
   
    
     self.save = function() {
-        $.ajax("http://localhost:8888/form-test.html", {
-            data: ko.toJSON({ tasks: self.tasks }),
+
+      //  $.ajax("http://localhost:8888/form-test.html", {
+       //     data: ko.toJSON({ tasks: self.tasks }),
+
+        $.ajax("https://mgl-proyecto-nodejs-c9-mike27.c9.io/form-test.html", {
+            data: ko.toJSON({ num1: self.num1,num2:self.num2 }),
+
             type: "post", contentType: "application/json",
             success: function(result) { alert(result) }
         });
