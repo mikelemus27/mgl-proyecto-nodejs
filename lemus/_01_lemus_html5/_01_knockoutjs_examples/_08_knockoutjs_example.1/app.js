@@ -14,13 +14,13 @@ var _ = require('underscore');
 var app = express();
 app.use(express.json());       // to support JSON-encoded bodies
 app.use(express.urlencoded()); // to support URL-encoded bodies
-app.use(cors());
-/*app.use(function (req, res, next) {
+//app.use(cors());
+app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
     //res.setHeader('Access-Control-Allow-Origin', 'https://c9.io');
   // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8888/');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
@@ -33,7 +33,7 @@ app.use(cors());
 
     // Pass to next layer of middleware
     next();
-});*/
+});
 
 
 /*function allowCrossDomain(req, res, next) {
@@ -76,6 +76,7 @@ app.post('/form-test.html', function(req, res) {
   num2=  num2.toString();
   var result=parseInt(num1)+parseInt(num2);
  res.write ("el num1 es : "+num1+" </br> el num2 es : "+num2+"</br>"+"lasuma es : "+result);
+console.log ("el num1 es : "+num1+" </br> el num2 es : "+num2+"</br>"+"lasuma es : "+result);
   res.end ();
 });
 /*var server = app.listen(3000, function() {
@@ -87,5 +88,5 @@ app.listen(8888,"localhost");
 
 console.log("port"+process.env.PORT);
 console.log("ip"+process.env.IP);
-app.listen(process.env.PORT,process.env.IP); 
+//app.listen(process.env.PORT,process.env.IP); 
 

@@ -19,7 +19,7 @@
 <button data-bind="click: save">Sumar</button>  
 
 <script  type="text/javascript">
-
+ var mostrar = function(result) { alert(result); }
 
  function Task(data) {
     this.number = ko.observable(data.num1);
@@ -43,10 +43,9 @@ function TaskListViewModel() {
     self.save = function() {
 /////////localhost
         $.ajax("http://localhost:8888/form-test.html", {
-            data: ko.toJSON({ num1: self.num1,num2:self.num2 }),
-
+           data: ko.toJSON({ num1: self.num1,num2:self.num2 }),
             type: "post", contentType: "application/json",
-            success: function(result) { alert(result) }
+            success: function(result) { mostrar(result) }
         });
 /////////c9.io
        /* $.ajax("https://mgl-proyecto-nodejs-c9-mike27.c9.io/form-test.html", {
@@ -55,8 +54,7 @@ function TaskListViewModel() {
             type: "post", contentType: "application/json",
             success: function(result) { alert(result) }
         });*/
-    
-}
+    };
 }
 ko.applyBindings(new TaskListViewModel());
      // (function(){
