@@ -5,6 +5,7 @@
  * http://blog.greatrexpectations.com/2013/01/23/single-page-applications-using-node-knockout/
  * http://stackoverflow.com/questions/18310394/no-access-control-allow-origin-node-apache-port-issue
  *http://stackoverflow.com/questions/19740613/origin-http-localhost-is-not-allowed-by-access-control-allow-origin
+ *http://stackoverflow.com/questions/1969476/ajax-success-event-not-working
  ***************************************/
 var express = require('express');
 cors = require('cors')
@@ -75,8 +76,10 @@ app.post('/form-test.html', function(req, res) {
   num1=  num1.toString();
   num2=  num2.toString();
   var result=parseInt(num1)+parseInt(num2);
- res.write ("el num1 es : "+num1+" </br> el num2 es : "+num2+"</br>"+"lasuma es : "+result);
-console.log ("el num1 es : "+num1+" </br> el num2 es : "+num2+"</br>"+"lasuma es : "+result);
+
+// res.write ("el num1 es : "+num1+" </br> el num2 es : "+num2+"</br>"+"lasuma es : "+result);
+ res.write("{ num1:"+ num1+", num2:"+num2 +", result:"+result+" }");
+ console.log ("el num1 es : "+num1+" </br> el num2 es : "+num2+"</br>"+"lasuma es : "+result);
   res.end ();
 });
 /*var server = app.listen(3000, function() {

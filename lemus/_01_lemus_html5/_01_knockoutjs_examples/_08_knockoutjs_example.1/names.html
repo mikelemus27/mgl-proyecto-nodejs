@@ -44,8 +44,11 @@ function TaskListViewModel() {
 /////////localhost
         $.ajax("http://localhost:8888/form-test.html", {
            data: ko.toJSON({ num1: self.num1,num2:self.num2 }),
-            type: "post", contentType: "application/json",
-            success: function(result) { mostrar(result) }
+	   type: "post", 
+	   contentType: "application/json",
+	   dataType: 'json',
+	   success: function(result) { mostrar(result) },
+	   error: function(err){alert("elerror es "+ err)}
         });
 /////////c9.io
        /* $.ajax("https://mgl-proyecto-nodejs-c9-mike27.c9.io/form-test.html", {
