@@ -40,16 +40,25 @@ else if(req.method=="POST") {
 			res.write("Los datos son: ");
 	        res.write(resultado.toString());
 			
+			var fs = require('fs');
+
+var myData = {
+  name:'test',
+  version:'1.0'
+}
+var outputFilename = './base.csv';
+fs.writeFile(outputFilename, resultado, function(err) {
+    if(err) {
+      console.log(err);
+    } else {
+      console.log("JSON saved to " + outputFilename);
+    }
+}); 
+			
+			
 	res.end();
 		});
-	function leerarchivo(){//funcion para leer el archivo csv
-var fs = require('fs');
-var data = fs.readFileSync('./base.csv', 'utf8');
-// wait for the result, then use it
-res.write(data.toString());
-var fs = require('fs');
-}//fin de leer archivo csv	
-			
+		
 }
    
    
