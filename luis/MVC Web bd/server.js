@@ -42,10 +42,7 @@ else if(req.method=="POST") {
 			
 			var fs = require('fs');
 
-var myData = {
-  name:'test',
-  version:'1.0'
-}
+function escribir(){
 var outputFilename = './base.csv';
 fs.writeFile(outputFilename, resultado, function(err) {
     if(err) {
@@ -54,6 +51,7 @@ fs.writeFile(outputFilename, resultado, function(err) {
       console.log("JSON saved to " + outputFilename);
     }
 }); 
+}
 			
 			
 	res.end();
