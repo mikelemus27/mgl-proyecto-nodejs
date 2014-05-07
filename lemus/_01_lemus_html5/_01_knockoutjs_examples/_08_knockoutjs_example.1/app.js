@@ -20,7 +20,7 @@ app.use(express.urlencoded()); // to support URL-encoded bodies
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
-    //res.setHeader('Access-Control-Allow-Origin', 'https://c9.io');
+    //res.setHeader('Access-Control-Allow-Origin', 'https://c9.io');//only for c9.io
   // Website you wish to allow to connect
     res.setHeader('Access-Control-Allow-Origin', '*');
     // Request methods you wish to allow
