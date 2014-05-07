@@ -19,7 +19,7 @@
 <button data-bind="click: save">Sumar</button>  
 
 <script  type="text/javascript">
- var mostrar = function(result) { alert(result); }
+ var mostrar = function(result) { alert("el resultado es "+ result.num11+"+"+result.num22+"="+result.res); }
 
  function Task(data) {
     this.number = ko.observable(data.num1);
