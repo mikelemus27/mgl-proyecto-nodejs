@@ -84,12 +84,12 @@ exports.start = function(settings) {
         		nodes: globalSettings.nodes
    		}, server);*/
     server.listen(globalSettings.port,globalSettings.host);
-	console.log('Server running at port '+globalSettings.port);
+	console.log('Server running at  '+globalSettings.host+":"+globalSettings.port);
 };
 
 function handleRequest(req,res,cleanPathname,newSessionId){
 		var root = globalSettings.path.root;
-		var path = "./"+pathlib.join(root, cleanPathname);
+		var path = pathlib.join(root, cleanPathname);
 		log.info("Handling request to: " +path + " pid("+process.pid+")");
 		//log.debug("Request headers: "+utils.arrayToString(req.headers));
 		fs.stat(path, function (err, stats) {

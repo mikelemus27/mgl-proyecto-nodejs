@@ -1,8 +1,8 @@
 {
 	"web_app_name" : "Alligator TestApp",
-	"port"         : 8888,
-	"host"         : "localhost",
-	"path"         : {
+	"port"         : 8888,//colocar el puerto correcto
+	"host"         : "localhost",//solo "localhost"
+	"path"         : {//colocar la ruta  completa
 				"root":"C:/Users/ALUMNOS/mgl-proyecto-nodejs/lemus/_00_nodejs/_00_nodejs_web/_02_server_pages/_00_alligator/WWW/",
 				"lib":"C:/Users/ALUMNOS/mgl-proyecto-nodejs/lemus/_00_nodejs/_00_nodejs_web/_02_server_pages/_00_alligator/WWWlib/"
 			},
