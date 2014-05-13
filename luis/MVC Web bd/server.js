@@ -10,12 +10,14 @@ var pathname = url.parse(req.url).pathname;
 if(pathname == "/"){
 
 res.writeHead(0, {'Content-Type': 'text/html'});
-html  = fs.readFileSync('form.html','utf8');
+
+html  = fs.readFileSync('index.html','utf8');
 res.write(html);
+
 }
 
 else if(req.method=="POST") {
-   
+     
 	console.log("[0] " + req.method + " to " + req.url);
     var fullBody = '';
     
@@ -29,19 +31,31 @@ else if(req.method=="POST") {
 	  var decodedBody = querystring.parse(fullBody);
       var post= JSON.stringify(decodedBody);
           post=JSON.parse(post) ;
-
+			
+		  		
+		  if(post.menu.toString()=="1"){
+		  res.writeHead(0, {'Content-Type': 'text/html'});
+		  var fs= require ("fs");
+		  html  = fs.readFileSync('form.html','utf8');
+		  res.write(html);
+		  
+		  }
+	
+		  
+		  if (post.menu=="11"){
+		  	  
 		  txt1= post.dat1.toString();
           txt2= post.dat2.toString();
 		  txt3= post.dat3.toString();
           txt4= post.dat4.toString();
 		  txt5= post.dat5.toString();
           
-      var resultado=(txt1)+" "+(txt2)+" "+(txt3)+" "+(txt4)+" "+(txt5);
-			res.write("Los datos son: ");
-	        res.write(resultado.toString());
-			
-			var fs = require('fs');
+          var resultado=(txt1)+" "+(txt2)+" "+(txt3)+" "+(txt4)+" "+(txt5);
+		  res.write("Los datos son: ");
+	      res.write(resultado.toString());
 
+		  var fs = require('fs');
+			
 function escribir(){
 var outputFilename = './base.csv';
 fs.writeFile(outputFilename, resultado, function(err) {
@@ -49,10 +63,11 @@ fs.writeFile(outputFilename, resultado, function(err) {
       console.log(err);
     } else {
       console.log("JSON saved to " + outputFilename);
+	  
     }
 }); 
 }
-			
+	}//se termina el if de guardar datos		
 			
 	res.end();
 		});
