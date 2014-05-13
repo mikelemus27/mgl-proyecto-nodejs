@@ -1,0 +1,7 @@
+function leerarchivo(){//funcion para leer el archivo csv
+var fs = require('fs');
+var data = fs.readFileSync('./base.csv', 'utf8');
+// wait for the result, then use it
+res.write(data.toString());
+var fs = require('fs');
+}//fin de leer archivo csv	

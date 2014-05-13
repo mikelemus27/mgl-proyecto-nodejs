@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<script type="text/javascript" src="knockout.js"></script>
+		<script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+	</head>
+	
+	<body>
+		<p>Numero 1:<input data-bind="value: numero1"></p>
+		<p>Numero 2:<input data-bind="value: numero2"></p>
+		<button data-bind="click: sumar">Sumar</button>
+		<script type="text/javascript">
+			function ListViewModel()
+			{
+				var self=this;
+				self.numero1=ko.observable("0");
+				self.numero2=ko.observable("0");
+				self.sumar= function()
+						{
+							$.ajax("http://localhost:8888/x.html", {
+							data: ko.toJSON({ Num1: self.numero1, Num2: self.numero2}),
+							type: "post", contentType: "application/json",
+							success: function(result) { alert(result) }
+									});
+						};
+					
+			}
+			ko.applyBindings(new ListViewModel());
+		</script>
+				
+		
+	</body>
+	
+</html>
+
