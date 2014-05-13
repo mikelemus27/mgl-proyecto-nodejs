@@ -19,9 +19,11 @@ var lib = new Object();
 var globalSettings;
 var applicationScope;
 var sessionScope;
-
-exports.start = function(settings) {
+var path_lib;
+exports.start = function(settings,home_path) {
+	
 	globalSettings = defaultSettings(settings);
+	path_lib=home_path+globalSettings.path.lib;
 	if(globalSettings.debug_mode)
 		log.level = log.levels.DEBUG;
 	else
@@ -33,18 +35,18 @@ exports.start = function(settings) {
 	
 	//Load utils dynamicly 
 	if(globalSettings.path.lib != undefined)
-		fs.stat(globalSettings.path.lib, function (err, stats) {
+		fs.stat(path_lib, function (err, stats) {
 			if (err) 
 				log.error("Loading lib error:"+err);
 			else if(!stats.isDirectory()) 
 				log.error("Loading lib error: path must be a directory");
 			else{
-				var files = fs.readdirSync(globalSettings.path.lib);	
+				var files = fs.readdirSync(path_lib);	
 				for(i=0;i<files.length;i++){
 					var file = files[i];
 					if(files[i].endsWith(".js")){
 						var fileNoJs =  file.substring(0,files[i].length-3);
-						var path = pathlib.join(globalSettings.path.lib,fileNoJs);
+						var path =pathlib.join(path_lib,fileNoJs);
 						eval("lib."+fileNoJs+" = require(path)");
 						log.info("Loading lib file:" + path);
 					}
@@ -64,18 +66,18 @@ exports.start = function(settings) {
 			if(params == undefined)
 				params = new Object();
 			req.parameters = params;
-			handleRequest(req,res,cleanPathname);			
+			handleRequest(home_path,req,res,cleanPathname);			
 		}
 		else if (req.method == "POST"){
 			incomingForm.parse(req, function(err, fields, files) {
 				//log.debug("POST fields:" + utils.arrayToString(fields));
 				params = new Object();
 				req.parameters = fields;
-				handleRequest(req,res,cleanPathname);
+				handleRequest(home_path,req,res,cleanPathname);
 			});
 		}
 		else //Other Methods
-			handleRequest(req,res,cleanPathname);
+			handleRequest(home_path,req,res,cleanPathname);
 		
 				
 	});
@@ -87,8 +89,8 @@ exports.start = function(settings) {
 	console.log('Server running at  '+globalSettings.host+":"+globalSettings.port);
 };
 
-function handleRequest(req,res,cleanPathname,newSessionId){
-		var root = globalSettings.path.root;
+function handleRequest(home_path,req,res,cleanPathname,newSessionId){
+		var root =home_path+ globalSettings.path.root;
 		var path = pathlib.join(root, cleanPathname);
 		log.info("Handling request to: " +path + " pid("+process.pid+")");
 		//log.debug("Request headers: "+utils.arrayToString(req.headers));

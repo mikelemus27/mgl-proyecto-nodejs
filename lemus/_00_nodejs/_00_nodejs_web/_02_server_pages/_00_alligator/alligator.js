@@ -14,7 +14,7 @@ fs.readFile(process.argv[2] || './settings.json', function(err, data) {
             process.exit(1);
         }
     }
-    jssp.start(settings);
+    jssp.start(settings,__dirname);
 });
 
 

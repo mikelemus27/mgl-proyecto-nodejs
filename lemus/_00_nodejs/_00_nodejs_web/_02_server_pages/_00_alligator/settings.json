@@ -3,8 +3,8 @@
 	"port"         : 8888,
 	"host"         : "localhost",
 	"path"         : {
-				"root":"C:/Users/ALUMNOS/mgl-proyecto-nodejs/lemus/_00_nodejs/_00_nodejs_web/_02_server_pages/_00_alligator/WWW/",
-				"lib":"C:/Users/ALUMNOS/mgl-proyecto-nodejs/lemus/_00_nodejs/_00_nodejs_web/_02_server_pages/_00_alligator/WWWlib/"
+				"root":"/WWW/",
+				"lib":"/WWWlib/"
 			},
 	"server_script": {
 				"ext":"jssp",

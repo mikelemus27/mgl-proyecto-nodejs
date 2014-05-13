@@ -13,7 +13,7 @@
     <div>
         <label for="result">result:</label>
       
-       <?=4+4?>
+      <?=lib.suma.sumar(request.parameters.num1,request.parameters.num2)?> 
     </div>
   <input type="submit" value="Go to my link location" 
 </form>
