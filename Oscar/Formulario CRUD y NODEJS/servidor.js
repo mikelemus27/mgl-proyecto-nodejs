@@ -35,7 +35,6 @@ else if(req.method=="POST") {
 		  
 		 
 var Entidad = Entidad || {}; 
-
 ;(function(){
   
   function Reticula(Clave,Nombre,Modulos,Creditos,Periodo){
@@ -122,8 +121,7 @@ var Entidad = Entidad || {};
   
   
   Entidad.Reticula = Reticula;
-})(); 
-  
+})();  
 ;(function(){
 
   var datos=new Entidad.Reticula();
@@ -169,7 +167,6 @@ var Entidad = Entidad || {};
   }
  Entidad.Vista = Vista;
 })(); 
-
 ;(function(){
 
  var fs  = require("fs");
@@ -198,10 +195,7 @@ var Entidad = Entidad || {};
   
 })(); 
 
-
-
-
-  iniciar = function(a,b,c,d,e){
+iniciar = function(a,b,c,d,e){
      var inicio = new Entidad.Control();
 	 op= inicio.getop();
 	 
