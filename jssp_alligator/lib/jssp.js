@@ -20,10 +20,18 @@ var globalSettings;
 var applicationScope;
 var sessionScope;
 var path_lib;
+<<<<<<< HEAD
 exports.start = function(settings,home_path) {
 	
 	globalSettings = defaultSettings(settings);
 	path_lib=home_path+globalSettings.path.lib;
+=======
+var hp;
+exports.start = function(settings,home_path) {
+	hp=home_path;
+	globalSettings = defaultSettings(settings);
+	path_lib=hp+globalSettings.path.lib;
+>>>>>>> 43ec18bbb8cae71fc70a390ed2a0babe5043da5d
 	if(globalSettings.debug_mode)
 		log.level = log.levels.DEBUG;
 	else
@@ -66,18 +74,30 @@ exports.start = function(settings,home_path) {
 			if(params == undefined)
 				params = new Object();
 			req.parameters = params;
+<<<<<<< HEAD
 			handleRequest(home_path,req,res,cleanPathname);			
+=======
+			handleRequest(req,res,cleanPathname);			
+>>>>>>> 43ec18bbb8cae71fc70a390ed2a0babe5043da5d
 		}
 		else if (req.method == "POST"){
 			incomingForm.parse(req, function(err, fields, files) {
 				//log.debug("POST fields:" + utils.arrayToString(fields));
 				params = new Object();
 				req.parameters = fields;
+<<<<<<< HEAD
 				handleRequest(home_path,req,res,cleanPathname);
 			});
 		}
 		else //Other Methods
 			handleRequest(home_path,req,res,cleanPathname);
+=======
+				handleRequest(req,res,cleanPathname);
+			});
+		}
+		else //Other Methods
+			handleRequest(req,res,cleanPathname);
+>>>>>>> 43ec18bbb8cae71fc70a390ed2a0babe5043da5d
 		
 				
 	});
@@ -89,9 +109,19 @@ exports.start = function(settings,home_path) {
 	console.log('Server running at  '+globalSettings.host+":"+globalSettings.port);
 };
 
+<<<<<<< HEAD
 function handleRequest(home_path,req,res,cleanPathname,newSessionId){
 		var root =home_path+ globalSettings.path.root;
 		var path = pathlib.join(root, cleanPathname);
+=======
+function handleRequest(req,res,cleanPathname,newSessionId){
+	var root ;
+		var path ;
+		//if (home_path!==1){
+		root =hp+ globalSettings.path.root;
+		path = pathlib.join(root, cleanPathname);
+	//}
+>>>>>>> 43ec18bbb8cae71fc70a390ed2a0babe5043da5d
 		log.info("Handling request to: " +path + " pid("+process.pid+")");
 		//log.debug("Request headers: "+utils.arrayToString(req.headers));
 		fs.stat(path, function (err, stats) {
@@ -196,6 +226,10 @@ function serverSideRunning(newfileName,request,response,file,lastMod,sessionId){
 			afterEval.push(unescape(text));
 		},
 		forward :function(resource){
+<<<<<<< HEAD
+=======
+			resource=resource.replace('http://'+globalSettings.host+':'+globalSettings.port,'');
+>>>>>>> 43ec18bbb8cae71fc70a390ed2a0babe5043da5d
 			flushFunction = handleRequest(request,response,resource,result.sessionId);
 			flushResponse = false;
 		},

@@ -1,2 +1,10 @@
+<<<<<<< HEAD
 ERROR:
 <? write(; ?>
+=======
+
+<!-- al parecer todo debe ser  linea por linea-->
+<? var a = 1+1;?>
+ <?=a ?> <!-- no debe llevar  ; al final-->
+hi
+>>>>>>> 43ec18bbb8cae71fc70a390ed2a0babe5043da5d

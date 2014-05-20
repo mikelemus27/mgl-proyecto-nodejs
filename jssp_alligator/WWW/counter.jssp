@@ -1,0 +1,3 @@
+<?
+	commands.sendRedirect("http://localhost:8888/counter/sessionLogic.jssp");
+?>
