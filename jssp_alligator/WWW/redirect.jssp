@@ -1,0 +1,3 @@
+<?
+	commands.sendRedirect("http://www.google.com");
+?>
