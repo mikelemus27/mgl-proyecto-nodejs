@@ -201,7 +201,7 @@ function serverSideRunning(newfileName,request,response,file,lastMod,sessionId){
 			afterEval.push(unescape(text));
 		},
 		forward :function(resource){
-			resource=resource.replace('http://localhost:8888','');
+			resource=resource.replace('http://'+globalSettings.host+':'+globalSettings.port,'');
 			flushFunction = handleRequest(request,response,resource,result.sessionId);
 			flushResponse = false;
 		},
