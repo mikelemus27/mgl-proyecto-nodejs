@@ -51,13 +51,18 @@ else if(req.method=="POST") {
 		  txt5= post.dat5.toString();
           
           var resultado=(txt1)+" "+(txt2)+" "+(txt3)+" "+(txt4)+" "+(txt5);
-		  res.write("Los datos son: ");
+		  res.write("Los datos Guardados son: ");
 	      res.write(resultado.toString());
 
+		  escribir(resultado);
+		  
 		  var fs = require('fs');
-			
-function escribir(){
-var outputFilename = './base.csv';
+		}//se termina el if de guardar datos
+		
+		
+function escribir(resultado){
+fs= require ("fs");
+var outputFilename = 'base.csv';
 fs.writeFile(outputFilename, resultado, function(err) {
     if(err) {
       console.log(err);
@@ -67,8 +72,27 @@ fs.writeFile(outputFilename, resultado, function(err) {
     }
 }); 
 }
-	}//se termina el if de guardar datos		
+			if (post.menu=="2"){
+			res.write("Los datos que tienes Guardados son: ");
+	        leerarchivo();
 			
+						
+			function leerarchivo(){//funcion para leer el archivo csv
+var fs = require('fs');
+var data = fs.readFileSync('base.csv', 'utf8');
+// wait for the result, then use it
+res.write(data);
+var fs = require('fs');
+return data.toString();
+}//fin de leer archivo csv	
+			}
+			
+			if (post.menu=="3"){
+			res.write("Los datos han sido cambiados a Indefinidos");
+					
+			escribir("Indefinido")
+			}
+						
 	res.end();
 		});
 		
