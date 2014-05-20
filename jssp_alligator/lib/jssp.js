@@ -20,10 +20,11 @@ var globalSettings;
 var applicationScope;
 var sessionScope;
 var path_lib;
+var hp;
 exports.start = function(settings,home_path) {
-	
+	hp=home_path;
 	globalSettings = defaultSettings(settings);
-	path_lib=home_path+globalSettings.path.lib;
+	path_lib=hp+globalSettings.path.lib;
 	if(globalSettings.debug_mode)
 		log.level = log.levels.DEBUG;
 	else
@@ -66,18 +67,18 @@ exports.start = function(settings,home_path) {
 			if(params == undefined)
 				params = new Object();
 			req.parameters = params;
-			handleRequest(home_path,req,res,cleanPathname);			
+			handleRequest(req,res,cleanPathname);			
 		}
 		else if (req.method == "POST"){
 			incomingForm.parse(req, function(err, fields, files) {
 				//log.debug("POST fields:" + utils.arrayToString(fields));
 				params = new Object();
 				req.parameters = fields;
-				handleRequest(home_path,req,res,cleanPathname);
+				handleRequest(req,res,cleanPathname);
 			});
 		}
 		else //Other Methods
-			handleRequest(home_path,req,res,cleanPathname);
+			handleRequest(req,res,cleanPathname);
 		
 				
 	});
@@ -89,9 +90,13 @@ exports.start = function(settings,home_path) {
 	console.log('Server running at  '+globalSettings.host+":"+globalSettings.port);
 };
 
-function handleRequest(home_path,req,res,cleanPathname,newSessionId){
-		var root =home_path+ globalSettings.path.root;
-		var path = pathlib.join(root, cleanPathname);
+function handleRequest(req,res,cleanPathname,newSessionId){
+	var root ;
+		var path ;
+		//if (home_path!==1){
+		root =hp+ globalSettings.path.root;
+		path = pathlib.join(root, cleanPathname);
+	//}
 		log.info("Handling request to: " +path + " pid("+process.pid+")");
 		//log.debug("Request headers: "+utils.arrayToString(req.headers));
 		fs.stat(path, function (err, stats) {
@@ -196,6 +201,7 @@ function serverSideRunning(newfileName,request,response,file,lastMod,sessionId){
 			afterEval.push(unescape(text));
 		},
 		forward :function(resource){
+			resource=resource.replace('http://localhost:8888','');
 			flushFunction = handleRequest(request,response,resource,result.sessionId);
 			flushResponse = false;
 		},

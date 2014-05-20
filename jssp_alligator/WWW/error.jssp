@@ -1,2 +1,5 @@
-ERROR:
-<? write(; ?>
+
+<!-- al parecer todo debe ser  linea por linea-->
+<? var a = 1+1;?>
+ <?=a ?> <!-- no debe llevar  ; al final-->
+hi
