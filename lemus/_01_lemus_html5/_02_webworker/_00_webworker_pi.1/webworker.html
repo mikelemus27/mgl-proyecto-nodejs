@@ -1,0 +1,50 @@
+<html>
+<head>
+<script type="text/javascript">
+  function launchPiWebWorker1() {
+    var worker = new Worker('pi.js');
+
+    worker.onmessage = function(e) {
+      document.getElementById("PiValue1").innerHTML = e.data.PiValue;
+    };
+    worker.onerror = function(e) {
+      alert('Error: Line ' + e.lineno + ' in ' + e.filename + ': ' + e.message);
+    };
+
+    //start the worker
+    worker.postMessage({'cmd':   'CalculatePi',
+                        'value': document.getElementById("loop").value
+                      });
+  }
+ function launchPiWebWorker2() {
+    var worker = new Worker('pi.js');
+
+    worker.onmessage = function(e) {
+      document.getElementById("PiValue2").innerHTML = e.data.PiValue;
+    };
+    worker.onerror = function(e) {
+      alert('Error: Line ' + e.lineno + ' in ' + e.filename + ': ' + e.message);
+    };
+
+    //start the worker
+    worker.postMessage({'cmd':   'CalculatePi',
+                        'value': document.getElementById("loop").value
+                      });
+  }
+</script>
+</head>
+<body>
+<label for="loop">Enter the number of cycles:</label>
+<input id="loop" type="number" value="100" />
+<input type="button" onclick="launchPiWebWorker1()" value="Calculate Pi1" />
+<br>
+<br>
+<div id="PiValue1">PI value appears here</div>
+<label for="loop">Enter the number of cycles:</label>
+<input id="loop" type="number" value="100" />
+<input type="button" onclick="launchPiWebWorker2()" value="Calculate Pi2" />
+<br>
+<br>
+<div id="PiValue2">PI value appears here</div>
+</body>
+</html>
