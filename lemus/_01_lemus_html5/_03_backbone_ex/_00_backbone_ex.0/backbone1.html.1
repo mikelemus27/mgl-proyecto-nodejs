@@ -1,0 +1,111 @@
+<!-- Recursos:
+a)http://addyosmani.github.io/backbone-fundamentals/#backbone-basics
+b)https://github.com/jashkenas/backbone/wiki/Tutorials,-blog-posts-and-example-sites
+b)http://jsfiddle.net/8RP89/1/
+c)http://stackoverflow.com/questions/21975045/a-simple-example-backbone-js-tutorial-collection-based-on-json-view
+-->
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://documentcloud.github.com/underscore/underscore-min.js"></script>
+<script src="https://documentcloud.github.com/backbone/backbone-min.js"></script>
+<script>
+  // Your code goes here
+  var startData = [
+    {
+        "id": "p1",
+        "name" : "AAAA",
+        "title" : "BBBB",
+        "background" : "CCCC"
+    },
+    {
+        "id": "p2",
+        "name" : "DDDD",
+        "title" : "EEEE",
+        "background" : "FFFF"
+    },
+    {
+        "id": "p3",
+        "name" : "GGGG",
+        "title" : "HHHH",
+        "background" : "IIII"
+    }
+];
+
+var addData = [
+    {
+        "id": "p4",
+        "name" : "sdfsdfsdf",
+        "title" : "sdfsdf",
+        "background" : "sdfsdf"
+    },
+    {
+        "id": "p5",
+        "name" : "DDDssssD",
+        "title" : "EsssEEE",
+        "background" : "ssssFFFF"
+    },
+    {
+        "id": "p6",
+        "name" : "GGssdsfGG",
+        "title" : "HsdfHHH",
+        "background" : "IIaaaaII"
+    }
+];
+var Profile = Backbone.Model.extend();
+
+var ProfileList = Backbone.Collection.extend({
+    model: Profile,
+    url: 'jsonSample.json'
+});
+
+var ProfileView = Backbone.View.extend({
+    el: "#profiles",
+    template: _.template($('#profileTemplate').html()),
+    initialize: function(){
+        this.listenTo(this.collection,"add", this.renderItem);
+    },
+    render: function () {
+        this.collection.each(function(model){
+             var profileTemplate = this.template(model.toJSON());
+             this.$el.append(profileTemplate);
+        }, this);
+        return this;
+    },
+    renderItem: function(profile) {
+         var profileTemplate = this.template(profile.toJSON());
+         this.$el.append(profileTemplate);
+    }
+});
+
+var profileList = new ProfileList(startData);
+var profilesView = new ProfileView({ collection: profileList });
+profilesView.render();
+profileList.add(addData);
+</script>
+<div id="profiles"></div>
+
+    <script id="profileTemplate" type="text/template">
+    <div class="profile">
+            <div class="info">
+                <div class="name">
+                    <%= name %>
+                </div>
+                <div class="title">
+                    <%= title %>
+                </div>
+                <div class="background">
+                    <%= background %>
+                </div>
+            </div>
+        </div>
+     </script>
+</body>
+</html>
