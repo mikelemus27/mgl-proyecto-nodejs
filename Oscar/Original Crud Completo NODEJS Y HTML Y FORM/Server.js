@@ -294,51 +294,7 @@ var Entidad = Entidad || {};
 
 var inicio = new Entidad.Vista();
   
-//IF's para leer la opcion del boton		  	  
-			if(post.btnINDICADOR.toString()=="Capturar"){
-			
-				console.log("Capturando");
-				
-					res.writeHead(200, {'Content-Type': 'text/html'});
-					html  = fs.readFileSync('Capturar.html','utf8');
-					res.write(html);
-					
-			}
-			else if(post.btnINDICADOR.toString()=="Modificar"){
-			console.log("Modificando...");
-			inicio.Editar();
-		
-			}
-			else if(post.btnINDICADOR.toString()=="Mostrar"){
-			console.log("Mostrando...");
-	         inicio.Mostrar();
-        
-			
-			}
 
-			else if(post.btnINDICADOR.toString()=="Buscar"){
-			console.log("Buscando...");
-			        res.writeHead(200, {'Content-Type': 'text/html'});
-					html  = fs.readFileSync('Buscar.html','utf8');
-					res.write(html);
-			}			
-			else if(post.btnINDICADOR.toString()=="Terminado"){
-					
-					res.writeHead(200, {'Content-Type': 'text/html'});
-					html  = fs.readFileSync('index.html','utf8');
-					res.write(html);
-					
-			}
-			else if(post.btnINDICADOR.toString()=="Guardar"){
-			   inicio.Capturar(post.txtCLAVE.toString(),post.txtNOMBRE.toString(),post.txtMODULOS.toString(),post.txtCREDITOS.toString(),post.txtPERIODO.toString());
-					res.writeHead(200, {'Content-Type': 'text/html'});
-					html  = fs.readFileSync('index.html','utf8');
-					res.write(html);
-                   }
-			else if(post.btnINDICADOR.toString()=="Busqueda"){
-			     inicio.Busqueda(post.radios.toString(),post.txtVALOR.toString());	 
-			}
-	
 	
 	res.end();
 		});
