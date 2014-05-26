@@ -1,5 +1,5 @@
 var myClase = myClase || {}; 
-
+var band = false;
 
   //Clase modelo
   //entidad
@@ -348,7 +348,13 @@ var myClase = myClase || {};
 	   fs.readFile('./archivo.csv', 'utf8', function(err, data) {
        //the data is passed to the callback in the second argument
        console.log(data);
-	   obj.opciones();
+	   
+	   if(band==false){
+	     obj.opciones();
+	   }else{
+	     continuar();
+	   }
+	     band=true;
 	   //continuar();
 	   //process.exit();
       });
@@ -369,13 +375,7 @@ var myClase = myClase || {};
    
    }
   
-  
-  
-  
-  
-	
-	
-	
+
 	var objControl = new claseControl();
 	objControl.cargar();
 
