@@ -8,15 +8,34 @@ c)http://stackoverflow.com/questions/21975045/a-simple-example-backbone-js-tutor
 <!DOCTYPE HTML>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="underscore-min.js"></script>
+<script src="backbone-min.js"></script>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="underscore-min.js"></script>
-<script src="backbone-min.js"></script>
-<script>
+
+
+<div id="profiles"></div>
+
+    <script id="profileTemplate" type="text/template">
+    <div class="profile">
+            <div class="info">
+                <div class="name">
+                    <%= name %>
+                </div>
+                <div class="title">
+                    <%= title %>
+                </div>
+                <div class="background">
+                    <%= background %>
+                </div>
+            </div>
+        </div>
+     </script>
+     <script>
   // Your code goes here
   var startData = [
     {
@@ -90,22 +109,5 @@ var profilesView = new ProfileView({ collection: profileList });
 profilesView.render();
 profileList.add(addData);
 </script>
-<div id="profiles"></div>
-
-    <script id="profileTemplate" type="text/template">
-    <div class="profile">
-            <div class="info">
-                <div class="name">
-                    <%= name %>
-                </div>
-                <div class="title">
-                    <%= title %>
-                </div>
-                <div class="background">
-                    <%= background %>
-                </div>
-            </div>
-        </div>
-     </script>
 </body>
 </html>
