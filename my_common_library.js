@@ -1,5 +1,24 @@
 /*pegar  aqui el codigo*/
 
+
+
+/*primera parte*/
+
+function nyfield{args_cus_Obj){
+
+if((typeof args_cus_Obj.attributes.typ !='undefined')  &&
+  args_cus_Obj.attributes.typ!==null){
+  this._fieldtype=args_cus_Obj.attributes.typ.value;
+	 }
+
+	 var ev_att=args_cus_Obj.attributes.callback;
+	 this._callbk_click=(typeof ev_att !='undefined' && ev_att!==null)?ev_att.value:null;
+	 
+     var t_mx_ln= parseInt(args_cus_Obj.attributes.len.value,10);
+
+
+
+
 /*Segunda parte */
 this.fld_txt_inp=document.createElement("input");//create an input field
 this.fld_txt_inp.type= "text";
