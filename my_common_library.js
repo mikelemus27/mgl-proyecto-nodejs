@@ -49,3 +49,23 @@ return rg.test(kc);
 };
 var self=this;
 args_cus_obj.appendChild(this.fld_txt_inp);
+
+//4 parte_Eduardo
+
+function initializeUI(){
+	 var arr= document.getElementsByTagName("+");
+	 
+	 for(var i=0; i<arr.length;i++){
+		var tgNm= arr.item(i).nodeName;
+		var obj=null;
+		if(tgNm.toLowerCase()=='myfield'){
+			obj=new myfield(arr.item(i));
+		}
+		else if (tgNm.toLowerCase()=='myselect'){
+			obj=new myselect(arr.item(i));
+		}
+		...
+	}//end of for loop
+}
+
+
