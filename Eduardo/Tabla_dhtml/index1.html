@@ -1,0 +1,152 @@
+<html>
+
+<HEAD>
+
+     <TITLE>Agregar filas a una tabla</TITLE>
+
+     <SCRIPT language="javascript">
+
+          function addRow(tableID) {
+
+               var table = document.getElementById(tableID);
+
+ 
+
+               var rowCount = table.rows.length;
+
+               var row = table.insertRow(rowCount);
+
+ 
+
+               var celda1 = row.insertCell(0);
+
+               var columna1 = document.createElement("input");
+
+               columna1.type = "radio";
+
+               celda1.appendChild(columna1);
+
+ 
+
+               var celda2 = row.insertCell(1);
+
+               var columna2 = document.createElement("input");
+
+               columna2.type = "text";
+
+               celda2.appendChild(columna2);
+			   
+			   
+			   
+			   var celda3 = row.insertCell(2);
+
+               var columna3 = document.createElement("input");
+
+               columna3.type = "text";
+
+               celda3.appendChild(columna3);
+			   
+			   
+			   var celda4 = row.insertCell(3);
+
+               var columna4 = document.createElement("input");
+
+               columna4.type = "text";
+
+               celda4.appendChild(columna4);
+			   
+			   
+			   var celda5 = row.insertCell(4);
+
+               var columna5 = document.createElement("input");
+
+               columna5.type = "text";
+
+               celda5.appendChild(columna5);
+			   
+			   
+			   var celda6 = row.insertCell(5);
+
+               var columna6 = document.createElement("input");
+
+               columna6.type = "text";
+
+               celda6.appendChild(columna6);
+
+          }
+
+ 
+
+          function deleteRow(tableID) {
+
+               try {
+
+               var table = document.getElementById(tableID);
+
+               var rowCount = table.rows.length;
+
+ 
+
+               for(var i=0; i<rowCount; i++) {
+
+                    var row = table.rows[i];
+
+                    var btnRadio = row.cells[0].childNodes[0];
+
+                    if(null != btnRadio && true == btnRadio.checked) {
+
+                         table.deleteRow(i);
+
+                         rowCount--;
+
+                         i--;
+
+                    }
+
+               }
+
+               }catch(e) {
+
+                    alert(e);
+
+               }
+
+          }
+
+ 
+
+     </SCRIPT>
+
+</HEAD>
+
+<BODY>
+
+ 
+
+     <INPUT type="button" value="Agregar Fila" onclick="addRow('myTable');" />
+
+ 
+
+     <INPUT type="button" value="Eliminar Fila" onclick="deleteRow('myTable');" />
+
+ 
+
+     <TABLE id="myTable" width="350px" border="1">
+			<tr>
+				<td>Seleccione fila a eliminar</td><td>Tema</td><td>Subtemas</td><td>Unidades</td><td>Objetivo general</td><td>Bibliografia</td>
+			</tr>
+
+          <TR>
+               <TD><INPUT type="radio" NAME="Rbtn"/></TD>
+
+               <TD> <INPUT type="text" /> </TD>
+
+          </TR>
+
+     </TABLE>
+
+ 
+
+</BODY>
+
+</html>
