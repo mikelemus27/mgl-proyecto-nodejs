@@ -1,0 +1,21 @@
+<HTML>
+		<?="<head><title>nodeJS and antiNode+</title></head>"?>
+	<BODY>
+<form action="form.jssp" method="post">
+    <div>
+        <label for="num1">num1:</label>
+        <input name="num1" type="text" id="num1" value="3" />
+    </div>
+    <div>
+        <label for="num2">num2:</label>
+        <input  name="num1" type="text" id="num2" value="2"/>
+    </div>
+    <div>
+        <label for="result">result:</label>
+      
+      <?=lib.suma.sumar(request.parameters.num1,request.parameters.num2)?> 
+    </div>
+  <input type="submit" value="Go to my link location" 
+</form>
+	</BODY>
+</HTML>
