@@ -1,0 +1,22 @@
+<?
+	var counter = 1;
+	application.get("counter",function(value){
+<<<<<<< HEAD
+		log.debug("ApplicationLOGIC.JSSP, value - " +value);
+=======
+		log.debug("ApplicationLOGIC.JSSP, value - " + value);
+>>>>>>> 43ec18bbb8cae71fc70a390ed2a0babe5043da5d
+		if(value == undefined){
+			application.set("counter",1);
+		}else{
+			counter = value+1;
+			application.set("counter",counter);
+		}
+		request.parameters.counter = counter;
+<<<<<<< HEAD
+		commands.forward("counter/view.jssp");				
+=======
+		commands.forward("http://localhost:8888/counter/view.jssp");				
+>>>>>>> 43ec18bbb8cae71fc70a390ed2a0babe5043da5d
+	});				
+?>

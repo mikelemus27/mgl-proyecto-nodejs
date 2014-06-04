@@ -35,7 +35,6 @@ else if(req.method=="POST") {
 		  
 		 
 var Entidad = Entidad || {}; 
-
 ;(function(){
   
   function Reticula(Clave,Nombre,Modulos,Creditos,Periodo){
@@ -122,8 +121,7 @@ var Entidad = Entidad || {};
   
   
   Entidad.Reticula = Reticula;
-})(); 
-  
+})();  
 ;(function(){
 
   var datos=new Entidad.Reticula();
@@ -135,13 +133,21 @@ var Entidad = Entidad || {};
   
   Vista.prototype.Mostrar = function (){
    
-   console.log("\nMostrando... \n");
-   console.log("Clave: "+datos.getClave());
-   console.log("Nombre: "+datos.getNombre());
-   console.log("Modulos: "+datos.getModulos());
-   console.log("Creditos: "+datos.getCreditos());
-   console.log("Periodo: "+datos.getPeriodo());
-
+   
+               res.write("<html>");
+			   res.write("<body bgcolor='orange'>");
+			   res.write("Clave: "+datos.getClave());
+			   res.write("<br>");
+			   res.write("Nombre: "+datos.getNombre());
+			   res.write("<br>");
+			   res.write("Modulos: "+datos.getModulos());
+			   res.write("<br>");
+			   res.write("Creditos: "+datos.getCreditos());
+			   res.write("<br>");
+			   res.write("Periodo: "+datos.getPeriodo());
+			   res.write("</body>");
+			   res.write("</html>");
+  
   
   }
   
@@ -161,7 +167,6 @@ var Entidad = Entidad || {};
   }
  Entidad.Vista = Vista;
 })(); 
-
 ;(function(){
 
  var fs  = require("fs");
@@ -173,67 +178,10 @@ var Entidad = Entidad || {};
     
    }
    
-    Control.prototype.getop= function(){
-  return op;
+   Control.prototype.getop= function(){
+    return op;
  }
- 
- 
-   Control.prototype.Cargar =function(){
-   
 
-   //COMIENZA EL PROCESO DE CARGAR EL ARCHIVO
-
-		var numLINEAS = fs.readFileSync('c:/archivo.csv').toString().split('\n').length;
-          //ciclo para leer linea individualmente
-		  for(var x=0;  x < numLINEAS ; x++){
-		    console.log("\nEn la linea " + (x+1)+ " del archivo se encuentra");
-		    var array = fs.readFileSync('c:/archivo.csv').toString().split('\n');
-			var txtLINEA=array[x].split(',');
-			
-			//ahora palabra por palabra para insertarlas en el array del modelo de la entidad
-				for(var j=0; j<5; j++){
-			     	
-
-					
-					if(j===0){
-					var valCVE=txtLINEA[j];
-					console.log("Clave: "+valCVE);
-					}
-					else if(j===1){
-					var valNBR=txtLINEA[j];
-					console.log("Nombre: "+valNBR);
-					}
-					else if(j===2){
-					var valMOD=txtLINEA[j];
-					console.log("Modulos: "+valMOD);
-					}
-					else if(j===3){
-					var valCRE=txtLINEA[j];
-					console.log("Creditos: "+valCRE);
-					}
-					else if(j===4){
-					var valPER=txtLINEA[j];
-					console.log("Periodo: "+valPER);
-					}
-					
-				}
-		 
-			   res.write("<html>");
-			   res.write("<body bgcolor='navy'>");
-			   res.write(valCVE.toString());
-			   res.write("</body>");
-			   res.write("</html>");
-		
-		  }
-		  
-		  console.log("\n");
-	
-		
-		
-	//Termina el proceso de cargar el archivo
-   
-   }
-     
    Control.prototype.Guardar = function(callback){
      
 	  var valor= op.Cadena();
@@ -247,17 +195,14 @@ var Entidad = Entidad || {};
   
 })(); 
 
-
-
-
-  iniciar = function(a,b,c,d,e){
+iniciar = function(a,b,c,d,e){
      var inicio = new Entidad.Control();
 	 op= inicio.getop();
 	 
      op.Capturar(a,b,c,d,e);
 	 
 	 inicio.Guardar(function (){
-	 inicio.Cargar();
+	 op.Mostrar();
 	 });
 	 
 	}   
