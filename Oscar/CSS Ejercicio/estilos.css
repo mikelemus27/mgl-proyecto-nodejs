@@ -1,0 +1,15 @@
+body{
+position:absolute;
+}
+
+button{
+color:white;
+height:128px;
+width:128px;
+background-color:navy;
+}
+
+button:hover
+{
+  background-image: url("./fondo.png");
+}
