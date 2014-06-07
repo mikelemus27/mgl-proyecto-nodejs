@@ -1,0 +1,50 @@
+<html>
+<head>
+<script type="text/javascript">
+function insRow(){
+    var x=document.getElementById('myTable').insertRow(0)
+    var y=x.insertCell(0)
+    var z=x.insertCell(1)
+    y.innerHTML="new row"
+    z.innerHTML="new row"
+}
+</script>
+<script type="text/javascript">
+function deleteRow(){
+    document.getElementById('myTable').deleteRow(0)
+}
+</script>
+</script>
+</head>
+
+<body>
+<p>Insercion y Eliminacion de celdas en tablas DHTML</p>
+<table id="myTable" border="2">
+    <tr>
+        <td>another row</td>
+        <td>another cell</td>
+    </tr>
+    <tr>
+        <td>another row</td>
+        <td>another cell</td>
+    </tr>
+    <tr>
+        <td>Row3 cell1</td>
+        <td>Row3 cell2</td>
+    </tr>
+    <tr>
+        <td>Row4 cell1</td>
+        <td>Row4 cell2</td>
+    </tr>
+    <tr>
+        <td>Row5 cell1</td>
+        <td>Row5 cell2</td>
+    </tr>
+</table><br>
+<form>
+<input type="button" onclick="insRow()" value="Insert row">
+<input type="button" value="Delete" onclick="deleteRow()">
+</form>
+</body>
+
+</html>
