@@ -1,0 +1,15 @@
+<HTML>
+		<?="<head><title>Buscar</title></head>"?>
+	<BODY bgcolor="gray">
+		<?
+		  var x= lib.Vista;
+		  var y=new x.Vista();
+		?>
+		
+		<?commands.write(y.Busqueda(request.parameters.radios,request.parameters.txtVALOR));?>
+	    
+		<FORM action="index.html">
+		<INPUT name="btnINDICADOR" type="submit" value="Terminar"   />
+		</form>
+	</BODY>
+</HTML>
