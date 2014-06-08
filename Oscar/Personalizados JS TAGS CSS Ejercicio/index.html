@@ -1,0 +1,66 @@
+<html>
+<head>
+
+<style type="text/css">  
+        .Clasenueva{
+		  color:white;
+          height:128px;
+          width:128px;
+          background-color:navy;
+		  background-image: url("./2.png");
+		}  
+        .Clasenueva:hover {  
+		    background-color:pink;
+            color: blue;
+            background-image: url("./fondo.png");	
+        }  
+</style>  
+
+
+<script type="text/javascript">
+
+document.createElement('miboton');
+function miboton(args_cus_Obj)
+{
+if((typeof args_cus_Obj.attributes.typ !='undefined')  && args_cus_Obj.attributes.typ!==null)
+    
+	
+	
+	{
+          this._fieldtype=args_cus_Obj.attributes.typ.value;
+	 }
+       
+        this.fld_txt_inp=document.createElement("button");//create an input field
+	
+        this.fld_txt_inp.textContent="Soy un boton";
+	    this.fld_txt_inp.setAttribute("id", this.fld_txt_inp);
+        this.fld_txt_inp.className= "Clasenueva";
+
+       
+ 
+       
+        args_cus_Obj.appendChild(this.fld_txt_inp);
+}
+
+    function initializeUI(){
+	 var arr= document.getElementsByTagName("*");
+	 
+	 for(var i=0; i<arr.length;i++){
+		var tgNm= arr.item(i).nodeName;
+		var obj=null;
+		if(tgNm.toLowerCase()=='miboton'){
+			obj=new miboton(arr.item(i));
+		}
+		
+		
+	}
+}
+
+</script>
+    
+</head>
+<body onload="initializeUI()">
+    
+    <miboton > </miboton>
+</body>
+</html>
