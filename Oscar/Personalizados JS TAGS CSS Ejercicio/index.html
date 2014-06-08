@@ -20,26 +20,26 @@
 <script type="text/javascript">
 
 document.createElement('miboton');
-function miboton(args_cus_Obj)
+function miboton(argumento)
 {
-if((typeof args_cus_Obj.attributes.typ !='undefined')  && args_cus_Obj.attributes.typ!==null)
+if((typeof argumento.attributes.typ !='undefined')  && argumento.attributes.typ!==null)
     
 	
 	
 	{
-          this._fieldtype=args_cus_Obj.attributes.typ.value;
+          this._fieldtype=argumento.attributes.typ.value;
 	 }
        
-        this.fld_txt_inp=document.createElement("button");//create an input field
+        this.objeto=document.createElement("button");//create an input field
 	
-        this.fld_txt_inp.textContent="Soy un boton";
-	    this.fld_txt_inp.setAttribute("id", this.fld_txt_inp);
-        this.fld_txt_inp.className= "Clasenueva";
+        this.objeto.textContent="Soy un boton";
+	    this.objeto.setAttribute("id", this.objeto);
+        this.objeto.className= "Clasenueva";
 
        
  
        
-        args_cus_Obj.appendChild(this.fld_txt_inp);
+        argumento.appendChild(this.objeto);
 }
 
     function initializeUI(){
