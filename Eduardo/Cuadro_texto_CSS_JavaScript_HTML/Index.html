@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title>Como dar estilos css a una caja de texto - input text y textarea</title>
+
+  <style>
+  .textbox
+  {
+  border: 1px solid #DBE1EB;
+  font-size: 18px;
+  font-family: Arial, Verdana;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  background: #FFFFFF;
+  background: linear-gradient(left, #33FFCC, #F7F9FA);
+  background: -moz-linear-gradient(left, #FFFFFF, #F7F9FA);
+  background: -webkit-linear-gradient(left, #FFFFFF, #F7F9FA);
+  background: -o-linear-gradient(left, #FFFFFF, #F7F9FA);
+  color: #87CEEB;
+  }
+  
+  .textbox:hover
+  {
+  color: #003DF5;
+  border-color: #FBFFAD;
+  }
+ </style>
+ </head>
+ 
+ <script type="text/javascript">
+	function Desactivar(){
+		document.getElementById('miText').disabled = true;
+		alert("Ha desactivado el Textarea");
+	}
+	
+ </script>
+ 
+ <body>
+ 
+ <form action="">
+ <tr>
+ <td><textarea style="background-color: #87CEEB;" cols="25" rows="10" id="miText" type="button" value="Desactivar" class="textbox" placeholder="Ingrese texto" onDblClick="Desactivar()" > Desactive dando doble click</textarea></td>
+ </tr>
+ </form>
+ <button style="color: #FF0000" name="edit" type="button" id="miText" class="textbox" onDblClick="document.getElementById('miText').disabled = false; return false;" value="Edit" >Activar doble Click
+</body>
+</html>
+ 
