@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>desplegable</title> 
+
+
+
+<style type="text/css">
+* { padding: 0; margin: auto; text-align: center  }
+#cabecera:hover{ background-color: #fff0f0; }  
+
+#p1:hover{    /* cuando el ratón pasa por encima del enlace */
+ color:#FFF;   /* color del texto */
+ font:35px Verdana,Tahoma,Helvetica,Sans-serif;position:relative;cursor:default;
+}
+
+#menu { background-color: #58FAF4; padding: 35px; }
+
+#menu li { margin: 0px 5px; padding: 0.1em 1em 0.5em 1em; 
+           background-color: #00BFFF; width: 12%;float: left;
+           list-style-type: none; position: relative; font: bold 18px arial;}
+#subseccion1, #subseccion2 /*menu desplegados*/ 
+             { position: absolute; top: 100%; left: 0px;  
+             background-color: #41338b; font:normal 15px arial;  
+             padding: 0.2em 0.5em ; display: none; }
+#menu li:hover { background-color: #08298A; }
+
+#menu li a:link, #menu li a:visited { 
+           color: #feffe4; text-decoration: none; }
+
+#menu li a:hover, #menu li a:active { 
+           color:#ffd7a9 ; text-decoration: none; }
+		   
+
+	
+</style>
+
+
+
+<script type="text/javascript">
+function ver(n) {
+         document.getElementById("subseccion"+n).style.display="block"
+         }
+function ocultar(n) {
+         document.getElementById("subseccion"+n).style.display="none"
+         }
+		 
+		 
+function cambiarcolor(){
+          document.getElementById("p1").style.background="red"
+}		 
+
+function regresarcolor(){
+          document.getElementById("p1").style.background="#FFFFFF"
+}
+
+		 
+</script>
+
+
+</head>
+<body>
+<div id="cabecera">
+  <p id="p1" align="center" onmouseover="cambiarcolor()" onmouseout="regresarcolor()">MENU DESPLEGABLE CON CSS y JAVASCRIPT</p>
+</div>
+<div id="menu">
+  <ul>
+    <li id="seccion1" onmouseover="ver(1)" onmouseout="ocultar(1)">
+      <a href="#">Menu uno</a>
+      <div id="subseccion1">
+        <p><a href="#"> Subsección menu uno uno</a></p>
+        <p><a href="#"> Subsección menu uno dos</a></p>
+        <p><a href="#"> Subsección menu uno tres</a></p>
+        <p><a href="#"> Subsección menu uno n..</a></p> 
+      </div>
+    </li>
+    <li id="seccion2"  onmouseover="ver(2)" onmouseout="ocultar(2)">
+      <a href="#">Menu Dos</a>
+      <div id="subseccion2">
+        <p><a href="#"> Subsección menu dos uno</a></p>
+        <p><a href="#"> Subsección menu dos dos</a></p>
+        <p><a href="#"> Subsección menu dos tres</a></p>
+        <p><a href="#"> Subsección menu dos n...</a></p>
+      </div>			
+    </li>
+  </ul>
+  
+</div>
+
+</body>
+</html>
