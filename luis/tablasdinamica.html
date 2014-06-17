@@ -1,0 +1,58 @@
+<head>
+<script type="text/javascript">
+var contLin = 3;
+function agregar() {
+	var tr, td, tabla;
+
+	tabla = document.getElementById('tabla');
+	tr = tabla.insertRow(tabla.rows.length);
+	td = tr.insertCell(tr.cells.length);
+	td.innerHTML = "<select id='sel" + contLin + "'>" +
+	               "<option>1" +
+	               "<option>2" +
+	               "<option>3";
+	td = tr.insertCell(tr.cells.length);
+	td.innerHTML = "<input type='text' id='t" + contLin + "1' value='t" + contLin + "1'>";
+	td = tr.insertCell(tr.cells.length);
+	td.innerHTML = "<input type='text' id='t" + contLin + "2' value='t" + contLin + "2'>";
+	contLin++;
+}
+function borrarUltima() {
+	ultima = document.all.tabla.rows.length - 1;
+	if(ultima > -1){
+		document.all.tabla.deleteRow(ultima);
+		contLin--;
+	}
+}
+</script>
+</head>
+<body>
+<form>
+<table id="tabla" border="1">
+	<tr>
+		<td><select name="sel1" id="sel1">
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			</select>
+		</td>
+		<td><input type="text" id="t11" value="t11"></td>
+		<td><input type="text" id="t12" value="t12"></td>
+	</tr>
+	<tr>
+		<td><select name="sel2" id="sel2">
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			</select>
+		</td>
+		<td><input type="text" id="t21" value="t21"></td>
+		<td><input type="text" id="t22" value="t22"></td>
+	</tr>
+</table>
+<br>
+<input type="button" value="Agregar" onclick="agregar()">
+<input type="button" value="Borrar ultima" onclick="borrarUltima()">
+</form>
+</body>
+</html>
