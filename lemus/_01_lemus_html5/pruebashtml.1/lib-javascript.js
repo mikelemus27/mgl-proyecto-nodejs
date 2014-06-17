@@ -1,5 +1,0 @@
-
- function Saludo(){
-     
- alert("hola");
- }
