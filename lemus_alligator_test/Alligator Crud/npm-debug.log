@@ -1,27 +1,24 @@
 0 info it worked if it ends with ok
-1 verbose cli [ 'c:\\Program Files\\nodejs\\node.exe',
-1 verbose cli   'c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
-1 verbose cli   'install',
-1 verbose cli   'node-inspector' ]
-2 info using npm@1.4.3
-3 info using node@v0.10.26
-4 error Error: Invalid version: "0.3"
-4 error     at Object.module.exports.fixVersionField (c:\Program Files\nodejs\node_modules\npm\node_modules\read-package-json\node_modules\normalize-package-data\lib\fixer.js:185:13)
-4 error     at c:\Program Files\nodejs\node_modules\npm\node_modules\read-package-json\node_modules\normalize-package-data\lib\normalize.js:29:38
-4 error     at Array.forEach (native)
-4 error     at normalize (c:\Program Files\nodejs\node_modules\npm\node_modules\read-package-json\node_modules\normalize-package-data\lib\normalize.js:28:15)
-4 error     at final (c:\Program Files\nodejs\node_modules\npm\node_modules\read-package-json\read-json.js:328:33)
-4 error     at then (c:\Program Files\nodejs\node_modules\npm\node_modules\read-package-json\read-json.js:126:33)
-4 error     at c:\Program Files\nodejs\node_modules\npm\node_modules\read-package-json\read-json.js:252:40
-4 error     at fs.js:266:14
-4 error     at c:\Program Files\nodejs\node_modules\npm\node_modules\graceful-fs\graceful-fs.js:105:5
-4 error     at Object.oncomplete (fs.js:107:15)
-5 error If you need help, you may report this *entire* log,
-5 error including the npm and node versions, at:
-5 error     <http://github.com/npm/npm/issues>
-6 error System Windows_NT 6.1.7601
-7 error command "c:\\Program Files\\nodejs\\node.exe" "c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "node-inspector"
-8 error cwd c:\Users\ALUMNOS\mgl-proyecto-nodejs\jssp_alligator
-9 error node -v v0.10.26
-10 error npm -v 1.4.3
-11 verbose exit [ 1, true ]
+1 verbose cli [ '/usr/bin/nodejs', '/usr/bin/npm', 'install', 'node-inspector' ]
+2 info using npm@1.2.18
+3 info using node@v0.10.15
+4 verbose read json /home/mike/mgl_code_repositorys/mgl-proyecto-nodejs/lemus_alligator_test/Alligator Crud/package.json
+5 error Error: invalid version: 0.3
+5 error     at validVersion (/usr/lib/nodejs/read-package-json/read-json.js:573:40)
+5 error     at final (/usr/lib/nodejs/read-package-json/read-json.js:323:23)
+5 error     at /usr/lib/nodejs/read-package-json/read-json.js:139:33
+5 error     at cb (/usr/lib/nodejs/slide/lib/async-map.js:48:11)
+5 error     at /usr/lib/nodejs/read-package-json/read-json.js:251:40
+5 error     at fs.js:268:14
+5 error     at /usr/lib/nodejs/graceful-fs/graceful-fs.js:103:5
+5 error     at Object.oncomplete (fs.js:107:15)
+6 error If you need help, you may report this log at:
+6 error     <http://bugs.debian.org/npm>
+6 error or use
+6 error     reportbug --attach /home/mike/mgl_code_repositorys/mgl-proyecto-nodejs/lemus_alligator_test/Alligator Crud/npm-debug.log npm
+7 error System Linux 3.11.0-23-generic
+8 error command "/usr/bin/nodejs" "/usr/bin/npm" "install" "node-inspector"
+9 error cwd /home/mike/mgl_code_repositorys/mgl-proyecto-nodejs/lemus_alligator_test/Alligator Crud
+10 error node -v v0.10.15
+11 error npm -v 1.2.18
+12 verbose exit [ 1, true ]
