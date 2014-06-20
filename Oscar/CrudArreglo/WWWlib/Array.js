@@ -25,6 +25,21 @@ var Arreglo = function (){
   
   }
   
+  Arreglo.prototype.Borrar = function (pos){
+  
+varARREGLO.Reticula.splice(pos,1);
+
+}
+  
+  Arreglo.prototype.Cambiar =function (a,b,c,d,e,pos){
+  
+  varARREGLO.Reticula[pos].Clave = a;
+  varARREGLO.Reticula[pos].Nombre = b;
+  varARREGLO.Reticula[pos].Modulos= c;
+  varARREGLO.Reticula[pos].Creditos=d;
+  varARREGLO.Reticula[pos].Periodo=e;
+  
+  }  
 
   
   

@@ -8,9 +8,8 @@
 		?>
 	
 		<?commands.write(y.Mostrar());?>
-		<FORM action="index.html">
-		<INPUT name="btnINDICADOR" type="submit" value="Terminar" />
-		</form>
+
+		
  
  
  

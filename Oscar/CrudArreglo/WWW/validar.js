@@ -15,8 +15,6 @@ commands.writeEscapedText("%09%09%0D%0A");
 commands.writeEscapedText("%09%09");}else if(request.parameters.btnINDICADOR == "Buscar"){commands.writeEscapedText("%0D%0A");
 commands.writeEscapedText("%09%09"); commands.sendRedirect("./Buscar.html");commands.writeEscapedText("%0D%0A");
 commands.writeEscapedText("%09%09%0D%0A");
-commands.writeEscapedText("%09%09");}else if(request.parameters.btnINDICADOR == "Modificar"){commands.writeEscapedText("%0D%0A");
-commands.writeEscapedText("%09%09"); commands.sendRedirect("./modificar.jssp");commands.writeEscapedText("%0D%0A");
 commands.writeEscapedText("%20%20%20%20%20%20%20%20%20%0D%0A");
 commands.writeEscapedText("%09%0D%0A");
 commands.writeEscapedText("%09%09");}commands.writeEscapedText("%0D%0A");
