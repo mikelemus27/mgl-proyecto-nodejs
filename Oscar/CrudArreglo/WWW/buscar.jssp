@@ -6,10 +6,10 @@
 		  var y=new x.Vista();
 		?>
 		
-		<?commands.write(y.Busqueda(request.parameters.radios,request.parameters.txtVALOR));?>
+		<?commands.write(y.Busqueda(request.parameters.gpradios,request.parameters.txtVALOR));?>
 	    
 		<FORM action="index.html">
-		<INPUT name="btnINDICADOR" type="submit" value="Terminar"   />
+		<INPUT name="btnINDICADOR" type="submit" value="Menu Principal"   />
 		</form>
 	</BODY>
 </HTML>

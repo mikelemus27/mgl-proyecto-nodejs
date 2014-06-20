@@ -99,7 +99,19 @@
   
   Vista.prototype.Busqueda= function(valA,valB){
     
-	
+for(var i=0; i < objarray.getobjARREGLO().length; i++){
+  console.log(objarray.getobjARREGLO()[i][valA]+ valB);
+	if(objarray.getobjARREGLO()[i][valA] == valB){
+	 var texto="Si esta";
+	 break;
+	}
+	else{
+	  var texto="no esta";
+	}
+}
+	 	
+  return texto;
+
   }
   
   Vista.prototype.CargarArreglo= function(){
