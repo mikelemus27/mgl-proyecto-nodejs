@@ -17,7 +17,7 @@ var cadena='txtCLAVE='+document.getElementById("txtCLAVE").value+'&'+
 		   'txtMODULOS='+document.getElementById("txtMODULOS").value+'&'+
 		   'txtCREDITOS='+document.getElementById("txtCREDITOS").value+'&'+
 		   'txtPERIODO='+document.getElementById("txtPERIODO").value+'&'+
-		   'btnINDICADOR='+document.getElementById("btnINDICADOR").value;
+		   'operacion='+document.getElementById("operacion").value;
 
 if (window.XMLHttpRequest)
   {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -86,11 +86,16 @@ xmlhttp.send();
 </TR>
 
 <TR>
-	<TD COLSPAN=2>
-	<INPUT id="btnINDICADOR" type="submit" value="Guardar"/>
-	<INPUT id="btnINDICADOR" type="submit" value="Eliminar" />
-	<INPUT id="btnINDICADOR" type="submit" value="Editar" />
-	<INPUT id="btnINDICADOR" type="submit" value="Actualizar Lista" />
+	<TD COLSPAN=2 align="center"><br/>
+	<INPUT id="btnINDICADOR" type="submit" value="Enviar"/>
+	<select id="operacion">
+  <option value="Actualizar">Actualizar Tabla</option>
+  <option value="Editar">Editar</option>
+  <option value="Buscar">Buscar</option>
+  <option value="Eliminar">Eliminar</option>
+</select>
+
+	
 	</TD>
 </TR>
 </TABLE>
