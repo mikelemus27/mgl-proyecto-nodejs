@@ -1,0 +1,26 @@
+<html> 
+<head> 
+   	<title>Eliminar</title> 
+<script language="JavaScript"> 
+function pregunta(){ 
+    if (confirm('¿Estas seguro de eliminar datos?')){ 
+       document.tuformulario.submit() 
+    } 
+} 
+</script> 
+</head> 
+
+<body bgcolor="#A9F5F2"> 
+<p>Entidad Actividades Didacticas Eliminar</p>
+<div>
+<form action="eliminar.jssp"  name=tuformulario method="post"> 
+<input type=button onclick="pregunta()" value='Eliminar' name='btnFuncion'> 
+</form>
+</div>
+<div>
+<form action="control.jssp" method="post"> 
+<input type='submit'  value='Regresar' name='btnFuncion'> 
+</form> 
+</div>
+</body> 
+</html>

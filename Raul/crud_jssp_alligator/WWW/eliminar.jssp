@@ -1,0 +1,13 @@
+<HTML>
+		<?="<head><title>Eliminar_Datos</title></head>"?>
+	<BODY bgcolor="white">
+ 
+		<?
+		  var x= lib.cargarModeloArchivo;
+		  var y=new x.cargarModeloArchivo();
+		?>
+		<?commands.write(y.Eliminar());?>
+	       <? commands.sendRedirect("./index.html");?>
+ 
+	</BODY>
+</HTML>
