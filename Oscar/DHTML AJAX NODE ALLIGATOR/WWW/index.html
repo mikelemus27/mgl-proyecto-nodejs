@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<head>
+		<title>CRUD RETICULAS!</title>
+		
+		
+		
+		
+</head>
+
+<script>
+function conectar(){
+var xmlhttp;
+var cadena='txtCLAVE='+document.getElementById("txtCLAVE").value+'&'+
+		   'txtNOMBRE='+document.getElementById("txtNOMBRE").value+'&'+
+		   'txtMODULOS='+document.getElementById("txtMODULOS").value+'&'+
+		   'txtCREDITOS='+document.getElementById("txtCREDITOS").value+'&'+
+		   'txtPERIODO='+document.getElementById("txtPERIODO").value+'&'+
+		   'btnINDICADOR='+document.getElementById("btnINDICADOR").value;
+
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+
+    alert("retorno : "+xmlhttp.responseText);
+    }
+  }
+  
+
+
+xmlhttp.open("GET",'http://localhost:8888/receptor.jssp?'+cadena,true);
+xmlhttp.send();
+
+}
+</script>
+
+<body bgcolor="BEIGE" align="center">
+
+<FORM method="GET" name="frmPRINCIPAL" action='javascript:conectar()' >
+<h2>Formulario de Edicion y Captura</h2>
+<TABLE BORDER=1 align="center">
+<TR>
+	<TD>Clave:</TD>
+	<TD>
+	<INPUT type=text id="txtCLAVE">
+	</TD>
+</TR>
+
+<TR>
+	<TD>Nombre:</TD>
+	<TD>
+	<INPUT type=text id="txtNOMBRE">
+	</TD>
+</TR>
+
+<TR>
+	<TD>Modulos:</TD>
+	<TD>
+	<INPUT type=text id="txtMODULOS">
+	</TD>
+</TR>
+
+<TR>
+	<TD>Creditos:</TD>
+	<TD>
+	<INPUT type=text id="txtCREDITOS">
+	</TD>
+</TR>
+
+<TR>
+	<TD>Periodo:</TD>
+	<TD>
+	<INPUT type=text id="txtPERIODO">
+	</TD>
+</TR>
+
+<TR>
+	<TD COLSPAN=2>
+	<INPUT id="btnINDICADOR" type="submit" value="Guardar"/>
+	<INPUT id="btnINDICADOR" type="submit" value="Eliminar" />
+	<INPUT id="btnINDICADOR" type="submit" value="Editar" />
+	<INPUT id="btnINDICADOR" type="submit" value="Actualizar Lista" />
+	</TD>
+</TR>
+</TABLE>
+
+<br/><br/>
+
+<table id="tblELEMENTOS" border="1" align="center">
+<th>Clave</th>
+<th>Nombre</th>
+<th>Modulos</th>
+<th>Creditos</th>
+<th>Periodo</th>
+<th>Seleccionar</th>
+</table>
+
+
+</FORM>
+
+
+<button onclick="myFunction()">Try it</button>
+
+
+<script>
+function myFunction()
+{
+var table = document.getElementById("tblELEMENTOS");
+var row = table.insertRow(1);
+var cell1 = row.insertCell(0);
+var cell2 = row.insertCell(1);
+cell1.innerHTML = "NEW CELL1";
+cell2.innerHTML = "NEW CELL2";
+}
+</script>
+
+
+
+
+
+
+
+</body>
+</html>
