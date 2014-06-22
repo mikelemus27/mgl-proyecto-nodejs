@@ -1,23 +1,31 @@
 (function(log,lib,application,request,responseHead,commands,session) {commands.writeEscapedText("");
 
 console.log("Responde el Servidor" );
-console.log(request.parameters.operacion);
-console.log(request.parameters.txtCLAVE);
-console.log(request.parameters.txtNOMBRE);
-console.log(request.parameters.txtMODULOS);
-console.log(request.parameters.txtCREDITOS);
-console.log(request.parameters.txtPERIODO);
 
  var Clase= lib.Vista;
  var obj=new Clase.Vista();
  var operacion = request.parameters.operacion;
 
 	if(operacion=="Actualizar"){
-	     
-		console.log("entro a modo Actualizar");
+	  commands.write(obj.Mostrar());
+	}
+	if(operacion=="Capturar"){
+	  commands.write(obj.Capturar(request.parameters.txtCLAVE,request.parameters.txtNOMBRE,request.parameters.txtMODULOS,request.parameters.txtCREDITOS,request.parameters.txtPERIODO));
+	}
+	if(operacion=="Eliminar"){
+	  commands.write(obj.Borrar(request.parameters.posiciones));
+	}
+	if(operacion=="Editar"){
+	  commands.write(obj.Modificar(request.parameters.txtCLAVE,request.parameters.txtNOMBRE,request.parameters.txtMODULOS,request.parameters.txtCREDITOS,request.parameters.txtPERIODO,request.parameters.posiciones));
+	}
+	if(operacion=="Buscar"){
+	  commands.write(obj.buscar());
+	}
+	if(operacion=="Guardar Archivo"){
+	commands.write(obj.GuardarCambio());
+	
 	}
 
-console.log(request.headers);
-commands.write("ssss");
+
 
 })

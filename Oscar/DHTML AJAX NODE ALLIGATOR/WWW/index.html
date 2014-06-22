@@ -2,139 +2,190 @@
 <html>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <head>
-		<title>CRUD RETICULAS!</title>
-		
-		
-		
-		
+		<title>CRUD RETICULAS!</title>	
 </head>
 
 <script>
-function conectar(){
-var xmlhttp;
-var cadena='txtCLAVE='+document.getElementById("txtCLAVE").value+'&'+
-		   'txtNOMBRE='+document.getElementById("txtNOMBRE").value+'&'+
-		   'txtMODULOS='+document.getElementById("txtMODULOS").value+'&'+
-		   'txtCREDITOS='+document.getElementById("txtCREDITOS").value+'&'+
-		   'txtPERIODO='+document.getElementById("txtPERIODO").value+'&'+
-		   'operacion='+document.getElementById("operacion").value;
 
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
+function conectar() {
+  var xmlhttp;
+  var cadena = 'txtCLAVE=' + document.getElementById("txtCLAVE").value + '&' +
+    'txtNOMBRE=' + document.getElementById("txtNOMBRE").value + '&' +
+    'txtMODULOS=' + document.getElementById("txtMODULOS").value + '&' +
+    'txtCREDITOS=' + document.getElementById("txtCREDITOS").value + '&' +
+    'txtPERIODO=' + document.getElementById("txtPERIODO").value + '&' +
+    'operacion=' + document.getElementById("operacion").value+ '&' +
+	 'posiciones=' + document.getElementById("posiciones").value;
 
+  if (window.XMLHttpRequest) { 
+    xmlhttp = new XMLHttpRequest();
+
+  } else { 
+    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
   }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-xmlhttp.onreadystatechange=function()
-  {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
+  xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 
-    alert("retorno : "+xmlhttp.responseText);
+      var v = eval(xmlhttp.responseText);
+      tblNUEVA(v);
     }
   }
-  
-
-
-xmlhttp.open("GET",'http://localhost:8888/receptor.jssp?'+cadena,true);
-xmlhttp.send();
-
+  xmlhttp.open("GET", 'http://localhost:8888/receptor.jssp?' + cadena, true);
+  xmlhttp.send();
 }
+
+
+function tblNUEVA(v) {
+  var table = document.getElementById("tblELEMENTOS");
+
+  while (table.rows.length > 1) {
+    table.deleteRow(1);
+  }
+
+  for (var i = 0; i < v.length; i++) {
+
+
+    var Edj = document.createElement('input');
+    Edj.type = 'radio';
+    Edj.id = "rdPOS";
+    Edj.value = i;
+
+    var row = table.insertRow(i + 1);
+
+
+    var celda1 = row.insertCell(0);
+    var celda2 = row.insertCell(1);
+    var celda3 = row.insertCell(2);
+    var celda4 = row.insertCell(3);
+    var celda5 = row.insertCell(4);
+    var celda6 = row.insertCell(5);
+
+    celda1.innerHTML = v[i]["Clave"];
+    celda2.innerHTML = v[i]["Nombre"];
+    celda3.innerHTML = v[i]["Modulos"];
+    celda4.innerHTML = v[i]["Creditos"];
+    celda5.innerHTML = v[i]["Periodo"];
+    celda6.innerHTML = i;
+
+  }
+}
+
+function opciones(){
+
+var op=document.getElementById("operacion");
+var pos= document.getElementById("posiciones");
+
+
+ if(op.value=="Eliminar" || op.value=="Editar"){
+ 
+ while(pos.length>0){
+ pos.remove(0);
+ }
+   pos.disabled=false;
+   var table = document.getElementById("tblELEMENTOS");
+   
+  for(var i=0; i<table.rows.length-1;i++) {
+     var option = document.createElement("option");
+     option.text = i;
+	 option.value=i;
+     pos.add(option);
+	
+	}
+ }
+ else{
+   pos.disabled=true;
+ }
+}
+
 </script>
 
 <body bgcolor="BEIGE" align="center">
-
-<FORM method="GET" name="frmPRINCIPAL" action='javascript:conectar()' >
-<h2>Formulario de Edicion y Captura</h2>
-<TABLE BORDER=1 align="center">
-<TR>
-	<TD>Clave:</TD>
-	<TD>
-	<INPUT type=text id="txtCLAVE">
-	</TD>
-</TR>
-
-<TR>
-	<TD>Nombre:</TD>
-	<TD>
-	<INPUT type=text id="txtNOMBRE">
-	</TD>
-</TR>
-
-<TR>
-	<TD>Modulos:</TD>
-	<TD>
-	<INPUT type=text id="txtMODULOS">
-	</TD>
-</TR>
-
-<TR>
-	<TD>Creditos:</TD>
-	<TD>
-	<INPUT type=text id="txtCREDITOS">
-	</TD>
-</TR>
-
-<TR>
-	<TD>Periodo:</TD>
-	<TD>
-	<INPUT type=text id="txtPERIODO">
-	</TD>
-</TR>
-
-<TR>
-	<TD COLSPAN=2 align="center"><br/>
-	<INPUT id="btnINDICADOR" type="submit" value="Enviar"/>
-	<select id="operacion">
-  <option value="Actualizar">Actualizar Tabla</option>
-  <option value="Editar">Editar</option>
-  <option value="Buscar">Buscar</option>
-  <option value="Eliminar">Eliminar</option>
-</select>
-
+<form method="GET" name="frmPRINCIPAL" action='javascript:conectar()'>
+	<table border=1 align="center">
+	<tr>
+		<td>
+			Clave:
+		</td>
+		<td>
+			<input type=text id="txtCLAVE">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Nombre:
+		</td>
+		<td>
+			<input type=text id="txtNOMBRE">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Modulos:
+		</td>
+		<td>
+			<input type=text id="txtMODULOS">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Creditos:
+		</td>
+		<td>
+			<input type=text id="txtCREDITOS">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Periodo:
+		</td>
+		<td>
+			<input type=text id="txtPERIODO">
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 align="center">
+			<br/>
+			<input id="btnINDICADOR" type="submit" value="Enviar"/>
+			<select id="operacion"  onchange='opciones()'>
+				<option value="Actualizar">Actualizar Tabla</option>
+				<option value="Capturar">Capturar</option>
+				<option value="Editar">Editar</option>
+				<option value="Eliminar">Eliminar</option>+
+				<option value="Guardar Archivo">Guardar Archivo</option>
+			</select>
+		
+		
+		<select id="posiciones" disabled>
+				<option value="Ninguno">Selecciona la posicion</option>
+				
+			</select>
+		</td>
+	</tr>
+	</table>
 	
-	</TD>
-</TR>
-</TABLE>
-
-<br/><br/>
-
-<table id="tblELEMENTOS" border="1" align="center">
-<th>Clave</th>
-<th>Nombre</th>
-<th>Modulos</th>
-<th>Creditos</th>
-<th>Periodo</th>
-<th>Seleccionar</th>
-</table>
-
-
-</FORM>
-
-
-<button onclick="myFunction()">Try it</button>
-
-
-<script>
-function myFunction()
-{
-var table = document.getElementById("tblELEMENTOS");
-var row = table.insertRow(1);
-var cell1 = row.insertCell(0);
-var cell2 = row.insertCell(1);
-cell1.innerHTML = "NEW CELL1";
-cell2.innerHTML = "NEW CELL2";
-}
-</script>
-
-
-
-
-
-
-
+	<br/>
+	<table id="tblELEMENTOS" border="1" align="center">
+	<caption>
+	Datos en el Arreglo </caption>
+	<th>
+		Clave
+	</th>
+	<th>
+		Nombre
+	</th>
+	<th>
+		Modulos
+	</th>
+	<th>
+		Creditos
+	</th>
+	<th>
+		Periodo
+	</th>
+	<th>
+		Posicion
+	</th>
+	</table>
+</form>
 </body>
 </html>

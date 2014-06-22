@@ -43,31 +43,14 @@
 	
       contenedor.end();
 		});
+		
+		return JSON.stringify(objarray.getobjARREGLO());
   } 
   
   Vista.prototype.Mostrar = function (){
 
-	 var contenido = ["<tr><th>Clave</th><th>Nombre</th><th>Modulos</th><th>Creditos</th><th>Periodo</th></tr>" ];
-      
-	 for(var i=0; i< objarray.getobjARREGLO().length; i++){ 
-	  
-	  contenido.push('<tr>'+
-					 '<td>'+objarray.getobjARREGLO()[i]["Clave"]+'</td>'+
-	                 '<td>'+objarray.getobjARREGLO()[i]["Nombre"]+'</td>'+
-					 '<td>'+objarray.getobjARREGLO()[i]["Modulos"]+'</td>'+
-					 '<td>'+objarray.getobjARREGLO()[i]["Creditos"]+'</td>'+
-					 '<td>'+objarray.getobjARREGLO()[i]["Periodo"]+'</td>'+
-					 '<td align="center" ><input type="radio" name="radios" value="'+i+'" /></td>'+
-					 '</tr>');
-	 }
-	 var cadena='<html>'+'<form action="./Edicion.jssp"><table border="1">'+
-				contenido.join(" ")+'</table>'+
-				'<INPUT name="btnINDICADOR" type="submit" value="Salir" />'+
-		        '<INPUT name="btnINDICADOR" type="submit" value="Editar" />'+
-		        '<INPUT name="btnINDICADOR" type="submit" value="Eliminar" />'+
-				'<INPUT name="btnINDICADOR" type="submit" value="Guardar en Archivo" />'+
-				'</form></html>';
-     return cadena;
+
+     return JSON.stringify(objarray.getobjARREGLO());
 
   }
   
@@ -88,13 +71,15 @@
   var R=JSON.stringify([dato]);
   
   objarray.setobjARREGLO(eval(R)); 
+  
+  return JSON.stringify(objarray.getobjARREGLO());
 
 }
 
-  Vista.prototype.Modificar = function(a,b,c,d,e){
+  Vista.prototype.Modificar = function(a,b,c,d,e,pos){
 
-  objarray.Cambiar(a,b,c,d,e,posicion); 
-	
+  objarray.Cambiar(a,b,c,d,e,pos); 
+  return JSON.stringify(objarray.getobjARREGLO());
   }
   
   Vista.prototype.Busqueda= function(valA,valB){
@@ -156,6 +141,7 @@ objarray.setobjARREGLO(eval(R));
   
   Vista.prototype.Borrar= function(valor){
   objarray.Borrar(valor);
+  return JSON.stringify(objarray.getobjARREGLO());
   }
   
   Vista.prototype.valPOSICION= function (valor){
