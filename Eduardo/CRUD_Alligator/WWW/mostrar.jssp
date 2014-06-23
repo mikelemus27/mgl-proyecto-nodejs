@@ -1,0 +1,18 @@
+<HTML>
+		<?="<head><title>Mostrar</title></head>"?>
+	<BODY bgcolor="#FF4000">
+ 
+		<?
+		  var x= lib.Vista;
+		  var y=new x.Vista();
+		?>
+	
+		<?commands.write(y.Mostrar());?>
+		<FORM action="index.html">
+		<INPUT name="btnINDICADOR" type="submit" value="Terminar" />
+		</form>
+ 
+ 
+ 
+	</BODY>
+</HTML>
