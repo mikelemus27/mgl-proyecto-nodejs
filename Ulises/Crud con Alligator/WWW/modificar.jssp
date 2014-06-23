@@ -1,0 +1,13 @@
+<HTML>
+		<?="<head><title>Modificar</title></head>"?>
+	<BODY bgcolor="maroon">
+ 
+		<?
+		  var x= lib.VistaControlCarrera;
+		  var y=new x.VistaControlCarrera();
+		?>
+		<?commands.write(y.Modificar());?>
+	    
+ 
+	</BODY>
+</HTML>

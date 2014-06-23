@@ -1,0 +1,18 @@
+<HTML>
+		<?="<head><title>Mostrar</title></head>"?>
+	<BODY bgcolor="gray">
+ 
+		<?
+		  var x= lib.VistaControlCarrera;
+		  var y=new x.VistaControlCarrera();
+		?>
+	
+		<?commands.write(y.Mostrar());?>
+		<FORM action="index.html">
+		<INPUT name="button" type="submit" value="Regresar" />
+		</form>
+ 
+ 
+ 
+	</BODY>
+</HTML>

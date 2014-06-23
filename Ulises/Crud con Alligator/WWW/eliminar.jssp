@@ -1,0 +1,13 @@
+<HTML>
+		<?="<head><title>Eliminar</title></head>"?>
+	<BODY bgcolor="teal">
+ 
+		<?
+		  var x= lib.VistaControlCarrera;
+		  var y=new x.VistaControlCarrera();
+		?>
+		<?commands.write(y.Eliminar());?>
+	       <? commands.sendRedirect("./index.html");?>
+ 
+	</BODY>
+</HTML>
