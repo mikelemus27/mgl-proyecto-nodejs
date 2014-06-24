@@ -9,7 +9,7 @@
 		<?}else if(request.parameters.btnINDICADOR == "Pedirdatos"){?>
 		<? commands.sendRedirect("./Pedirdatos.html");?>
 		
-		<?}else if(request.parameters.btnINDICADOR == "Terminar"){?>
+		<?}else if(request.parameters.btnINDICADOR == "Regresar"){?>
 		<? commands.sendRedirect("./index.html");?>
 		
 		<?}else if(request.parameters.btnINDICADOR == "BuscarDato"){?>

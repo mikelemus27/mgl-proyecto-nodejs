@@ -52,13 +52,12 @@
     Vista.prototype.leerARCHIVO();
                
 	 var cadena='<html>'+
-	 '<FORM method=post action="pedirdatos.jssp">'+
+	 '<FORM method=post action="http://127.0.0.1:8888/servidor.js">'+
 	'Tema : <label>'+temario1.getTema()+'</label> <br/>'+
 	'Subtemas : <label>'+temario1.getSubtemas()+'</label> <br/>'+
 	'Unidades : <label>'+temario1.getUnidades()+'</label> <br/>'+
 	'Objetivo General : <label>'+temario1.getObjG()+'</label> <br/>'+
 	'Bibliografia : <label>'+temario1.getBibliografia()+'</label> <br/>'+
-	'<INPUT name="btnINDICADOR" type="submit" value="Terminado" />'+
     '</FORM>'+'</html>';		
      return cadena;
   
@@ -80,8 +79,8 @@
   Vista.prototype.Editar = function(){
      Vista.prototype.leerARCHIVO();
 	 var cadena ='<html>'+
-	'<FORM method=post action="http://127.0.0.1:8888/servidor.js">'+
-	'FORMULARIO PARA EDITAR<br/>Tema :<INPUT type=text name="txtTema" value="'+temario1.getTema()+'"/>'+
+	'<FORM method=post action="pedirdatos.jssp">'+
+	'FORMULARIO PARA MODIFICAR<br/>Tema :<INPUT type=text name="txtTema" value="'+temario1.getTema()+'"/>'+
 	'<br/>Subtemas :<INPUT type=text name="txtSubtemas" value="'+temario1.getSubtemas()+'"/>'+
 	'<br/>Unidades :<INPUT type=text name="txtUnidades" value="'+temario1.getUnidades()+'"/>'+
 	'<br/>Objetivo General :<INPUT type=text name="txtOG" value="'+temario1.getObjG()+'"/>'+
@@ -96,53 +95,38 @@
    return x;
   }
   
-    Vista.prototype.Busqueda= function(valA,valB){
+    Vista.prototype.Busqueda= function(dato){
     Vista.prototype.leerARCHIVO();
 	var texto="";
-    if(valA==="1"){
-	 if(valB===temario1.getTema()){
-	 texto="Si se encontro";
-	 }
-	 else{
-	 texto="No se encontro";
-	 }
-	}
-	else if(valA==="2"){
-	 if(valB===temario1.getSubtemas()){
-	 texto="Si se encontro";
-	 }
-	 else{
-	 texto="No se encontro";
-	 }
-	}
-	else if(valA==="3"){
-	 if(valB===temario1.getUnidades()){
-	 texto="Si se encontro";
-	 }
-	 else{
-	 texto="No se encontro";
-	 }
-	}
-	else if(valA==="4"){
-	 if(valB===temario1.getObjG()){
-	 texto="Si se encontro";
-	 }
-	 else{
-	texto="No se encontro";
-	 }
-	}
-	else if(valA==="5"){ 
-	if(valB===temario1.getBibliografia()){
-	 texto="Si se encontro";
-	 }
-	 else{
-	 texto="No se encontro";
-	 }
-	}
-	
-  return texto;
-	
-  }
+			
+			if(dato==temario1.getTema()){
+			 texto="Si se encontro...";
+			}else{
+			if(dato==temario1.getSubtemas()){
+			texto="Si se encontro...";
+			
+			}else{
+			if(dato==temario1.getUnidades()){
+			 texto="Si se encontro";
+			}else{
+			if(dato==temario1.getObjG()){
+			 texto="Si se encontro...";
+			}else{
+			if(dato==temario1.getBibliografia()){
+			 texto="Si se encontro";
+			}else{
+			 if(dato!=temario1.getTema() && dato!=temario1.getSubtemas() && dato!=temario1.getUnidades() && dato!=temario1.getObjG() && dato!=temario1.getBibliografia()){
+				texto="No se encontro";
+			 }
+			}
+			}
+			}
+			
+			}
+			}
+		  
+		  return texto;
+		  }
   
   
- module.exports = Vista;
+ module.exports.Vista = Vista;

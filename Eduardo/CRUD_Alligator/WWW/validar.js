@@ -9,7 +9,7 @@ commands.writeEscapedText("%09%09%0D%0A");
 commands.writeEscapedText("%09%09");}else if(request.parameters.btnINDICADOR == "Pedirdatos"){commands.writeEscapedText("%0D%0A");
 commands.writeEscapedText("%09%09"); commands.sendRedirect("./Pedirdatos.html");commands.writeEscapedText("%0D%0A");
 commands.writeEscapedText("%09%09%0D%0A");
-commands.writeEscapedText("%09%09");}else if(request.parameters.btnINDICADOR == "Terminar"){commands.writeEscapedText("%0D%0A");
+commands.writeEscapedText("%09%09");}else if(request.parameters.btnINDICADOR == "Regresar"){commands.writeEscapedText("%0D%0A");
 commands.writeEscapedText("%09%09"); commands.sendRedirect("./index.html");commands.writeEscapedText("%0D%0A");
 commands.writeEscapedText("%09%09%0D%0A");
 commands.writeEscapedText("%09%09");}else if(request.parameters.btnINDICADOR == "BuscarDato"){commands.writeEscapedText("%0D%0A");
