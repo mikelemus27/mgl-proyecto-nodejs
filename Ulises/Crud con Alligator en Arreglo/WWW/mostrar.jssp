@@ -1,0 +1,13 @@
+<HTML>
+		<?="<head><title>Mostrar</title></head>"?>
+	<BODY bgcolor="gray">
+ 
+		<?
+		  var x= lib.VistaControlCarrera;
+		  var y=new x.VistaControlCarrera();
+		?>
+	
+		<?commands.write(y.Mostrar());?>
+		
+	</BODY>
+</HTML>

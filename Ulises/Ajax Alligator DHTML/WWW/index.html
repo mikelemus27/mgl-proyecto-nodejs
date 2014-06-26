@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<head>
+		<title>CRUD CARRERAS</title>	
+</head>
+
+<script>
+function conection() {
+  var xmlhttp;
+  var cadTexto = 'carrera=' + document.getElementById("carrera").value + '&' +
+    'creditos=' + document.getElementById("creditos").value + '&' +
+    'clave=' + document.getElementById("clave").value + '&' +
+    'area=' + document.getElementById("area").value + '&' +
+    'tipo=' + document.getElementById("tipo").value + '&' +
+    'operacion=' + document.getElementById("operacion").value+ '&' +
+	 'posicion=' + document.getElementById("posicion").value;
+
+  if (window.XMLHttpRequest) { 
+    xmlhttp = new XMLHttpRequest();
+
+  } else { 
+    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+
+      var v = eval(xmlhttp.responseText);
+      tblNew(v);
+    }
+  }
+  xmlhttp.open("GET", 'http://localhost:8888/comparaciones.jssp?' + cadTexto, true);
+  xmlhttp.send();
+}
+
+
+function tblNew(v) {
+  var tabla = document.getElementById("tableElement");
+
+  while (tabla.rows.length > 1) {
+    tabla.deleteRow(1);
+  }
+
+  for (var i = 0; i < v.length; i++) {
+
+
+    var Obj = document.createElement('input');
+    Obj.type = 'radio';
+    Obj.id = "radPosicion";
+    Obj.value = i;
+
+    var row = tabla.insertRow(i + 1);
+
+
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+    var cell6 = row.insertCell(5);
+
+    cell1.innerHTML = v[i]["Nombre"];
+    cell2.innerHTML = v[i]["Creditos"];
+    cell3.innerHTML = v[i]["Clave"];
+    cell4.innerHTML = v[i]["Area"];
+    cell5.innerHTML = v[i]["Tipo"];
+    cell6.innerHTML = i;
+
+  }
+}
+
+function Option(){
+
+var operacion=document.getElementById("operacion");
+var posicion= document.getElementById("posicion");
+
+
+ if(operacion.value=="Eliminar" || operacion.value=="Editar"){
+ 
+ while(posicion.length>0){
+ posicion.remove(0);
+ }
+   posicion.disabled=false;
+   var tabla = document.getElementById("tableElement");
+   
+  for(var i=0; i<tabla.rows.length-1;i++) {
+     var opcion = document.createElement("opcion");
+     opcion.text = i;
+	 opcion.value=i;
+     posicion.add(opcion);
+	
+	}
+ }
+ else{
+   posicion.disabled=true;
+ }
+}
+
+</script>
+
+<body bgcolor="maroon" align="center">
+<form method="GET" name="formMain" action='javascript:conection()'>
+	<table border=1 align="center">
+	<tr>
+		<td>
+			Nombre de la Carrera:
+		</td>
+		<td>
+			<input type=text id="carrera">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Creditos:
+		</td>
+		<td>
+			<input type=text id="creditos">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Clave:
+		</td>
+		<td>
+			<input type=text id="clave">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Area:
+		</td>
+		<td>
+			<input type=text id="area">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Tipo:
+		</td>
+		<td>
+			<input type=text id="tipo">
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 align="center">
+			<br/>
+			<input id="button" type="submit" value="Guardar"/>
+			<select id="operacion"  onchange='Option()'>
+				<option value="Actualizar">Actualizar la Tabla</option>
+				<option value="Capturar">Capturar</option>
+				<option value="Editar">Editar</option>
+				<option value="Eliminar">Eliminar</option>+
+				<option value="Guardar en Archivo">Guardar en Archivo</option>
+			</select>
+		
+		
+		<select id="posicion" disabled>
+				<option value="Ninguno">Selecciona la posicion</option>
+				
+			</select>
+		</td>
+	</tr>
+	</table>
+	
+	<br/>
+	<table id="tableElement" border="2" align="center">
+	<caption>
+	Informacion en el Array </caption>
+	<th>
+		Nombre Carrera
+	</th>
+	<th>
+		Creditos
+	</th>
+	<th>
+		Clave
+	</th>
+	<th>
+		Area
+	</th>
+	<th>
+		Tipo
+	</th>
+	<th>
+		Posicion
+	</th>
+	</table>
+</form>
+</body>
+</html>
