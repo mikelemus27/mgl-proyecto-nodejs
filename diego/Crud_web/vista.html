@@ -1,0 +1,240 @@
+<html>
+<head>
+<script type="text/javascript" src="knockout-3.1.0.js"></script>
+<script type="text/javascript" src="jquery-2.1.0.min.js"></script>
+<script type="text/javascript" src="knockout.simpleGrid.1.3.js"></script>
+<link type="text/css" href="style.css" rel="stylesheet" />
+
+</head>
+
+<body>
+	<h1>Alumnos</h1>
+
+    <table border="0" cellpadding="0" cellspacing="0" width="50%">
+    <tr>
+        <td width="5%">Nombre: </td>
+        <td width="50%"><input data-bind="value: nombre" placeholder="Nombre del alumno" /></td>
+    </tr>
+    <tr>
+        <td width="5%">Edad: </td>
+        <td width="50%"><input data-bind="value: edad" placeholder="Edad del alumno" /></td>
+    </tr>
+    <tr>
+        <td width="5%">Carrera: </td>
+        <td width="50%"><input data-bind="value: carrera" placeholder="Carrera Cursada" /></td>
+    </tr>
+    <tr>
+        <td width="5%">Semestre: </td>
+        <td width="50%"><input data-bind="value: semestre" placeholder="Semestre en curso" />
+     		</br></td>
+    </tr>
+    <tr>
+        <td width="5%">Numero de control: </td>
+        <td width="50%"><input data-bind="value: numero" placeholder="Matricula del alumno" > </input></td>
+    </tr>
+	</table>
+<button data-bind="click: agregar">Agregar nuevo</button>
+
+<br> <br/>
+<br> <br/>
+
+
+<div data-bind='simpleGrid: gridViewModel2, simpleGridTemplate:"custom_grid_template"'> </div>      
+
+
+<script type="text/javascript" id="custom_grid_template">
+
+	<table class="ko-grid" cellspacing="0">
+	<thead>
+    	<tr data-bind="foreach: columns">
+        	<th data-bind="text: headerText"></th>
+            	</tr>
+    </thead>
+    <tbody data-bind="foreach: itemsOnCurrentPage">
+        <tr data-bind="foreach: $parent.columns">
+            <!--ko if: typeof rowText == 'object' && typeof rowText.action == 'function'-->
+                <td><button data-bind="click:rowText.action($parent)">Eliminar</button></td>         
+            <!-- /ko -->
+            <!--ko ifnot: typeof rowText == 'object' && typeof rowText.action == 'function'-->
+                <td data-bind="text: typeof rowText == 'function' ? rowText($parent) : $parent[rowText] "></td>
+            <!--/ko-->
+        </tr>
+    </tbody>
+	</table>
+</script>
+
+			
+<script type="text/javascript">
+
+var initialData=[];
+//var initialData=[
+//	{nombre:"Diego", edad: 18, carrera:"ISC", semestre:4,numero:"12021043" },
+//	{nombre:"Estefanie", edad:20, carrera:"ARQ", semestre:4, numero:"12021039"}
+//];
+function Task(items) {
+
+	this.items = ko.observableArray(items);
+    	var valores = 0;
+    	var obj= 0;
+    	var a =0;
+	
+	var self = this;
+	self.nombre=ko.observable("");
+	self.edad=ko.observable("");
+	self.carrera=ko.observable("");
+	self.semestre=ko.observable("");
+	self.numero=ko.observable("");
+
+	self.guardar = function(){
+		$.ajax("http://localhost:8888/guardar.html", {
+			data: ko.toJSON({
+				nombre:self.nombre, 
+				edad:self.edad, 
+				carrera:self.carrera, 
+				semestre:self.semestre, 
+				numero:self.numero}),
+			type: "post",
+			contentType: "application/json",
+			dataType : "json",
+			success: function(result){
+				//alert("correcto");
+			},
+			error: function(err){alert("error"+err);}
+	});
+	}
+
+
+	self.buscar =function(){
+		//algo
+	};
+
+	self.agregar = function(){
+		$.ajax("http://localhost:8888/modificar.html", {
+			data: ko.toJSON({
+				nombre:self.nombre, 
+				edad:self.edad, 
+				carrera:self.carrera, 
+				semestre:self.semestre, 
+				numero:self.numero}),
+			type: "post",
+			contentType: "application/json",
+			dataType : "json",
+			success: function(result){
+				//alert("succes");
+				obj=result;
+				a=result.datos.length;
+			},
+			error: function(err){alert("error"+err);},
+			async: false
+		});
+		this.items.removeAll();
+		for (var i=0; i<a;i++){
+			
+			if(obj.datos[i]!=null){
+			valores=obj.datos[i];
+			
+			this.items.push(valores);
+		};
+		};
+		self.guardar();
+	}
+
+	self.eliminar = function(numero){
+		$.ajax("http://localhost:8888/eliminar.html", {
+			data: ko.toJSON({
+				clave:numero,
+			 }),
+			type: "post",
+			contentType: "application/json",
+			dataType : "json",
+			success: function(result){
+				//for(var i= 0; i<result.datos.length;i++){
+						
+						obj=result;
+						a=result.datos.length;
+						//alert(a);
+						
+					//}
+
+				//alert("success");
+				//valores=result
+			},
+
+			error: function(err){alert("error"+err);},
+			async: false
+		});
+		this.items.removeAll();
+		//alert("despues de removeall"+obj.datos.length);
+		for (var i=0; i<a;i++){
+			if(obj.datos[i]!=null){
+			valores=obj.datos[i];
+			
+			this.items.push(valores);
+		};
+		};
+	};
+
+//};
+
+
+
+
+    self.leer = function() {
+		$.ajax("http://localhost:8888/leer.html", {
+			data: ko.toJSON({ }),
+			type: "post",
+			contentType: "application/json",
+			dataType : "json",
+			success: function(result){
+				//for(var i= 0; i<result.datos.length;i++){
+						
+						obj=result;
+						a=result.datos.length;
+						
+					//}
+
+				//alert("success");
+				//valores=result
+			},
+
+			error: function(err){alert("error"+err);},
+			async: false
+		});
+		for (var i=0; i<a;i++){
+			
+			valores=obj.datos[i];
+			this.items.push(valores);
+	};
+
+};
+
+
+	this.gridViewModel2 = new ko.simpleGrid.viewModel({
+		data: this.items,
+		columns: [
+				{ headerText: "Nombre", rowText: "nombre" },
+				{ headerText: "Edad", rowText:"edad" },
+				{ headerText: "Carrera", rowText: "carrera" },
+				{ headerText: "Semestre", rowText: "semestre" },
+				{ headerText: "Matricula",rowText: "numero"},
+				{ headerText: "Eliminar", rowText: {action: function(item){
+                return function(){
+                	//alert(item.numero);
+                    //console.log(item)
+                    self.eliminar(item.numero);
+                    //this.items.remove(function(item){ return item.nombre=="ultimo"});
+
+                }
+                }}}
+				],
+				pageSize: 20
+	});
+	self.leer();
+};
+
+ko.applyBindings(new Task(initialData));
+
+//ko.applyBindings(new PagedGridModel(initialData));
+</script>
+</body>
+</html>
