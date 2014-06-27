@@ -6,18 +6,23 @@
 
 <body>
 	<h1>Suma</h1>
-	 numero1: <input data-bind="value: num1" placeholder="Introduce num 1?" />
+	 numero1: <input data-bind="value: num1" placeholder="Introduce num 1" />
             </br>
-     numero2: <input data-bind="value: num2" placeholder="Introduce Num2?" />
+     numero2: <input data-bind="value: num2" placeholder="Introduce Num2" />
+     		</br>
+    Resultado: <input data-bind="value: res" placeholder="resultado" > </input>
+      		
 
 <button data-bind="click: save">Sumar</button>
 <script type="text/javascript">
-var mostrar = function(result){ alert(result.n1+"+"+result.n2+"="+result.res);}
+//var mostrar = function(result){ alert(result.n1+"+"+result.n2+"="+result.res);}
 
 function Task() {
 	 var self = this;
     self.num1 = ko.observable("0");
     self.num2 = ko.observable("0");
+    self.res = ko.observable("0");
+
 
 self.save = function() {
 		$.ajax("http://localhost:8888/form-test.html", {
@@ -25,11 +30,15 @@ self.save = function() {
 	   		type: "post", 
 	   		contentType: "application/json",
 	   		dataType: 'json',
-	   		success: function(result) { mostrar(result) },
-	   		error: function(err){alert("error "+ err)}
+	   		success: function(result) {
+	   			alert(result.res);
+	   			self.res(result.res);
+	   		},
+	   		//success: function(result) { mostrar(result) },
+	   		error: function(err){alert("error detectado "+ err);}
         });
     };
-}
+};
 ko.applyBindings(new Task());
 </script>
 </body>
