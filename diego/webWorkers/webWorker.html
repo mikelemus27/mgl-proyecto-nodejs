@@ -1,0 +1,54 @@
+<!--http://www.htmlgoodies.com/html5/tutorials/introducing-html-5-web-workers-bringing-multi-threading-to-javascript.html#fbid=MbOgvhfAd1m-->
+
+<html>
+<head>
+<script type="text/javascript">
+  function launchPowWebWorker() {
+    var worker = new Worker('potencia.js');
+
+    worker.onmessage = function(e) {
+      document.getElementById("PowValue").innerHTML = e.data.PowValue;
+    };
+    worker.onerror = function(e) {
+      alert('Error: Line ' + e.lineno + ' in ' + e.filename + ': ' + e.message);
+    };
+
+    //start the worker
+    worker.postMessage({'cmd':   'potencia',
+                        'value': document.getElementById("n").value,
+                        'value1': document.getElementById('b').value
+                      });
+  }
+ function launchFactWebWorker() {
+    var worker = new Worker('factorial.js');
+
+    worker.onmessage = function(e) {
+      document.getElementById("FactValue").innerHTML = e.data.FactValue;
+    };
+    worker.onerror = function(e) {
+      alert('Error: Line ' + e.lineno + ' in ' + e.filename + ': ' + e.message);
+    };
+
+    //start the worker
+    worker.postMessage({'cmd':   'factorial',
+                        'value': document.getElementById("c").value
+                      });
+  }
+</script>
+</head>
+<body>
+<label for="b">elevar :</label>
+<input id="b" type="number" value="10" />
+<input id="n" type="number" value="10" />
+<input type="button" onclick="launchPowWebWorker()" value="calcula la potencia" />
+<br>
+<div id="PowValue">Resultado</div>
+<br>
+<br>
+<label for="c">Calcula factorial de:</label>
+<input id="c" type="number" value="10" />
+<input type="button" onclick="launchFactWebWorker()" value="Calcula el factorial" />
+<br>
+<div id="FactValue">Resultado</div>
+</body>
+</html>
