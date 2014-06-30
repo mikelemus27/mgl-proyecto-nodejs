@@ -59,8 +59,7 @@ else if(req.method=="POST") {
 		  var fs = require('fs');
 		}//se termina el if de guardar datos
 		
-		
-function escribir(resultado){
+		function escribir(resultado){
 fs= require ("fs");
 var outputFilename = 'base.csv';
 fs.writeFile(outputFilename, resultado, function(err) {
@@ -69,9 +68,13 @@ fs.writeFile(outputFilename, resultado, function(err) {
     } else {
       console.log("JSON saved to " + outputFilename);
 	  
-    }
-}); 
-}
+    }});
+	}
+
+		
+ 
+
+
 			if (post.menu=="2"){
 			res.write("Los datos que tienes Guardados son: ");
 	        leerarchivo();
