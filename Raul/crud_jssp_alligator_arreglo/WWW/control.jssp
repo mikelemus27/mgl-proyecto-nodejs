@@ -1,0 +1,33 @@
+<HTML>
+		<?="<head><title>Control</title></head>"?>
+	<BODY bgcolor="red">
+		<?=request.parameters.btnFuncion?>
+
+		<?	if(request.parameters.btnFuncion == "Mostrar"){?>
+		<? commands.sendRedirect("./mostrar.jssp");?>
+		
+		<?}else if(request.parameters.btnFuncion == "Pedir_Datos"){?>
+		<? commands.sendRedirect("./Guardar.html");?>
+		
+		<?}else if(request.parameters.btnFuncion == "Guardar"){?>
+		<? commands.sendRedirect("./guardar.jssp");?>
+		
+		<?}else if(request.parameters.btnFuncion == "Regresar"){?>
+		<? commands.sendRedirect("./index.html");?>
+		
+		<?}else if(request.parameters.btnFuncion == "Buscar_Datos"){?>
+		<? commands.sendRedirect("./BuscarDatos.html");?>
+		
+		<?}else if(request.parameters.btnFuncion == "Modificar"){?>
+		<? commands.sendRedirect("./ModDatos.html");?>
+		
+		<?}else if(request.parameters.btnFuncion == "Buscar"){?>
+		<? commands.sendRedirect("./buscar.jssp");?>
+		
+		<?}else if(request.parameters.btnFuncion == "Eliminar"){?>
+		<? commands.sendRedirect("./eliminar.html");?>
+        
+		<?}?>
+
+	</BODY>
+</HTML>

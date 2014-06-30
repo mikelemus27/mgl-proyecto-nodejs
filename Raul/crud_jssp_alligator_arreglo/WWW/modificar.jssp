@@ -1,0 +1,13 @@
+<HTML>
+		<?="<head><title>Modificar</title></head>"?>
+	<BODY bgcolor="#A9F5F2">
+ 
+		<?
+		  var x= lib.Modulosprocesoshacer;
+		  var y=new x.Modulosprocesoshacer();
+		?>
+		<?commands.write(y.Modificar(request.parameters.txtLinea));?>
+	    
+ 
+	</BODY>
+</HTML>

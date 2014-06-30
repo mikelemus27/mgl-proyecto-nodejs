@@ -1,0 +1,13 @@
+<HTML>
+		<?="<head><title>Guardar</title></head>"?>
+	<BODY bgcolor="#A9F5F2">
+ 
+		<?
+		  var x= lib.Modulosprocesoshacer;
+		  var y=new x.Modulosprocesoshacer();
+		?>
+		<?commands.write(y.GuardarDatos(request.parameters.txtNombre,request.parameters.txtTipo,request.parameters.txtRecurso,request.parameters.txtTiempo,request.parameters.txtMateria));?>
+	    <? commands.sendRedirect("./index.html");?>
+ 
+	</BODY>
+</HTML>

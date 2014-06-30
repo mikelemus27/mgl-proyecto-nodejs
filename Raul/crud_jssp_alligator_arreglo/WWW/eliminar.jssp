@@ -1,0 +1,13 @@
+<HTML>
+		<?="<head><title>Eliminar_Datos</title></head>"?>
+	<BODY bgcolor="white">
+ 
+		<?
+		  var x= lib.Modulosprocesoshacer;
+		  var y=new x.Modulosprocesoshacer();
+		?>
+		<?commands.write(y.Eliminar(request.parameters.txtlinia));?>
+	       <?commands.sendRedirect("./index.html");?>
+ 
+	</BODY>
+</HTML>

@@ -1,0 +1,13 @@
+<HTML>
+		<?="<head><title>Actualizar</title></head>"?>
+	<BODY bgcolor="#A9F5F2">
+ 
+		<?
+		  var x= lib.Modulosprocesoshacer;
+		  var y=new x.Modulosprocesoshacer();
+		?>
+		<?commands.write(y.ActualizarDatos(request.parameters.nuevoNumero,request.parameters.nuevoNombre,request.parameters.nuevoTipo,request.parameters.nuevoRecurso,request.parameters.nuevoTiempo,request.parameters.nuevoMateria));?>
+	    <?commands.sendRedirect("./index.html");?>
+ 
+	</BODY>
+</HTML>

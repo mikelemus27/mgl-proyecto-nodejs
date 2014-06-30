@@ -1,0 +1,35 @@
+<html> 
+<head> 
+   	<title>Eliminar</title> 
+<script language="JavaScript"> 
+function pregunta(){ 
+    if (confirm('¿Estas seguro de eliminar datos?')){ 
+       document.tuformulario.submit() 
+    } 
+} 
+</script> 
+</head> 
+
+<body bgcolor="#A9F5F2"> 
+<h1>Entidad Actividades Didacticas Eliminar</h1>
+<div>
+<form action="eliminar.jssp"  name=tuformulario method="post"> 
+<div>
+    <div>Linea número:</div> <div><INPUT NAME="txtlinia" TYPE=”TEXT” VALUE=""></div>
+</div>
+<p>Introduce el numero de linia del dato a eliminar</p>
+<p>presiona el boton buscar o mostra para conocer el dato</p>
+<div>
+    <input type=button onclick="pregunta()" value='Eliminar' name='btnFuncion'> 
+</div>
+</form>
+</div>
+<div>
+<form action="control.jssp" method="post"> 
+<input type='submit'  value='Regresar' name='btnFuncion'>
+ <INPUT TYPE='submit' VALUE='Mostrar' NAME='btnFuncion'>
+ <INPUT TYPE='submit' VALUE='Buscar_Datos' NAME='btnFuncion'> 
+</form> 
+</div>
+</body> 
+</html>

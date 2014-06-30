@@ -1,0 +1,4 @@
+Nueva,Grupo,Inter,2 horas,Matematicas
+Resumen,Individual,Libros,2 horas,Redes
+Resumen,Individual,Libros,2 horas,Redes
+Resumen,Individual,Libros,2 horas,Redes

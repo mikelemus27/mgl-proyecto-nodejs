@@ -1,0 +1,29 @@
+<HTML>
+    <HEAD>
+        <TITLE>Buscar</TITLE>
+    </HEAD>
+ <BODY bgcolor='#A9F5F2'>
+       <h1>Entidad Actividades Didacticas Buscar Datos</h1>
+	   <FORM ACTION="buscar.jssp" METHOD="POST">
+        <div>
+        <div>Introduce el dato:</div> 
+	      <div><INPUT NAME="txtDato" MAXLENGTH=”25″ TYPE=”TEXT” VALUE=""></div>
+        </div>
+		<div>Filtrar por:</div> 
+		<div>
+		    <select name="cmbAtributo">
+              <option value="Nombre">Nombre</option>
+              <option value="Tipo">Tipo</option>
+              <option value="Recurso">Recurso</option>
+              <option value="Tiempo">Tiempo</option>
+              <option value="Materia">Materia</option>
+            </select>
+		</div>
+         <INPUT TYPE='submit' VALUE='Buscar' NAME='btnFuncion'>
+		 <INPUT TYPE='reset' VALUE='Reset'>
+        </FORM>
+		<FORM ACTION="control.jssp" METHOD="POST">
+        <INPUT TYPE='submit' VALUE='Regresar' NAME='btnFuncion'>
+        </FORM>
+  </BODY>
+</HTML>

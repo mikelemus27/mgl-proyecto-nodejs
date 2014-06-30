@@ -1,0 +1,13 @@
+<HTML>
+		<?="<head><title>Buscar_Dato</title></head>"?>
+	<BODY bgcolor="#A9F5F2">
+ 
+		<?
+		  var x= lib.Modulosprocesoshacer;
+		  var y=new x.Modulosprocesoshacer();
+		?>
+		<?commands.write(y.BuscarDato(request.parameters.txtDato,request.parameters.cmbAtributo));?>
+	    
+ 
+	</BODY>
+</HTML>

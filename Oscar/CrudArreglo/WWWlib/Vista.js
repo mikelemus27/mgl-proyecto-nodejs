@@ -1,8 +1,10 @@
   var fs= require ("fs");
   var entidad = require ("./Entidad.js");
   var datos = new entidad();
+  
   var arreglo= require ("./Array.js");
   var objarray= new arreglo();
+  
   var flag="1";
   var dato = {};
   var posicion="-1";
