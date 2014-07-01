@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<head>
+		<title>CRUD TEMARIOS</title>	
+</head>
+
+<script>
+
+function conectar() {
+  var xmlhttp;
+  var cadena = 'txtTema=' + document.getElementById("txtTema").value + '&' +
+    'txtSubtemas=' + document.getElementById("txtSubtemas").value + '&' +
+    'txtUnidades=' + document.getElementById("txtUnidades").value + '&' +
+    'txtOG=' + document.getElementById("txtOG").value + '&' +
+    'txtBibliografia=' + document.getElementById("txtBibliografia").value + '&' +
+    'operacion=' + document.getElementById("operacion").value+ '&' +
+	 'posicion=' + document.getElementById("posicion").value;
+
+  if (window.XMLHttpRequest) { 
+    xmlhttp = new XMLHttpRequest();
+
+  } else { 
+    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+
+      var v = eval(xmlhttp.responseText);
+      tblNEW(v);
+    }
+  }
+  xmlhttp.open("GET", 'http://localhost:8888/validacion.jssp?' + cadena, true);
+  xmlhttp.send();
+}
+
+
+function tblNEW(v) {
+  var table = document.getElementById("tblELEMENTOS");
+
+  while (table.rows.length > 1) {
+    table.deleteRow(1);
+  }
+
+  for (var i = 0; i < v.length; i++) {
+
+
+    var Obj = document.createElement('input');
+    Obj.type = 'radio';
+    Obj.id = "radPosicion";
+    Obj.value = i;
+
+    var row = table.insertRow(i + 1);
+
+
+    var celda1 = row.insertCell(0);
+    var celda2 = row.insertCell(1);
+    var celda3 = row.insertCell(2);
+    var celda4 = row.insertCell(3);
+    var celda5 = row.insertCell(4);
+    var celda6 = row.insertCell(5);
+
+    celda1.innerHTML = v[i]["Tema"];
+    celda2.innerHTML = v[i]["Subtemas"];
+    celda3.innerHTML = v[i]["Unidades"];
+    celda4.innerHTML = v[i]["OG"];
+    celda5.innerHTML = v[i]["Bibliografia"];
+    celda6.innerHTML = i;
+
+  }
+}
+
+function opciones(){
+
+var operacion=document.getElementById("operacion");
+var posicion= document.getElementById("posicion");
+
+
+ if(operacion.value=="Eliminar" || operacion.value=="Editar"){
+ 
+ while(posicion.length>0){
+ posicion.remove(0);
+ }
+   posicion.disabled=false;
+   var table = document.getElementById("tblELEMENTOS");
+   
+  for(var i=0; i<table.rows.length-1;i++) {
+     var opcion = document.createElement("opcion");
+     opcion.text = i;
+	 opcion.value=i;
+     posicion.add(opcion);
+	
+	}
+ }
+ else{
+   posicion.disabled=true;
+ }
+}
+
+</script>
+
+<body bgcolor="#00FFBF" align="center">
+<form method="GET" name="frmMain" action='javascript:conectar()'>
+	<table border=1 align="center">
+	<tr>
+		<td>
+			Nombre del Tema:
+		</td>
+		<td>
+			<input type=text id="txtTema">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Nombre de los Subtemas:
+		</td>
+		<td>
+			<input type=text id="txtSubtemas">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Unidades:
+		</td>
+		<td>
+			<input type=text id="txtUnidades">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Objetivo general:
+		</td>
+		<td>
+			<input type=text id="txtOG">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Bibliografia:
+		</td>
+		<td>
+			<input type=text id="txtBibliografia">
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 align="center">
+			<br/>
+			<input id="btnINDICADOR" type="submit" value="Guardar"/>
+			<select id="operacion"  onchange='opciones()'>
+				<option value="Actualizar">Actualizar Tabla</option>
+				<option value="Pedirdatos">Pedirdatos</option>
+				<option value="Editar">Editar</option>
+				<option value="Eliminar">Eliminar</option>+
+				<option value="Guardar en Archivo">Guardar en Archivo</option>
+			</select>
+		
+		
+		<select id="posicion" disabled>
+				<option value="Ninguno">Selecciona la posicion</option>
+				
+			</select>
+		</td>
+	</tr>
+	</table>
+	
+	<br/>
+	<table id="tblELEMENTOS" border="2" align="center">
+	<caption>
+	Datos que contiene Arreglo </caption>
+	<th>
+		Nombre del Tema
+	</th>
+	<th>
+		Subtemas
+	</th>
+	<th>
+		Unidades
+	</th>
+	<th>
+		Objetivo general
+	</th>
+	<th>
+		Bibliografia
+	</th>
+	<th>
+		Posicion
+	</th>
+	</table>
+</form>
+</body>
+</html>
