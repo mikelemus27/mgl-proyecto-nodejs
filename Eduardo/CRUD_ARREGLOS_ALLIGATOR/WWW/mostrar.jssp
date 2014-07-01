@@ -1,0 +1,15 @@
+<HTML>
+		<?="<head><title>Mostrar</title></head>"?>
+	<BODY bgcolor="#FF4000">
+ 
+		<?
+		  var x= lib.Vista;
+		  var y=new x.Vista();
+		?>
+	
+		<?commands.write(y.Mostrar());?>
+ 
+ 
+ 
+	</BODY>
+</HTML>

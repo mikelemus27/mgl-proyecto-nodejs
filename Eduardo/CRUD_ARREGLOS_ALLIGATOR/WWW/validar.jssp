@@ -1,0 +1,23 @@
+<HTML>
+		<?="<head><title>Validar Valor</title></head>"?>
+	<BODY bgcolor="#00FF40">
+		<?=request.parameters.btnINDICADOR?>
+
+		<?	if(request.parameters.btnINDICADOR == "Mostrar"){?>
+		<? commands.sendRedirect("./mostrar.jssp");?>
+		
+		<?}else if(request.parameters.btnINDICADOR == "Pedirdatos"){?>
+		<? commands.sendRedirect("./Pedirdatos.html");?>
+		
+		<?}else if(request.parameters.btnINDICADOR == "Regresar"){?>
+		<? commands.sendRedirect("./index.html");?>
+		
+		<?}else if(request.parameters.btnINDICADOR == "BuscarDato"){?>
+		<? commands.sendRedirect("./buscarDato.html");?>
+		
+         
+	
+		<?}?>
+
+	</BODY>
+</HTML>
