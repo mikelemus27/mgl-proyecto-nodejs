@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<head>
+		<title>CRUD ACTIVIDADES DIDACTICAS</title>	
+</head>
+
+<script>
+function conectar() {
+ console.log('funcion conectar');
+  var xmlhttp;
+  var cadena = 'txtNombre=' + document.getElementById("txtNombre").value + '&' +
+    'txtTipo=' + document.getElementById("txtTipo").value + '&' +
+    'txtRecurso=' + document.getElementById("txtRecurso").value + '&' +
+    'txtTiempo=' + document.getElementById("txtTiempo").value + '&' +
+    'txtMateria=' + document.getElementById("txtMateria").value+'&'+
+	'txtDato=' + document.getElementById("txtDato").value+'&'+
+	'cmbAtributo=' + document.getElementById("cmbAtributo").value+'&'+
+	'proceso=' + document.getElementById("proceso").value+'&'+
+	'linea=' + document.getElementById("linea").value;
+
+  if (window.XMLHttpRequest) { 
+    xmlhttp = new XMLHttpRequest();
+
+  } else { 
+    //no I. Explorer
+    xmlhttp = new ActiveXObject("Msxml2.XMLHTTP.XMLHTTP");
+  }
+  
+  xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+      
+	   
+      var valor = eval(xmlhttp.responseText);
+      tblNueva(valor);
+	 
+    }
+	
+	
+  }
+  xmlhttp.open("GET", "control.jssp?" + cadena, true);
+  xmlhttp.send();
+}
+
+function tblNueva(valor) {
+  var table = document.getElementById("tblTabla");
+      
+  while (table.rows.length > 1) {
+    table.deleteRow(1);
+  }
+
+  for (var i = 0; i < valor.length; i++) {
+
+    var row = table.insertRow(i + 1);
+    
+    var celda1 = row.insertCell(0);
+    var celda2 = row.insertCell(1);
+    var celda3 = row.insertCell(2);
+    var celda4 = row.insertCell(3);
+    var celda5 = row.insertCell(4);
+	var celda6 = row.insertCell(5);
+	var celda7 = row.insertCell(6)
+
+    celda1.innerHTML = valor[i]["Numero"];
+    celda2.innerHTML = valor[i]["Nombre"];
+    celda3.innerHTML = valor[i]["Tipo"];
+    celda4.innerHTML = valor[i]["Recurso"];
+    celda5.innerHTML = valor[i]["Tiempo"];
+    celda6.innerHTML = valor[i]["Materia"];
+	celda7.innerHTML = valor[i]["TuDato"];
+  }
+}
+
+function opciones(){
+
+var pro=document.getElementById("proceso");
+var posicion= document.getElementById("linea");
+
+
+ if(pro.value=="Eliminar" || pro.value=="Modificar"){
+ 
+ while(posicion.length>0){
+ posicion.remove(0);
+ }
+   posicion.disabled=false;
+   var table = document.getElementById("tblTabla");
+   
+  for(var i=0; i<table.rows.length-1;i++) {
+     var option = document.createElement("option");
+     option.text = (i+1);
+	 option.value=i;
+     posicion.add(option);
+	
+	}
+ }
+ else{
+   posicion.disabled=true;
+ }
+}
+function formReset()
+{
+document.getElementById("frmMain").reset();
+}
+
+
+</script>
+
+<body bgcolor="#819FF7">
+<h1>Actividades Didacticas</h1>
+<h1>Programación Web</h1>
+<form method="GET" name="frmMain" id="frmMain" action="javascript:conectar()">
+	<table border=1 bgcolor="#58FAF4">
+	<tr>
+		<td>
+			Nombre:
+		</td>
+		<td>
+			<input type=text id="txtNombre" MAXLENGTH=”25″/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Tipo:
+		</td>
+		<td>
+			<input type=text id="txtTipo" MAXLENGTH=”25″/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Recurso:
+		</td>
+		<td>
+			<input type=text id="txtRecurso" MAXLENGTH=”25″/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Tiempo:
+		</td>
+		<td>
+			<input type=text id="txtTiempo" MAXLENGTH=”25″/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Materia:
+		</td>
+		<td>
+			<input type=text id="txtMateria" name="txtMateria" value="" MAXLENGTH=”25″/>
+		</td>
+	</tr>
+	
+	<tr>
+		<td colspan=2 align="center">
+			<br/>
+			<input id="btnFuncion" type="submit" value="  Enviar  ">
+			
+		<select id="proceso"  onchange='opciones()'>
+				<option value="Actualizar">Actualizar Lista</option>
+				<option value="Capturar">Capturar</option>
+				<option value="Modificar">Modificar</option>
+				<option value="Eliminar">Eliminar</option>
+				<option value="Buscar">Buscar</option>
+				<option value="Guardar Archivo">Guardar Archivo</option>
+		</select>		
+		<select id="linea" name="linea" disabled>
+				<option value="Ninguno">Selecciona linea</option>
+			</select>
+		</td>
+	</tr>
+	</table>
+	<br/>
+     <input type="button" onclick="formReset()" value="Reset">
+	<table border=1>
+	<td>
+	<div>
+	<div>Buscar datos:</div> 
+        <div>Introduce el dato:</div> 
+	      <div><INPUT NAME="txtDato" id="txtDato" MAXLENGTH=”25″ TYPE=”TEXT” VALUE=""></div>
+        </div>
+		<div>Filtrar por:</div> 
+		<div>
+		    <select name="cmbAtributo" id="cmbAtributo">
+              <option value="Nombre">Nombre</option>
+              <option value="Tipo">Tipo</option>
+              <option value="Recurso">Recurso</option>
+              <option value="Tiempo">Tiempo</option>
+              <option value="Materia">Materia</option>
+            </select>
+		</div>
+	   </td>
+	  </table> 
+	<table id="tblTabla" border="1" bgcolor="#58FAF4">
+	
+	<caption>Datos en el Arreglo, Actualiza la lista para mostrarlos</caption>
+	<th width="80">
+		Numero
+	</th>
+	<th width="80">
+	    Nombre
+	</th>
+	<th width="80">
+		Tipo
+	</th>
+	<th width="80">
+		Recurso
+	</th>
+	<th width="80">
+		Tiempo
+	</th>
+	<th width="80">
+		Materia
+	</th>
+	<th width="80">
+		Busquedas
+	</th>
+	</table>
+	
+</form>
+</body>
+</html>
