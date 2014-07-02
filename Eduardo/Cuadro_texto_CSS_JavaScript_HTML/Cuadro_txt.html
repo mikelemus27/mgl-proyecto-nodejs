@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title>Como dar estilos css a una caja de texto - input text y textarea</title>
+
+  <style type="text/css">
+  .MiClase
+  {
+  color:white;
+  height:250px;
+  width:250px;
+  background-color:blue;
+  }
+  
+  .MiClase:hover
+  {
+  color: #003DF5;
+  border-color: #FBFFAD;
+  }
+ </style>
+ </head>
+ 
+ <script type="text/javascript">
+	function Desactivar(){
+		var textarea = document.getElementById('miText');
+		textarea.disabled = true;
+		alert("Ha desactivado el Textarea");
+	}
+	
+	function Activar(){
+		var textarea = document.getElementById('miText');
+		textarea.disabled = false;
+
+	}
+	
+ </script>
+ 
+ <body>
+ 
+ <form action="">
+ <tr>
+ <td><textarea style="background-color: #87CEEB;" cols="25" rows="10" id="miText" type="button" value="Desactivar" class="textbox" placeholder="Ingrese texto" onDblClick="Desactivar()" > Desactive dando doble click</textarea></td>
+ </tr>
+ </form>
+</body>
+</html>
+ 
