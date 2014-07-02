@@ -1,0 +1,15 @@
+<HTML>
+		<?="<head><title>Buscar</title></head>"?>
+	<BODY bgcolor="green">
+		<?
+		  var x= lib.VistaControlgrupo;
+		  var y=new x.VistaControlgrupo();
+		?>
+		
+		<?commands.write(y.Busqueda(request.parameters.txtData));?>
+	    
+		<FORM action="index.html">
+		<INPUT name="button" type="submit" value="Regresar"   />
+		</form>
+	</BODY>
+</HTML>

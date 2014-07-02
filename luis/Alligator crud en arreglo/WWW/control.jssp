@@ -1,0 +1,22 @@
+<HTML>
+		<?="<head><title>Validar Dato</title></head>"?>
+	<BODY bgcolor="green">
+		<?=request.parameters.button?>
+
+		<?	if(request.parameters.button == "Mostrar"){?>
+		<? commands.sendRedirect("./mostrar.jssp");?>
+		
+		<?}else if(request.parameters.button == "Capturar"){?>
+		<? commands.sendRedirect("./Capturar.html");?>
+		
+		<?}else if(request.parameters.button == "Regresar"){?>
+		<? commands.sendRedirect("./index.html");?>
+		
+		<?}else if(request.parameters.button == "Buscar"){?>
+		<? commands.sendRedirect("./Buscar.html");?>
+		
+
+		<?}?>
+
+	</BODY>
+</HTML>

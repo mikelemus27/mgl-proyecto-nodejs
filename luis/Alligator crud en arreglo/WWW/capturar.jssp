@@ -1,0 +1,15 @@
+<HTML>
+		<?="<head><title>Validar Datos</title></head>"?>
+	<BODY bgcolor="green">
+ 
+		<?
+		  var x= lib.VistaControlgrupo;
+		  var y=new x.VistaControlgrupo();
+		
+		  y.Capturar(request.parameters.grupo,request.parameters.numero,request.parameters.nombre,request.parameters.actividad,request.parameters.ubicacion);
+		?>
+         <? commands.sendRedirect("./index.html");?>
+ 
+ 
+	</BODY>
+</HTML>

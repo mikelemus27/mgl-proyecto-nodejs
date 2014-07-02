@@ -1,0 +1,13 @@
+<HTML>
+		<?="<head><title>Eliminar</title></head>"?>
+	<BODY bgcolor="green">
+ 
+		<?
+		  var x= lib.VistaControlgrupo;
+		  var y=new x.VistaControlgrupo();
+		?>
+		<?commands.write(y.Eliminar());?>
+	       <? commands.sendRedirect("./index.html");?>
+ 
+	</BODY>
+</HTML>

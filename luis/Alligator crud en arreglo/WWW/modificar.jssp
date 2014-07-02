@@ -1,0 +1,13 @@
+<HTML>
+		<?="<head><title>Modificar</title></head>"?>
+	<BODY bgcolor="green">
+ 
+		<?
+		  var x= lib.VistaControlgrupo;
+		  var y=new x.VistaControlgrupo();
+		?>
+		<?commands.write(y.Modificar());?>
+	    
+ 
+	</BODY>
+</HTML>

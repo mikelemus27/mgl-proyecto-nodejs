@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<head>
+		<title>Crud de grupos</title>	
+</head>
+
+<script>
+
+function conectar() {
+  var xmlhttp;
+  var cadena = 'txtgrupo=' + document.getElementById("txtgrupo").value + '&' +
+    'txtnumero=' + document.getElementById("txtnumero").value + '&' +
+    'txtnombre=' + document.getElementById("txtnombre").value + '&' +
+    'txtactividad=' + document.getElementById("txtactividad").value + '&' +
+    'txtubicacion=' + document.getElementById("txtubicacion").value + '&' +
+    'operacion=' + document.getElementById("operacion").value+ '&' +
+	 'posiciones=' + document.getElementById("posiciones").value;
+
+  if (window.XMLHttpRequest) { 
+    xmlhttp = new XMLHttpRequest();
+
+  } else { 
+    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+
+      var v = eval(xmlhttp.responseText);
+      tblNUEVA(v);
+    }
+  }
+  xmlhttp.open("GET", 'http://localhost:8888/receptor.jssp?' + cadena, true);
+  xmlhttp.send();
+}
+
+
+function tblNUEVA(v) {
+  var table = document.getElementById("tblELEMENTOS");
+
+  while (table.rows.length > 1) {
+    table.deleteRow(1);
+  }
+
+  for (var i = 0; i < v.length; i++) {
+
+
+    var Edj = document.createElement('input');
+    Edj.type = 'radio';
+    Edj.id = "rdPOS";
+    Edj.value = i;
+
+    var row = table.insertRow(i + 1);
+
+
+    var celda1 = row.insertCell(0);
+    var celda2 = row.insertCell(1);
+    var celda3 = row.insertCell(2);
+    var celda4 = row.insertCell(3);
+    var celda5 = row.insertCell(4);
+    var celda6 = row.insertCell(5);
+
+    celda1.innerHTML = v[i]["grupo"];
+    celda2.innerHTML = v[i]["numero"];
+    celda3.innerHTML = v[i]["nombre"];
+    celda4.innerHTML = v[i]["actividad"];
+    celda5.innerHTML = v[i]["ubicacion"];
+    celda6.innerHTML = i;
+
+  }
+}
+
+function opciones(){
+
+var op=document.getElementById("operacion");
+var pos= document.getElementById("posiciones");
+
+
+ if(op.value=="Eliminar" || op.value=="Editar"){
+ 
+ while(pos.length>0){
+ pos.remove(0);
+ }
+   pos.disabled=false;
+   var table = document.getElementById("tblELEMENTOS");
+   
+  for(var i=0; i<table.rows.length-1;i++) {
+     var option = document.createElement("option");
+     option.text = i;
+	 option.value=i;
+     pos.add(option);
+	
+	}
+ }
+ else{
+   pos.disabled=true;
+ }
+}
+
+</script>
+
+<body bgcolor="BEIGE" align="center">
+<form method="GET" name="frmPRINCIPAL" action='javascript:conectar()'>
+	<table border=1 align="center">
+	<tr>
+		<td>Grupo:
+		</td>
+		<td>
+			<input type=text id="txtgrupo">
+		</td>
+	</tr>
+	<tr>
+		<td>Numero::
+		</td>
+		<td>
+			<input type=text id="txtnumero">
+		</td>
+	</tr>
+	<tr>
+		<td>Nombre:
+		</td>
+		<td>
+			<input type=text id="txtnombre">
+		</td>
+	</tr>
+	<tr>
+		<td>Actividad:
+		</td>
+		<td>
+			<input type=text id="txtactividad">
+		</td>
+	</tr>
+	<tr>
+		<td>Ubicacion:
+		</td>
+		<td>
+			<input type=text id="txtubicacion">
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 align="center">
+			<br/>
+			<input id="btnINDICADOR" type="submit" value="Enviar"/>
+			<select id="operacion"  onchange='opciones()'>
+				<option value="Actualizar">Actualizar Tabla</option>
+				<option value="Capturar">Capturar</option>
+				<option value="Editar">Editar</option>
+				<option value="Eliminar">Eliminar</option>+
+				<option value="Guardar Archivo">Guardar Archivo</option>
+			</select>
+		
+		
+		<select id="posiciones" disabled>
+				<option value="Ninguno">Selecciona la posicion</option>
+				
+			</select>
+		</td>
+	</tr>
+	</table>
+	
+	<br/>
+	<table id="tblELEMENTOS" border="1" align="center">
+	<caption>
+	Datos en el Arreglo </caption>
+	<th>
+		grupo
+	</th>
+	<th>
+		numero
+	</th>
+	<th>
+		nombre
+	</th>
+	<th>
+		actividad
+	</th>
+	<th>
+		ubicacion
+	</th>
+	<th>
+		Posicion
+	</th>
+	</table>
+</form>
+</body>
+</html>

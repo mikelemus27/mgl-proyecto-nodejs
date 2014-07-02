@@ -1,0 +1,23 @@
+(function(log,lib,application,request,responseHead,commands,session) {commands.writeEscapedText("%3CHTML%3E%0D%0A");
+commands.writeEscapedText("%09%09");commands.write("<head><title>Validar Dato</title></head>");commands.writeEscapedText("%0D%0A");
+commands.writeEscapedText("%09%3CBODY%20bgcolor%3D%22aqua%22%3E%0D%0A");
+commands.writeEscapedText("%09%09");commands.write(request.parameters.button);commands.writeEscapedText("%0D%0A");
+commands.writeEscapedText("%0D%0A");
+commands.writeEscapedText("%09%09");	if(request.parameters.button == "Mostrar"){commands.writeEscapedText("%0D%0A");
+commands.writeEscapedText("%09%09"); commands.sendRedirect("./mostrar.jssp");commands.writeEscapedText("%0D%0A");
+commands.writeEscapedText("%09%09%0D%0A");
+commands.writeEscapedText("%09%09");}else if(request.parameters.button == "Capturar"){commands.writeEscapedText("%0D%0A");
+commands.writeEscapedText("%09%09"); commands.sendRedirect("./Capturar.html");commands.writeEscapedText("%0D%0A");
+commands.writeEscapedText("%09%09%0D%0A");
+commands.writeEscapedText("%09%09");}else if(request.parameters.button == "Regresar"){commands.writeEscapedText("%0D%0A");
+commands.writeEscapedText("%09%09"); commands.sendRedirect("./index.html");commands.writeEscapedText("%0D%0A");
+commands.writeEscapedText("%09%09%0D%0A");
+commands.writeEscapedText("%09%09");}else if(request.parameters.button == "Buscar"){commands.writeEscapedText("%0D%0A");
+commands.writeEscapedText("%09%09"); commands.sendRedirect("./Buscar.html");commands.writeEscapedText("%0D%0A");
+commands.writeEscapedText("%09%09%0D%0A");
+commands.writeEscapedText("%0D%0A");
+commands.writeEscapedText("%09%09");}commands.writeEscapedText("%0D%0A");
+commands.writeEscapedText("%0D%0A");
+commands.writeEscapedText("%09%3C/BODY%3E%0D%0A");
+commands.writeEscapedText("%3C/HTML%3E%0A");
+})
