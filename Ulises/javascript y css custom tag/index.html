@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Menú Desplegable CSS y JAVASCRIPT</title>
+
+<link rel="stylesheet" type="text/css" href="style.css" />
+
+
+</style>
+<script type="text/javascript">
+document.createElement('unmenu');
+function unmenu(argumento)
+{
+if((typeof argumento.attributes.typ !='undefined')  && argumento.attributes.typ!==null)
+    
+	
+	
+	{
+          this._fieldtype=argumento.attributes.typ.value;
+	 }
+       
+        this.objeto=document.createElement("nav");
+	    this.objeto.setAttribute("id", "menu");
+		//this.objeto.className= "Claseseccion";
+		
+		
+        
+       
+        argumento.appendChild(this.objeto);
+}
+
+    function initializeUI(){
+	 var arr= document.getElementsByTagName("*");
+	 
+	 for(var i=0; i<arr.length;i++){
+		var tgNm= arr.item(i).nodeName;
+		var obj=null;
+		if(tgNm.toLowerCase()=='unmenu'){
+			obj=new unmenu(arr.item(i));
+		}
+		
+		
+	}
+}
+</script>
+</head>
+<body onload="initializeUI()">
+ <unmenu>
+    <li class="seccion"><a href="#">Menu</a>
+         <ul>
+            <li><a href="#">Submenu 1</a></li>
+            <li><a href="#">Submenu 2</a></li>
+            <li><a href="#">Submenu 3</a></li>
+            <li><a href="#">Submenu 4</a></li>
+         </ul>
+     </li>
+</unmenu>
+</body>
+</html>

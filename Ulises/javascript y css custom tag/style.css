@@ -1,0 +1,51 @@
+body{
+   font-size: 25px;
+   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+unmenu{
+   width:300px;
+   margin: 5% auto;
+   background: #EEE;
+   
+}
+
+unmenu  li{
+   list-style: none;
+   position:relative; /* importante, para que el submenu tome la posición correcta*/
+   background-color:red;
+           
+}
+
+unmenu li a{
+   color:#666;
+   text-decoration:none;
+   padding: 5px;
+   display:block;
+   z-index: 1;
+}
+unmenu li a:hover{
+   color:#08D;
+}
+
+
+
+
+unmenu li li a{
+   width:250px;/*el ancho de los links del submenu, debe ser fijo, esto servirá para crear la animación mas adelante */
+   display:block;
+}
+/* aquí esta lo importante!! */
+unmenu li ul {
+   width: 250px;
+   margin:0;
+   display:none;
+   background:red;
+   border:1px #ccc solid;
+   position: absolute;
+   left: 0px;
+   top: 100%;
+   z-index: 2;
+}
+ unmenu li:hover ul {
+   display: block;
+}
