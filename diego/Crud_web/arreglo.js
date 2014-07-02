@@ -19,3 +19,4 @@ var getArray=function(){
 module.exports.insertar = insertar;
 module.exports.getArray= getArray;
 module.exports.eliminar=eliminar;
+module.exports.modificar=modificar;

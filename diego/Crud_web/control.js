@@ -14,7 +14,7 @@ var leer = function(){
 	//console.log(array[0]);
 	for(i=0;i<array.length;i++){
 		var objeto = new modelo.alumnos();
-		console.log(i);
+		//console.log(i);
 		objeto.setNombre(array[i][0]);
 		objeto.setEdad(array[i][1]);
 		objeto.setCarrera(array[i][2]);
@@ -37,7 +37,7 @@ var leer = function(){
 	return json;
 }
 
-var modificar = function(req){
+var agregar = function(req){
 	var array=0;
 	var objToJson=0;
 	var nombre="";
@@ -85,15 +85,10 @@ var guardar = function(req){
 	return json;
 
 }
-var creardic2 = function(){
+var mostrar = function(){
 	var array = arreglo.getArray();
-	console.log(typeof(array[0]));
 	objToJson={
-		nombre:array[0].getNombre(),
-		edad:array[0].getEdad(), 
-		carrera:array[0].getCarrera(), 
-		semestre:array[0].getSemestre(), 
-		numero:array[0].getNumero()
+		datos:array
 	};
 	json=JSON.stringify(objToJson);
 	return(json);
@@ -115,9 +110,61 @@ var eliminar = function(num){
 	return array2;
 
 }
-//var modificar = function()
+var modificar = function(req){
+	var array=0;
+	var objToJson=0;
+	var nombre="";
+	var edad=0;
+	var carrera="";
+	var semestre="";
+	var numero="";
+	var objeto = new modelo.alumnos();
+	nombre = req.body.nombre;
+	edad = req.body.edad;
+	carrera = req.body.carrera;
+	semestre = req.body.semestre;
+	numero = req.body.numero;
+	objeto.setNombre(nombre);
+	objeto.setEdad(edad);
+	objeto.setCarrera(carrera);
+	objeto.setSemestre(semestre);
+	objeto.setNumero(numero);
+
+	array=arreglo.getArray();
+	for(var i =0;i<array.length;i++){
+		if (array[i]!=null){
+			if(array[i].getNumero()==numero){
+				arreglo.modificar(i,objeto);
+			}
+		}
+	}
+	var array2=arreglo.getArray();
+	return array2;
+}
+var buscar = function(req){
+	var json="";
+	var objToJson="";
+	var array2=[];
+	var array = arreglo.getArray();
+	var numero=req.body.numero;
+	//console.log(numero);
+	for(var i = 0; i<array.length;i++){
+		if (array[i]!=null){
+			if(array[i].getNumero()==numero){
+				array2.push(array[i]);
+			};
+		};
+	};
+	objToJson={
+		datos:array2
+	};
+	json=JSON.stringify(objToJson);
+	return json;
+}
 module.exports.leer=leer;
 module.exports.modificar=modificar;
 module.exports.guardar=guardar;
 module.exports.eliminar=eliminar;
-//module.exports.creardic=creardic;
+module.exports.agregar=agregar;
+module.exports.buscar=buscar;
+module.exports.mostrar=mostrar;

@@ -34,6 +34,13 @@
     </tr>
 	</table>
 <button data-bind="click: agregar">Agregar nuevo</button>
+<button data-bind="click: modificar">Guardar Cambios</button>
+<br> <br/>
+
+<button data-bind="click: buscar">Buscar por Matricula</button>
+<input data-bind="value: numero_buscar" placeholder= "numero a buscar" ></input>
+<br> <br/>
+<button data-bind="click: mostrar">Mostrar Todos </button>
 
 <br> <br/>
 <br> <br/>
@@ -53,7 +60,7 @@
     <tbody data-bind="foreach: itemsOnCurrentPage">
         <tr data-bind="foreach: $parent.columns">
             <!--ko if: typeof rowText == 'object' && typeof rowText.action == 'function'-->
-                <td><button data-bind="click:rowText.action($parent)">Eliminar</button></td>         
+                <td><button data-bind="click:rowText.action($parent)">Ejecutar</button></td>         
             <!-- /ko -->
             <!--ko ifnot: typeof rowText == 'object' && typeof rowText.action == 'function'-->
                 <td data-bind="text: typeof rowText == 'function' ? rowText($parent) : $parent[rowText] "></td>
@@ -67,10 +74,7 @@
 <script type="text/javascript">
 
 var initialData=[];
-//var initialData=[
-//	{nombre:"Diego", edad: 18, carrera:"ISC", semestre:4,numero:"12021043" },
-//	{nombre:"Estefanie", edad:20, carrera:"ARQ", semestre:4, numero:"12021039"}
-//];
+
 function Task(items) {
 
 	this.items = ko.observableArray(items);
@@ -84,6 +88,7 @@ function Task(items) {
 	self.carrera=ko.observable("");
 	self.semestre=ko.observable("");
 	self.numero=ko.observable("");
+	self.numero_buscar=ko.observable("");
 
 	self.guardar = function(){
 		$.ajax("http://localhost:8888/guardar.html", {
@@ -97,19 +102,13 @@ function Task(items) {
 			contentType: "application/json",
 			dataType : "json",
 			success: function(result){
-				//alert("correcto");
 			},
 			error: function(err){alert("error"+err);}
 	});
 	}
 
-
-	self.buscar =function(){
-		//algo
-	};
-
-	self.agregar = function(){
-		$.ajax("http://localhost:8888/modificar.html", {
+	self.modificar = function(){
+		$.ajax("http://localhost:8888/modificar.html",{
 			data: ko.toJSON({
 				nombre:self.nombre, 
 				edad:self.edad, 
@@ -120,7 +119,67 @@ function Task(items) {
 			contentType: "application/json",
 			dataType : "json",
 			success: function(result){
-				//alert("succes");
+				obj=result;
+				a=result.datos.length;
+			},
+			error: function(err){alert("error"+err);},
+			async: false
+		});
+		this.items.removeAll();
+		for(var i=0; i<a; i++){
+			if(obj.datos[i]!=null){
+				valores=obj.datos[i];
+				this.items.push(valores);
+			};
+		};
+		self.guardar();
+		self.nombre("");
+		self.edad("");
+		self.carrera("");
+		self.semestre("");
+		self.numero("");
+	};
+
+	self.buscar =function(){
+		$.ajax("http://localhost:8888/buscar.html",{
+			data: ko.toJSON({
+				numero:self.numero_buscar}),
+			type: "post",
+			contentType: "application/json",
+			dataType : "json",
+			success: function(result){
+				obj=result;
+				a=result.datos.length;
+			},
+			error: function(err){alert("error"+err);},
+			async: false
+		});
+		this.items.removeAll();
+		for(var i=0; i<a; i++){
+			if(obj.datos[i]!=null){
+				valores=obj.datos[i];
+				this.items.push(valores);
+			};
+		};
+		//self.guardar();
+	};
+
+
+		//algo
+	
+
+	self.agregar = function(){
+		$.ajax("http://localhost:8888/agregar.html", {
+			data: ko.toJSON({
+				nombre:self.nombre, 
+				edad:self.edad, 
+				carrera:self.carrera, 
+				semestre:self.semestre, 
+				numero:self.numero}),
+			type: "post",
+			contentType: "application/json",
+			dataType : "json",
+			success: function(result){
 				obj=result;
 				a=result.datos.length;
 			},
@@ -137,6 +196,13 @@ function Task(items) {
 		};
 		};
 		self.guardar();
+		self.nombre("");
+		self.edad("");
+		self.carrera("");
+		self.semestre("");
+		self.numero("");
+
+		//self.limpiar();
 	}
 
 	self.eliminar = function(numero){
@@ -148,23 +214,15 @@ function Task(items) {
 			contentType: "application/json",
 			dataType : "json",
 			success: function(result){
-				//for(var i= 0; i<result.datos.length;i++){
 						
 						obj=result;
 						a=result.datos.length;
-						//alert(a);
-						
-					//}
-
-				//alert("success");
-				//valores=result
 			},
 
 			error: function(err){alert("error"+err);},
 			async: false
 		});
 		this.items.removeAll();
-		//alert("despues de removeall"+obj.datos.length);
 		for (var i=0; i<a;i++){
 			if(obj.datos[i]!=null){
 			valores=obj.datos[i];
@@ -172,12 +230,35 @@ function Task(items) {
 			this.items.push(valores);
 		};
 		};
+		self.guardar();
 	};
 
-//};
 
+	self.mostrar = function(){
+		$.ajax("http://localhost:8888/mostrar.html", {
+			data: ko.toJSON({ }),
+			type: "post",
+			contentType: "application/json",
+			dataType : "json",
+			success: function(result){
+						
+						obj=result;
+						a=result.datos.length;
+			},
 
+			error: function(err){alert("error"+err);},
+			async: false
+		});
+		this.items.removeAll();
+		for (var i=0; i<a;i++){
+			if(obj.datos[i]!=null){
+			
+			valores=obj.datos[i];
+			this.items.push(valores);
+		};
+	};
 
+	};
 
     self.leer = function() {
 		$.ajax("http://localhost:8888/leer.html", {
@@ -186,15 +267,9 @@ function Task(items) {
 			contentType: "application/json",
 			dataType : "json",
 			success: function(result){
-				//for(var i= 0; i<result.datos.length;i++){
 						
 						obj=result;
 						a=result.datos.length;
-						
-					//}
-
-				//alert("success");
-				//valores=result
 			},
 
 			error: function(err){alert("error"+err);},
@@ -219,22 +294,26 @@ function Task(items) {
 				{ headerText: "Matricula",rowText: "numero"},
 				{ headerText: "Eliminar", rowText: {action: function(item){
                 return function(){
-                	//alert(item.numero);
-                    //console.log(item)
                     self.eliminar(item.numero);
-                    //this.items.remove(function(item){ return item.nombre=="ultimo"});
-
+                }
+                }}},
+                { headerText: "Modificar", rowText: {action: function(item){
+                return function(){
+                    self.nombre(item.nombre);
+                    self.edad(item.edad);
+                    self.carrera(item.carrera);
+                    self.semestre(item.semestre);
+                    self.numero(item.numero);
                 }
                 }}}
 				],
-				pageSize: 20
+				pageSize: 10
 	});
 	self.leer();
 };
 
 ko.applyBindings(new Task(initialData));
 
-//ko.applyBindings(new PagedGridModel(initialData));
 </script>
 </body>
 </html>

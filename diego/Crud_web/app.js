@@ -12,6 +12,20 @@ app.use(function (req,res,next){
     next();
 });
 
+app.post('/mostrar.html',function(req, res){
+	var json="";
+	res.writeHead(200,{ ' content-type' : ' application/json'});
+	json=control.mostrar();
+	res.write(json);
+	res.end();
+})
+app.post('/buscar.html',function(req, res){
+	var json="";
+	res.writeHead(200, { 'content-type' : 'application/json'});
+	json=control.buscar(req);
+	res.write(json);
+	res.end();
+})
 app.post('/leer.html',function(req, res){
 	var json="";
 	res.writeHead(200, {'content-type' : 'application/json'});
@@ -20,12 +34,25 @@ app.post('/leer.html',function(req, res){
 	res.end();
 	});
 
-app.post('/modificar.html',function(req, res){
+app.post('/agregar.html',function(req, res){
 	var json="";	
 	res.writeHead(200, { 'content-type' : 'application/json'});
-	json=control.modificar(req);
+	json=control.agregar(req);
 	res.write(json);
 	res.end();
+});
+
+app.post('/modificar.html',function(req,res){
+	res.writeHead(200, { 'content-type' : 'application/json'});
+
+	var pre=control.modificar(req);
+	objToJson={
+		datos:pre
+	};
+	json=JSON.stringify(objToJson);
+	res.write(json);
+	res.end();
+
 });
 
 app.post('/guardar.html',function(req, res){
