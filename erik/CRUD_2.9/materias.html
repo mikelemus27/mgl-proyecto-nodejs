@@ -1,0 +1,62 @@
+<html>
+	<head>
+		<script type="text/javascript" src="knockout.js"></script>
+		<script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="server.js"></script>
+	</head>
+	
+	<body>
+		<label>Clave: <input data-bind="value: clave"></label><br>
+		<label>Nombre: <input data-bind="value: nombre"></label><br>
+		<label>Turno: <input data-bind="value: turno"></label><br>
+		<label>Creditos: <input data-bind="value: creditos"></label><br>
+		<label>Maestro: <input data-bind="value: maestro"></label><br>
+		<button data-bind="click: guardar">Save</button>
+		<button data-bind="click: consultar">Consultar</button>
+		<br><button data-bind="click: eliminar">Eliminar</button>
+		
+		<script type="text/javascript">
+			function ViewModel()
+			{
+				var self=this;
+				self.clave=ko.observable(null);
+				self.nombre=ko.observable(null);
+				self.turno=ko.observable(null);
+				self.creditos=ko.observable(null);
+				self.maestro=ko.observable(null);
+				self.guardar= function()
+						{
+							console.log("prueba guardar");
+							$.ajax("http://localhost:8888/encapsular.html", {
+							data: ko.toJSON({ Key: self.clave, Name: self.nombre, Turn: self.turno, Credits: self.creditos, Teacher: self.maestro}),
+							type: "post", contentType: "application/json", dataType:"json",
+							success: function(valor) { alert("Datos guardados"); }
+									});
+						};
+				self.consultar= function()
+						{
+							console.log("prueba de consultar");
+							$.ajax("http://localhost:8888/consultar.html", {
+							data: ko.toJSON({ Key: self.clave}),
+							type: "post", contentType: "application/json", dataType:"json",
+							success: function(valor) { alert("Datos guardados"); }
+									});
+						};
+				self.eliminar=function()
+						{
+							console.log("prueba eliminar");
+							$.ajax("http://localhost:8888/eliminar.html", {
+							data: ko.toJSON({ Key: self.clave}),
+							type: "post", contentType: "application/json", dataType:"json",
+							success: function(valor) { alert("Datos guardados"); }
+									});
+								
+						};
+			};
+			ko.applyBindings(new ViewModel());
+				
+			
+			
+		</script>
+	</body>
+</html>

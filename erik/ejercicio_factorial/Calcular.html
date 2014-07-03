@@ -1,0 +1,57 @@
+<html>
+	<head>
+		<script type="text/javascript">
+			function launchFactorialWebWorker()
+			{
+				var worker = new Worker('factorial.js');
+				
+				worker.onmessage = function (e)
+				{
+					document.getElementById("factorial").innerHTML = e.data.factorial;
+				};
+				worker.onerror = function(e)
+				{
+					alert('Error: Line ' + e.lineno + ' in ' + e.filename + ': ' + e.message);
+				};
+				
+				worker.postMessage({'cmd': 'CalculateFactorial',
+						      'value': document.getElementById("numero").value
+						    });
+			}
+			function launchExponenteWebWorker()
+			{
+				var worker = new Worker('exponente.js');
+				
+				worker.onmessage = function (e)
+				{
+					document.getElementById("exp").innerHTML = e.data.exp;
+				};
+				worker.onerror = function(e)
+				{
+					alert('Error: Line ' + e.lineno + ' in ' + e.filename + ': ' + e.message);
+				};
+				
+				worker.postMessage({'cmd': 'CalculateExponente',
+						      'value': document.getElementById("numero").value,
+						      'valor': document.getElementById("exponente").value
+						    });
+			}
+
+		</script>
+	</head>
+	<body>
+		<label> Numero: </label>
+		<input id="numero" type="input" value="Numero" /><br>
+		<label> Exponente: </label>
+		<input id="exponente" type="number" value="2" /><br>
+		<input type="button" onclick="launchFactorialWebWorker()" value="Factorial" />
+		<input type="button" onclick="launchExponenteWebWorker()" value="Exponente" />
+		<br>
+		<br>
+		<label>Factorial: </label>
+		<div id="factorial">FACTORIAL</div>
+		<br>
+		<label>Exponenete: </label>
+		<div id="exp">EXPONENTE</div>
+	</body>
+</html>

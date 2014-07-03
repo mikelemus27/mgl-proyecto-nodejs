@@ -1,0 +1,44 @@
+function CalculatePi(loop)
+{
+    var c = parseInt(loop);
+    var f = parseFloat(loop);
+    var n=1;
+
+    //these errors will need more work…
+    if (isNaN(c) || f != c ) {
+    postMessage({'type': 'error', 'code': 'errInvalidNumber'});
+    return;
+	} else if (c<=0) {
+	    postMessage({'type': 'error', 'code': 'errNegativeNumber'});
+	    return;
+	}
+	//...at the end of the CalculatePi() function
+	//we have to add the 'data' message type to differenciate 
+	//from errors
+	self.postMessage({'type': 'data', 'PiValue': Pi});
+	}
+//wait for the start 'CalculatePi' message
+//e is the event and e.data contains the JSON object
+self.onmessage = function(e) {
+  CalculatePi(e.data.value);
+}
+worker.onmessage = function(e) {
+  var data = e.data;
+  switch (data.type) {
+    case 'error':
+      var msg = 'Input Error: '
+      switch (data.code) {
+        case 'errInvalidNumber':
+          msg += 'Invalid number.';
+          break;
+        case 'errNegativeNumber':
+          msg += 'Input must be positive.';
+          break;
+      }
+      alert(msg);
+      break;
+    case 'data':
+      document.getElementById("PiValue").innerHTML = data.PiValue;
+      break;
+  }
+};

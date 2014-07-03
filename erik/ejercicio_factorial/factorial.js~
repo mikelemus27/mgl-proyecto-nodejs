@@ -1,0 +1,14 @@
+function CalculateFactorial(number)
+{
+	var numero=parseInt(number);
+	var temporal=numero;
+	
+	for(i=0, i<=numero, i++)
+	{
+		temporal=temporal*(numero-1);
+		numero=numero-1;
+	self.postMessage({'factorial':temporal});
+}
+self.onmessage = function(e) {
+  CalculatePi(e.data.value);
+}

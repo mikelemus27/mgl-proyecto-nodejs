@@ -1,0 +1,18 @@
+var entidadMaterias=require('./entidadMATERIAS');
+var captura=new  entidadMaterias;
+var classControlEntidad=function(){}
+var arreglo= new Array();
+var posicion;
+classControlEntidad.prototype.nuevoObjeto=function(clave, nombre,turno,creditos,maestro)
+{	
+
+	captura.setClave(clave);
+	captura.setNombre(nombre);
+	captura.setTurno(turno);
+	captura.setCreditos(creditos);
+	captura.setMaestro(maestro);
+	return captura;
+
+}
+
+module.exports=classControlEntidad;

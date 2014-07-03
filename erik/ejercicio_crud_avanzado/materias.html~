@@ -1,0 +1,41 @@
+<html>
+	<head>
+		<script type="text/javascript" src="knockout.js"></script>
+		<script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="server.js"></script>
+
+	</head>
+
+	<body>	
+	
+		<p>Clave:<input data-bind="value: clave"></p>
+		<p>Nombre:<input data-bind="value: nombre"></p>
+		<p>Turno:<input data-bind="value: turno"></p>
+		<p>Creditos:<input data-bind="value: creditos"></p>
+		<p>Maestro:<input data-bind="value: maestro"></p>
+		<button data-bind="click: guardar">Save</button>
+		<script type="text/javascript">
+			function ViewModel()
+			{
+			
+				var self=this;
+				self.clave=ko.observable(null);
+				self.nombre=ko.observable(null);
+				self.turno=ko.observable(null);
+				self.creditos=ko.observable(null);
+				self.maestro=ko.observable(null);
+				self.guardar= function()
+						{
+							console.log("prueba");
+							$.ajax("http://localhost:8888/encapsular.html", {
+							data: ko.toJSON({ Key: self.clave, Name: self.nombre, Turn: self.turno, Credits: self.creditos, Teacher: self.maestro}),
+							type: "post", contentType: "application/json", dataType:"json",
+							success: function(valor) { alert("Datos guardados"); }
+									});
+						};
+			};
+			ko.applyBindings(new ViewModel());
+		</script>
+	
+	</body>
+</html>

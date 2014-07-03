@@ -1,0 +1,22 @@
+var express=require('express');
+var connect=require('connect');
+var app=express();
+var http = require('http');
+var utils=require('util');
+var qs = require('querystring');
+var capture=require('./classMaterias');
+var fs = require('fs');
+
+var classArchivo=function(){}
+classArchivo.prototype.Guardar=function(cadena)
+{
+	fs = require('fs');
+	var datos=new capture;
+	console.log(datos.getClave());
+	var cadena=(datos.getClave()+','+datos.getNombre()+','+datos.getTurno()+','+datos.getCreditos()+','+datos.getMaestro());
+	fs.writeFile('C:/mgl-proyecto-nodejs/erik/ejercicio_crud_avanzado/materias.txt',cadena, function (err) {
+	  if (err) return console.log(err);
+	  console.log('Guardado');
+	});
+}
+module.exports=classArchivo;

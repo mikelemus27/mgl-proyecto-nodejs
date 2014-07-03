@@ -1,0 +1,26 @@
+var entidadMaterias=require('./entidadMATERIAS');
+var captura=new  entidadMaterias;
+var classCRUD=function(){}
+var arreglo;
+var posicion;
+classCRUD.prototype.agregar=function(clave, nombre,turno,creditos,maestro,posicion)
+{	
+	console.log(arreglo);
+	captura.setClave(clave);
+	captura.setNombre(nombre);
+	captura.setTurno(turno);
+	captura.setCreditos(creditos);
+	captura.setMaestro(maestro);
+	arreglo[posicion]=captura;
+}
+classCRUD.prototype.eliminar=function(clave,posicion)
+{
+	for(x=0;x<posicion;x++)
+	{
+		if(arreglo[posicion].getClave()=clave)
+			{
+				arreglo[posicion]=null;
+			}
+	}
+}
+module.exports=classCRUD;
