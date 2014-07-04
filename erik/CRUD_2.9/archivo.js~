@@ -4,7 +4,7 @@ var app=express();
 var http = require('http');
 var utils=require('util');
 var qs = require('querystring');
-var capture=require('./classMaterias');
+var capture=require('./entidadMATERIAS');
 var fs = require('fs');
 
 var classArchivo=function(){}
@@ -21,7 +21,7 @@ classArchivo.prototype.Guardar=function(captura)
 }
 classArchivo.prototype.Cargar=function()
 {
-	fs.readFile('C:/mgl-proyecto-nodejs/erik/ejercicio_crud_avanzado/materias.txt', function(err, f)
+	fs.readFile('C:/mgl-proyecto-nodejs/erik/CRUD_2.9/materias.txt', function(err, f)
 		{
 			var cadena1=f.toString().split(',').length;
 			

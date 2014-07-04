@@ -5,7 +5,7 @@ var http = require('http');
 var utils=require('util');
 var qs = require('querystring');
 var envio=require('./Controller');
-var send=new envio;
+var send=new envio();
 var objeto;
 app.use(connect.json());
 app.use(connect.urlencoded());
@@ -33,17 +33,24 @@ app.post('/encapsular.html', function(req,res)
 				
 				var request=req.body;
 				send.Data(request.Key,request.Name,request.Turn,request.Credits,request.Teacher);			
-				objeto=send.controlArreglo.getArray();
 				console.log("server");
 				console.log(objeto);
 				
 				
 			});
 
+app.post('/consultar.html', function(req,res)
+			{
+				var request=req.body;
+				send.View();
+				
+			});
+
 app.post('/eliminar.html', function(req,res)
 			{
 				var request=req.body;
-				send.addArray(objeto);
+				send.deleteObject(request.Key);
+				
 			});
 
 app.listen(8888, 'localhost');

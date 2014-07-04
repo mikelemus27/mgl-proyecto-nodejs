@@ -6,14 +6,32 @@
 	</head>
 	
 	<body>
-		<label>Clave: <input data-bind="value: clave"></label><br>
-		<label>Nombre: <input data-bind="value: nombre"></label><br>
-		<label>Turno: <input data-bind="value: turno"></label><br>
-		<label>Creditos: <input data-bind="value: creditos"></label><br>
-		<label>Maestro: <input data-bind="value: maestro"></label><br>
+		<table>
+			<tr>
+				<td width="1%"><label>Clave:</label></td> <td width)="1%"> <input data-bind="value: clave"><br> </td>
+			</tr>
+			
+			<tr>
+				<td><label>Nombre: </label></td><td><input data-bind="value: nombre"><br></td>
+			</tr>
+			
+			<tr>
+				<td><label>Turno: </label></td><td><input data-bind="value: turno"><br></td>
+			</tr>
+			
+			<tr>
+				<td><label>Creditos: </label></td><td><input data-bind="value: creditos"><br></td>
+			</tr>
+			
+			<tr>
+				<td><label>Maestro: </label></td><td><input data-bind="value: maestro"><br></td>
+			</tr>
+			
+		</table>
 		<button data-bind="click: guardar">Save</button>
 		<button data-bind="click: consultar">Consultar</button>
-		<br><button data-bind="click: eliminar">Eliminar</button>
+		<button data-bind="click: eliminar">Eliminar</button>
+		<button data-bind="click: cargar">Cargar</button>
 		
 		<script type="text/javascript">
 			function ViewModel()
@@ -29,30 +47,69 @@
 							console.log("prueba guardar");
 							$.ajax("http://localhost:8888/encapsular.html", {
 							data: ko.toJSON({ Key: self.clave, Name: self.nombre, Turn: self.turno, Credits: self.creditos, Teacher: self.maestro}),
-							type: "post", contentType: "application/json", dataType:"json",
-							success: function(valor) { alert("Datos guardados"); }
-									});
-						};
+							type: "post", contentType: "application/json", 
+							dataType:"json",
+							success: function(result){
+							},
+							error: function(err){alert("error"+err);}
+							});
+						}
 				self.consultar= function()
 						{
 							console.log("prueba de consultar");
 							$.ajax("http://localhost:8888/consultar.html", {
 							data: ko.toJSON({ Key: self.clave}),
-							type: "post", contentType: "application/json", dataType:"json",
-							success: function(valor) { alert("Datos guardados"); }
-									});
+							type: "post", 
+							contentType: "application/json", 
+							dataType:"json",
+							success: function(result){
+										
+										objJSON=result;
+										a=result.array.length;
+							},
+				
+							error: function(err){alert("error"+err);},
+							async: false
+						});
+							console.log(objJSON);
+						
 						};
-				self.eliminar=function()
+					self.eliminar=function()
 						{
 							console.log("prueba eliminar");
 							$.ajax("http://localhost:8888/eliminar.html", {
 							data: ko.toJSON({ Key: self.clave}),
-							type: "post", contentType: "application/json", dataType:"json",
+							type: "post", 
+							contentType: "application/json", 
+							dataType:"json",
 							success: function(valor) { alert("Datos guardados"); }
 									});
 								
 						};
-			};
+					}
+					self.cargar = function() {
+						$.ajax("http://localhost:8888/read.html", {
+							data: ko.toJSON({ }),
+							type: "post",
+							contentType: "application/json",
+							dataType : "json",
+							success: function(result){
+										
+										objJSON=result;
+										a=result.array.length;
+							},
+				
+							error: function(err){alert("error"+err);},
+							async: false
+						});
+						
+						
+				
+					console.log(objJSON);
+						
+				
+				};
+		
 			ko.applyBindings(new ViewModel());
 				
 			

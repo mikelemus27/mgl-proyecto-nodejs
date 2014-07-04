@@ -32,9 +32,9 @@ app.post('/encapsular.html', function(req,res)
 			{
 				
 				var request=req.body;
-				send.Data(request.Key,request.Name,request.Turn,request.Credits,request.Teacher);			
+				objeto=send.Data(request.Key,request.Name,request.Turn,request.Credits,request.Teacher);			
 				console.log("server");
-				console.log(objeto);
+				
 				
 				
 			});
@@ -43,7 +43,21 @@ app.post('/consultar.html', function(req,res)
 			{
 				var request=req.body;
 				send.View();
+				var json="";
+				res.writeHead(200,{ ' content-type' : ' application/json'});
+				json=send.View();
+				res.write(json);
+				res.end();
 				
+			});
+app.post('/read.html',function(req, res){
+				
+				var json="";
+				res.writeHead(200, {'content-type' : 'application/json'});
+				json=send.Read();
+				res.write(json);
+				console.log("read");
+				res.end();
 			});
 
 app.post('/eliminar.html', function(req,res)

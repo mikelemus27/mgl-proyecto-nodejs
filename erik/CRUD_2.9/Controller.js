@@ -24,12 +24,30 @@ classController.prototype.Data=function(clave,nombre,turno,creditos,maestro)
 	
 	imprimirObjeto=this.controlArreglo.addObject(nuevoObjeto);
 	this.print.Guardar(imprimirObjeto);
+	return this.imprimirObjeto;
 		
 };
 classController.prototype.View=function()
 {
 	var arreglo=this.controlArreglo.getArray();
-	console.log(arreglo);	
+	objToJson={
+		array:arreglo
+	};
+	json=JSON.stringify(objToJson);
+	return (json);
+}
+classController.prototype.Read=function()
+{
+	console.log("Creando objeto Read");
+	var arreglo=this.print.Cargar();
+	var key,name,turn,credits,teacher;
+	
+	var arreglo=this.controlArreglo.getArray();
+	objJSON={
+		array:arreglo
+	};
+	return json=JSON.stringify(objJSON);
+	
 }
 
 classController.prototype.deleteObject=function(clave)

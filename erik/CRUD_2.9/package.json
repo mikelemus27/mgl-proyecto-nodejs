@@ -1,0 +1,8 @@
+{
+    "name": "CRUD_2.9",
+    "description": "node+knockout+express",
+    "version": "0.0.1",
+    "dependencies": {
+        "express": "3.5.1"
+    }
+}

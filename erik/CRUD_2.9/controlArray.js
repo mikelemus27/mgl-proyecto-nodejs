@@ -10,9 +10,7 @@ var classArray=function()
 classArray.prototype.addObject=function(nuevoObjeto)
 {
 	
-	this.tam=this.array.length;
-	console.log("tamaño arreglo:"+this.tam);
-	this.array[this.tam+1]=nuevoObjeto;
+	this.array.push(nuevoObjeto);
 	return this.array;
 };
 classArray.prototype.deleteObject=function(clave)

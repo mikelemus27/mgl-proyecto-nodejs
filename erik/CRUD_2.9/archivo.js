@@ -12,8 +12,9 @@ classArchivo.prototype.Guardar=function(captura)
 {
 	fs = require('fs');
 	var datos=captura;
-	console.log(datos.getClave());
-	var cadena=(datos.getClave()+','+datos.getNombre()+','+datos.getTurno()+','+datos.getCreditos()+','+datos.getMaestro());
+	
+	var cadena=(datos);
+	
 	fs.writeFile('C:/mgl-proyecto-nodejs/erik/ejercicio_crud_avanzado/materias.txt',cadena, function (err) {
 	  if (err) return console.log(err);
 	  console.log('Guardado');
@@ -21,12 +22,20 @@ classArchivo.prototype.Guardar=function(captura)
 }
 classArchivo.prototype.Cargar=function()
 {
-	fs.readFile('C:/mgl-proyecto-nodejs/erik/CRUD_2.9/materias.txt', function(err, f)
+	var arrayTemp=[];
+	var arrayDatos=[];
+	exist=fs.existsSync("./materias.txt");
+	if (exists==true)
+	{
+		var arreglo=fs.readFileSync("./materias.txt").toString();
+		for(i;i<5;i++)
 		{
-			var cadena1=f.toString().split(',').length;
+			arrayTemp=arreglo[i].split(",");
+			arrayDatos.push(arrayTemp);
 			
-		});
-	return this.cadena1;
+		}
+	}
+	return (this.arrayDatos);
 	
 }
 module.exports=classArchivo;

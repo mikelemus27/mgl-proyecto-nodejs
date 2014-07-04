@@ -1,33 +1,39 @@
 var controlEntidad=require('./controEntidad');
 var controlArray=require('./controlArray');
+var controlPrint=require('./controlPrint');
 var classController=function()
 {
 	console.log("Crenado objeto send");
 	this.nuevoObjeto;
 	this.controlArreglo= new controlArray();
 	this.control=new controlEntidad();
+	this.print=new controlPrint();
 	this.count=0;
 	console.log(this.count);
 };
 classController.prototype.Data=function(clave,nombre,turno,creditos,maestro)
 {
-	var clave=clave;
-	var nombre=nombre;
-	var turno=turno;
-	var creditos=creditos;
-	var maestro=maestro;
+	var key=clave;
+	var name=nombre;
+	var turn=turno;
+	var credits=creditos;
+	var teacher=maestro;
 	
-	nuevoObjeto=this.control.nuevoObjeto(clave,nombre,turno,creditos,maestro);
+	nuevoObjeto=this.control.nuevoObjeto(key,name,turn,credits,teacher);
 	//console.log(nuevoObjeto);
 	
-	this.controlArreglo.addObject(nuevoObjeto,this.count);
-	this.count=this.count+1;
+	imprimirObjeto=this.controlArreglo.addObject(nuevoObjeto);
+	return this.imprimirObjeto
 		
 };
 classController.prototype.View=function()
 {
 	var arreglo=this.controlArreglo.getArray();
-	console.log(arreglo);	
+	objToJson={
+		array:arreglo
+	};
+	json=JSON.stringify(objToJson);
+	return json;
 }
 
 classController.prototype.deleteObject=function(clave)
