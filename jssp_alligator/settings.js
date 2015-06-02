@@ -1,6 +1,6 @@
 var settings={
 	"web_app_name" : "Alligator TestApp",
-	"port"         : 15454,
+	"port"         : process.env.PORT,
 	"host"         :process.env.IP,
 	"path"         : {
 				"root":"/WWW/",
@@ -22,7 +22,7 @@ var settings={
 	"nodes"	       : 1
 };
 
-var prn=function(){ return  settings.toString('utf8',0,settings.length);}
+var prn=function(){ return JSON.stringify(settings);}/*http://stackoverflow.com/questions/18110520/how-do-i-return-the-formatted-json-object-in-nodejs*/
 
 
 module.exports.prn = prn;

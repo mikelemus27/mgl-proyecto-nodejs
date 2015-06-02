@@ -24,7 +24,7 @@ else
     
     console.log("settings :"+settings.prn());
      settings=JSON.parse(settings.prn());
-     jssp.start(settings.settings,__dirname);
+     jssp.start(settings,__dirname);
 }
 
 

@@ -17,11 +17,11 @@ var p1=request.parameters.num1;
 <form action="form.jssp" method="post">
     <div>
         <label for="num1">num1:</label>
-        <input name="num1" type="text" id="num1" value=<?=p1?> />
+        <input name="num1" type="text" id="num1" value=<?= p1 !=undefined ? p1:0?> />
     </div>
     <div>
         <label for="num2">num2:</label>
-        <input  name="num2" type="text" id="num2" value=<?=p2?> />
+        <input  name="num2" type="text" id="num2" value=<?= p2 != undefined ? p2:0?> />
     </div>
     <div>
         <label for="result">result:</label>
