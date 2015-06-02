@@ -1,21 +1,34 @@
+<? 
+
+var debug=false;
+var p1=request.parameters.num1;
+ var p2=request.parameters.num2;
+ if (debug == true) {
+    console.log("form.jssp; param2="+ p1);
+     console.log("form.jssp; param2="+ p2);
+     commands.write("form.jssp; param1="+ p1);
+     commands.write("form.jssp; param2="+ p2);
+ }
+?>
+
 <HTML>
 		<?="<head><title>nodeJS and antiNode+</title></head>"?>
 	<BODY>
 <form action="form.jssp" method="post">
     <div>
         <label for="num1">num1:</label>
-        <input name="num1" type="text" id="num1" value="3" />
+        <input name="num1" type="text" id="num1" value=<?=p1?> />
     </div>
     <div>
         <label for="num2">num2:</label>
-        <input  name="num1" type="text" id="num2" value="2"/>
+        <input  name="num2" type="text" id="num2" value=<?=p2?> />
     </div>
     <div>
         <label for="result">result:</label>
       
-      <?=lib.suma.sumar(2,3)?> 
+      <?=lib.suma.sumar(p1,p2)?> 
     </div>
-  <input type="submit" value="Go to my link location" 
+  <input type="submit" value="Go to my link location" ></input>
 </form>
 	</BODY>
 </HTML>
