@@ -1,7 +1,7 @@
-{
+var settings={
 	"web_app_name" : "Alligator TestApp",
 	"port"         : 15454,
-	"host"         :https://mgl-proyecto-nodejs-mike27.c9.io,
+	"host"         :process.env.IP,
 	"path"         : {
 				"root":"/WWW/",
 				"lib":"/WWWlib/"
@@ -20,4 +20,9 @@
 			 },
 	"debug_mode"   : 1,
 	"nodes"	       : 1
-}
+};
+
+var prn=function(){ return  settings.toString('utf8',0,settings.length);}
+
+
+module.exports.prn = prn;
