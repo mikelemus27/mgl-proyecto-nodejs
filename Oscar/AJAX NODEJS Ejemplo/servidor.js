@@ -44,7 +44,7 @@ var pathname = url.parse(req.url).pathname;
 if(pathname == "/"){
 
 res.writeHead(200, {'Content-Type': 'text/html'});
-html  = fs.readFileSync('index.html','utf8');
+var html  = fs.readFileSync('index.html','utf8');
 res.write(html);
 
 }
@@ -64,5 +64,5 @@ else if (req.method === 'GET'){
 }
 res.end(); 
  
-}).listen(8888,'127.0.0.1');//.listen(8888, '127.0.0.1');
+}).listen(process.env.PORT,process.env.IP);//.listen(8888, '127.0.0.1');
 console.log('Server running at http://127.0.0.1:8888');

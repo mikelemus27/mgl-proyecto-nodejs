@@ -86,4 +86,4 @@
   	res.end();
 });
 console.log("listen:http://127.0.0.1:3000");
-server.listen(3000,'127.0.0.1');
+server.listen(process.env.PORT, process.env.IP);

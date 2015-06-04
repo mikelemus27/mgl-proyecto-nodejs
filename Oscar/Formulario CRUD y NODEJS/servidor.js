@@ -12,7 +12,7 @@ var pathname = url.parse(req.url).pathname;
 if(pathname == "/"){
 
 res.writeHead(200, {'Content-Type': 'text/html'});
-html  = fs.readFileSync('formulario.html','utf8');
+var html  = fs.readFileSync('formulario.html','utf8');
 res.write(html);
 }
 
@@ -220,5 +220,5 @@ iniciar(post.txtCLAVE.toString(),post.txtNOMBRE.toString(),post.txtMODULOS.toStr
   
 
  
-}).listen(8888,'127.0.0.1');//.listen(8888, '127.0.0.1');
-console.log('Server running at http://127.0.0.1:8888');
+}).listen( process.env.PORT,process.env.IP);//.listen(8888, '127.0.0.1');
+console.log('Server running at'+ process.env.IP+':'+process.env.PORT);

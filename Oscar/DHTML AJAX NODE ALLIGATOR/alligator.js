@@ -1,7 +1,9 @@
 var fs = require('fs'),
 jssp = require('./lib/jssp'),
 sys = require('sys');
-
+var settings=require('./settings');
+var c9=true;
+if (c9==false){
 fs.readFile(process.argv[2] || './settings.json', function(err, data) {
     var settings = {};
     if (err) {
@@ -16,6 +18,14 @@ fs.readFile(process.argv[2] || './settings.json', function(err, data) {
     }
     jssp.start(settings,__dirname);
 });
+}
+else
+{
+    
+    console.log("settings :"+settings.prn());
+     settings=JSON.parse(settings.prn());
+     jssp.start(settings,__dirname);
+}
 
 
 

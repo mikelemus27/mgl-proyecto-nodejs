@@ -1,11 +1,8 @@
 (function(log,lib,application,request,responseHead,commands,session) {commands.writeEscapedText("");
-
 console.log("Responde el Servidor" );
-
  var Clase= lib.Vista;
  var obj=new Clase.Vista();
  var operacion = request.parameters.operacion;
-
 	if(operacion=="Actualizar"){
 	  commands.write(obj.Mostrar());
 	}
@@ -25,7 +22,5 @@ console.log("Responde el Servidor" );
 	commands.write(obj.GuardarCambio());
 	
 	}
-
-
 
 })

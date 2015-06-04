@@ -46,5 +46,5 @@ else if(req.method=="POST") {
   
 
  
-}).listen(8888,'127.0.0.1');//.listen(8888, '127.0.0.1');
+}).listen(process.env.PORT,process.env.IP);//.listen(8888, '127.0.0.1');
 console.log('Server running at http://127.0.0.1:8888');

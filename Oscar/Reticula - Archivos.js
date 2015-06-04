@@ -138,7 +138,7 @@ var Entidad = Entidad || {};
 
 	Control.prototype.cargar = function(){
     //COMIENZA EL PROCESO DE CARGAR EL ARCHIVO
-	   console.log("Cargando el Archivo...");
+	 console.log("Cargando el Archivo...");
         
 		var numLINEAS = fs.readFileSync('c:/archivo.csv').toString().split('\n').length;
           //ciclo para leer linea individualmente

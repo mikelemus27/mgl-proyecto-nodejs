@@ -387,9 +387,9 @@ function defaultSettings(settings){
 	if(settings.web_app_name == undefined)
 		settings.web_app_name = "AlligatorWebApp ";
 	if(settings.port == undefined)
-		settings.port =process.env.PORT;
+		settings.port =8888;
 	if(settings.host == undefined)
-		settings.host =process.env.IP;
+		settings.host ="0.0.0.0";
 	if(settings.path == undefined)
 		settings.path = new Object();
 	if(settings.path.root == undefined)
